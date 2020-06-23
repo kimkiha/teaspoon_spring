@@ -1,8 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.teaspoon.member.model.vo.Member, com.teaspoon.board.model.vo.*"%>
-<%
-	Board notice = (Board)session.getAttribute("b"); 
-%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,7 +16,7 @@
                         <td width="213">공지사항</td>
                         <td width="670" id="ajax_notice">
                         </td>
-                        <td width="230" style="text-align: right;"><a href="<%=contextPath%>/noticeList.bo?currentPage=1">+더보기</a></td>
+                        <td width="230" style="text-align: right;"><a href="noticeList.bo?currentPage=1">+더보기</a></td>
                     </tr>
                 </table>
             </div>
@@ -31,14 +27,14 @@
     <div class="contaniner">
         <div id="foot">
             <div class="ft_logo"> 
-                <img src="<%=contextPath%>/resources/img/main/foot_logo.png">
+                <img src="resources/image/main/foot_logo.png">
             </div>
             <div class="ft_content">
                 <ul>
-                    <li style="padding-left: 0"><a href="<%=contextPath%>/about.bo">브랜드소개</a></li>
-                    <li><a href="<%=contextPath%>/userNotice.ad">서비스 이용약관</a></li>
-                    <li><a href="<%=contextPath%>/personalInfo.ad">개인정보 처리방침</a></li>
-                    <li><a href="<%=contextPath%>/pictureInfo.ad">영상정보 처리방침</a></li>
+                    <li style="padding-left: 0"><a href="about.bo">브랜드소개</a></li>
+                    <li><a href="userNotice.ad">서비스 이용약관</a></li>
+                    <li><a href="personalInfo.ad">개인정보 처리방침</a></li>
+                    <li><a href="pictureInfo.ad">영상정보 처리방침</a></li>
                 </ul>
                 <br>
                 <p>(주)TEA SPOON<br>
@@ -49,9 +45,9 @@
                 </p>
             </div>
             <div class="ft_quick">
-                <a href="<%=contextPath%>/maps.sp"><img src="<%=contextPath%>/resources/img/main/loca.png"></a>
-                <a href="<%=contextPath%>/instagram.bo"><img src="<%=contextPath%>/resources/img/main/insta.png"></a>
-                <a href="<%=contextPath%>/myqna.me?currentPage=1"><img src="<%=contextPath%>/resources/img/main/chat.png"></a>
+                <a href="maps.sp"><img src="resources/img/main/loca.png"></a>
+                <a href="instagram.bo"><img src="resources/img/main/insta.png"></a>
+                <a href="myqna.me?currentPage=1"><img src="resources/image/main/chat.png"></a>
             </div>
         </div>
     </div>
@@ -64,7 +60,7 @@
 			success:function(b){
 				var value="";
 				if(b != null){
-				value += "<a href='<%=contextPath%>/noticeDetail.bo?bno=" + b.boardNo + "' class='notice_title'>" +
+				value += "<a href='noticeDetail.bo?bno=" + b.boardNo + "' class='notice_title'>" +
             			 b.boardTitle + "</a>";
 				}
 				$("#ajax_notice").html(value);
