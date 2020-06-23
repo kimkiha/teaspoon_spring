@@ -31,7 +31,7 @@
 	    <!-- contents -->
         <br clear="both">
         <div id="banner">
-            <div class="contaniner"><img id="mainImg" src="resources/img/main/main.jpg"></div>
+            <div class="contaniner"><img id="mainImg" src="resources/images/main/main.jpg"></div>
         </div>
         <!-- //banner -->
           <div id="content">
