@@ -2,3 +2,14 @@
 */target/*
 Servers/Tomcat v8.5 Server at localhost-config/server.xml
 Servers/.settings/org.eclipse.wst.server.core.prefs
+*.prefs
+teaspoon/.classpath
+teaspoon/.settings/org.eclipse.wst.common.project.facet.core.xml
+Servers/.settings/org.eclipse.wst.server.core.prefs
+Servers/Tomcat v8.5 Server at localhost-config/catalina.policy
+Servers/Tomcat v8.5 Server at localhost-config/catalina.properties
+Servers/Tomcat v8.5 Server at localhost-config/context.xml
+Servers/Tomcat v8.5 Server at localhost-config/tomcat-users.xml
+Servers/Tomcat v8.5 Server at localhost-config/web.xml
+teaspoon/.classpath
+teaspoon/.settings/org.eclipse.wst.common.project.facet.core.xml
