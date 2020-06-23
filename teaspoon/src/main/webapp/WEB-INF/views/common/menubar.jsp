@@ -21,7 +21,7 @@
         <div id="header">
             <div id="header_wrap">
                 <div id="header_1">
-                    <a href="main.jsp"><img id="home-logo" src= "resources/img/main/logo.png"></a>
+                    <a href="main.jsp"><img id="home-logo" src= "resources/images/main/logo.png"></a>
                 </div>
                 <div id="header_2">
                     <ul id="navi">
@@ -54,7 +54,7 @@
                     </ul>
                 </div>
                 <div id="header_3">
-                    <img id="search_icon" src="resources/image/main/search.png">
+                    <img id="search_icon" src="resources/images/main/search.png">
                     <div id="search_wrap" style="display:none">
 	                    <div id="search">
 		                    <form id="search_item" action="searchItem.st" method="post">
@@ -66,8 +66,8 @@
 		                    </form>
 	                    </div>
 	                </div>
-                    <img id="myPage_icon" src="resources/img/main/mypage.png">
-                    <a href="mycart.me" id="basket_icon"><img src="resources/image/main/cart.png"></a>
+                    <img id="myPage_icon" src="resources/images/main/mypage.png">
+                    <a href="mycart.me" id="basket_icon"><img src="resources/images/main/cart.png"></a>
                     <div class="header_mypage" >
                         <ul>
                         	<c:choose>

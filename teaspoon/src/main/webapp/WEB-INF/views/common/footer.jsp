@@ -27,7 +27,7 @@
     <div class="contaniner">
         <div id="foot">
             <div class="ft_logo"> 
-                <img src="resources/image/main/foot_logo.png">
+                <img src="resources/images/main/foot_logo.png">
             </div>
             <div class="ft_content">
                 <ul>
@@ -45,9 +45,9 @@
                 </p>
             </div>
             <div class="ft_quick">
-                <a href="maps.sp"><img src="resources/img/main/loca.png"></a>
-                <a href="instagram.bo"><img src="resources/img/main/insta.png"></a>
-                <a href="myqna.me?currentPage=1"><img src="resources/image/main/chat.png"></a>
+                <a href="maps.sp"><img src="resources/images/main/loca.png"></a>
+                <a href="instagram.bo"><img src="resources/images/main/insta.png"></a>
+                <a href="myqna.me?currentPage=1"><img src="resources/images/main/chat.png"></a>
             </div>
         </div>
     </div>
