@@ -1,0 +1,76 @@
+#table1 {
+   border: 0.3px solid lightgray; 
+   /*height:270px;*/ 
+   width:1000px; 
+   padding-left: 130px;
+   padding-right: 100px;
+   padding-top: 70px;
+   padding-bottom: 65px; 
+   margin:0 auto;
+   font-size:20px;
+
+}
+
+/* 인증번호발송 Button */
+.btn1 {
+    background: rgb(224, 224, 224);
+    color: black;
+    width:160px;
+    height:55px;
+    font-size:20px;
+    margin-top:10px;
+    margin-bottom:10px;
+    border-radius: 5px;
+    
+ }
+.btn1:hover {
+    background: #fff;
+    color: #000;
+ }
+
+/* 인증완료 Button*/
+.btnenroll {
+    width:140px;
+    height:55px;
+    font-size:20px;
+    color:white;
+    background-color: rgb(101, 100, 96);
+    margin:0 auto;
+    margin-top: 40px;
+    margin-bottom: 150px;
+    border-radius: 5px;
+    
+}
+
+
+
+/* 폰트 초기화*/
+body, input, textarea, select, button, table1 {
+    font-family: 'Nanum Gothic',  'Noto Sans KR', 'Malgun Gothic','맑은 고딕', 'dotum','돋움',sans-serif; 
+    color: #222; font-size: 18px; line-height: 1.5;} 
+   
+
+
+/* 이메일 input*/
+#email{ width:400px; height:55px; margin-right:10px; margin-top: 10px; margin-bottom:10px; align-content: center;
+}
+
+/* 인증번호입력 input*/
+#identify{width:400px; height:55px; margin-right:10px; margin-top: 10px; margin-bottom:10px; align-content: center;
+
+}
+
+/*
+ul.im1 {
+    list-style-type:disc; 
+    list-style-image: url( "images/marker.png" );
+    font-size: 20px;
+  }
+ul.im2 {
+    list-style-image: url( "images/marker.png" );
+    font-size: 20px;
+  }*/
+
+li {
+    text-align: left;
+  }

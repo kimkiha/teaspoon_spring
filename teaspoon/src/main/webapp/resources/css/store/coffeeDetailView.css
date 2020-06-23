@@ -1,0 +1,88 @@
+/*전체레이아웃*/
+#wrap {text-align: center; font-size: 30px; color: #000000;}
+.contaniner  #head_title{ color: black; font-size: 45px; font-weight: bold;}
+#productArea {height:inherit; margin: 0 100px;}
+.p1 {margin-left:50px; margin-right:50px;}
+.fr {float:right}
+
+/*상품디테일*/
+#productList1{width:100%;}
+#productList1 div{float:left; color: black;}
+.pList1, .pList2{width: 500px; height: 600px; margin-top: 100px;}
+.thumbnail{width: 500px; height: 400px;}
+.thumbnail img{width: 500px; height:400px;}
+.move_review{width: 500px; height:100px; font-size:35px; text-align: right;}
+
+/* 상품명, 상품설명요약 */
+.p_explain1{width: 470px; font-size: 22px; text-align: left; margin-left: 20px;}
+
+/* 원두 그람수 옵션(셋중에 하나만 가능) */
+.p_explain2{width: 470px; font-size: 18px; text-align: left; margin-left: 20px; margin-top: 60px;}
+
+/* 원두 굵기조절 옵션(select된 하나만 가능) */
+.p_explain3{width: 470px; font-size: 18px; text-align: left; margin-left: 20px; margin-top: 20px;}
+
+/* 구매수량 변경 옵션 */
+.p_explain4{width: 480px; font-size: 25px; 
+    text-align: center; border: 1px solid lightgray;; 
+    border-radius: 5px; margin-left: 20px; margin-top: 20px;}
+.num{width: 240px;}
+.number{width: 240px;}
+
+/* 상품금액 합계, 정기배송버튼, 장바구니버튼, 바로구매버튼 */
+.p_explain5{width: 480px; font-size: 30px; margin-left: 20px; margin-top: 10px;}
+.p_explain5 button{font-size: 18px; border: 1px solid #ddd; background-color: white;}
+#delivery{width: 480px; height: 45px; border-radius: 5px; }
+#basket{width: 233px; height: 45px; border-radius: 5px; margin-top: 10px;}
+#buyNow{width: 233px; height: 45px; border-radius: 5px; margin-top: 10px;}
+.p_explain5 button:hover{border-color:#ac8b5a; background-color: #d6ae71; color: white;}
+
+/* 제품상세버튼, 고객리뷰버튼 */
+.pList3{width: 800px; height: inherit; text-align: center; margin-left: 100px; margin-top: 50px; }
+.pList3 p{width: 400px; height: 70px; float: left; background-color: white; border: 0px; font-size: 32px; font-weight: bold; }
+
+/* 상품상세페이지 */
+.pList4{float:left; width: 860px; height:400px; padding-left: 70px;padding-right: 70px;}
+
+/* 고객리뷰페이지(상단과 엥커걸림) */
+.pList5{ float:left; width: 100%; }
+.pList5 p{font-size: 32px; font-weight: bold;}
+.pList5_1{ width: 100%; height: 150px;}
+.pList5_1 button{border: 1px solid lightgray; background-color: white; font-size: 18px; width: 200px; height: 50px; margin-top: 30px; border-radius: 5px;}
+.pList5_1 button:hover{border-color:#ac8b5a; background-color: #d6ae71; color: white;}
+
+.pList5_2{width: 100%; height: 100px;}
+.pList5_2 button{width: 200px; height: 70px; background-color: white; border: 0px; font-size: 28px; font-weight: bold; }
+.pList5_2 .btn:hover{border-bottom: darkgray; }
+.pList5_2 p{font-size: 22px; font-weight: bold;}
+
+.pList5_3{width:100%;}
+.pList5_3 table{font-size: 18px; margin-left:100px}
+#createDate{text-align:center;}
+#user,#rcontent{text-align:left;}
+.pList5_3 p{font-size: 18px; font-weight: 500; text-align: justify;}
+.pList5_3 button{border: 1px solid lightgray; background-color: white; font-size: 18px; width: 200px; height: 50px; margin-top: 30px; border-radius: 5px;}
+.pList5_3 button:hover{border-color:#ac8b5a; background-color: #d6ae71; color: white;}
+#reviewList{width:100%; min-height:100%;}
+
+/*리뷰 입력 폼 스타일*/
+#reviewForm {width: 1000px; height:100%; border-collapse: collapse;}
+#reviewForm td{
+    border-bottom: 1px solid #ddd; padding: 5px;
+    vertical-align:middle;
+}
+.imgBtn{background-color: white; border: 0px; cursor: pointer; width: 100px; height: 50px; margin-left: 5px;}
+
+.btn:hover{
+    border-color:#ac8b5a; 
+    background-color: #d6ae71; 
+    color: white;
+}
+.btn{
+    background-color: white; 
+    border: 1px solid #ddd; 
+    border-radius: 5px;
+    font-size: 15px;
+    width: 100px;
+    height: 55px;
+}

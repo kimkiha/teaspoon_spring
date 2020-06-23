@@ -1,0 +1,257 @@
+/* 폰트 초기화*/
+body, input, textarea, select, button, table {
+  font-family: 'Nanum Gothic',  'Noto Sans KR', 'Malgun Gothic','맑은 고딕', 'dotum','돋움',sans-serif; 
+  color: #222; font-size: 18px; line-height: 1.5;} 
+ 
+ 
+ /*회원정보수정페이지*/
+ #enrollmodify{
+
+    width:1000px;
+    height:670px;
+    margin-top:65px;
+    margin: 0 auto;
+  
+  }
+
+#ul{
+    font-size:15px;
+    width:800px;
+    margin: 0 auto;
+    text-align: left;
+    margin-top: 45px
+}
+
+#ul li{
+  color:#303030;
+  font-size: 20px;
+}
+
+
+#table1 {
+  border: 0.3px solid lightgray; 
+  height:270px; 
+  width:1000px; 
+  margin:0 auto;
+  padding-left: 140px;
+  padding-right: 80px;
+  padding-top: 60px;
+  padding-bottom: 60px;
+
+}
+
+
+input:disabled {
+    background-color: rgb(182, 178, 178);
+  }
+
+/* input박스*/
+
+.btnenroll {
+    width:140px;
+    height:55px;
+    font-size:20px;
+    color:white;
+    background-color: rgb(46, 45, 45);
+    border-radius: 5px;
+
+}
+
+.btnenroll2 {
+  width:260px;
+  height:60px;
+  font-size:20px;
+  color:white;
+  background-color: rgb(46, 45, 45);
+  border-radius: 5px;
+
+}
+
+#Modify_1 {
+  width:140px;
+  height:55px;
+  font-size:20px;
+  color:white;
+  background-color: rgb(46, 45, 45);
+  margin-top: 40px;
+  margin-bottom : 100px;
+  border-radius: 5px;
+
+}
+
+h4{
+    padding: 20px;
+}
+
+h6{
+    color:rgb(65, 64, 64);
+}
+
+/*회원정보수정 input박스*/ /**/
+.correct{
+  width:400px;
+  height:55px;
+}
+
+/*생년월일input*/
+.correct2{
+  width:255px;
+  height:55px;
+}
+
+/*전화번호input*/
+.correct3{
+  width:266px;
+  height:55px;
+}
+
+ /* input */
+#userId, #userPwd1, #userPwd2, #email{
+     width:400px;
+     height: 55px;
+     margin-top: 15px;
+     margin-bottom: 15px;
+ }
+
+ /* 인증번호발송 Button */
+.btn1 {
+    background: rgb(224, 224, 224);
+    color: black;
+    width:140px;
+    height:55px;
+    font-size:20px;
+ }
+.btn1:hover {
+    background: #fff;
+    color: #000;
+ }
+
+ 
+ /* 인증완료 Button*/
+ .btnenroll {
+     width:140px;
+     height:55px;
+     font-size:20px;
+     color:white;
+     background-color: rgb(46, 45, 45);
+     margin:0 auto;
+     margin-top: 40px;
+ }
+
+ /* 수정완료 Button */
+ .btn_1{
+   
+        width:140px;
+        height:55px;
+        font-size:20px;
+        color:white;
+        background-color: rgb(101, 100, 96);
+        margin-top: 40px;
+        margin-bottom: 70px;
+        margin-bottom: 130px;
+        border-radius: 5px;
+    
+    }
+
+ 
+ /* 이메일 input*/
+ #email{
+ 
+     width:400px;
+     height:55px;
+ 
+ }
+ 
+ /* firstnumber input*/
+ #firstnumber{
+
+  width:120px;
+  height:55px;
+
+ } 
+
+ /* 전화번호 input*/
+ #verification{
+
+  width:265px;
+  height:50px;
+ }
+ 
+ /* 성별 버튼*/
+.btn_gender{
+  width: 80px;
+  height: 60px;
+}
+
+ 
+ /* input */
+ #userid, #email, #password, #birthday, #userName{
+     width:400px;
+     height: 55px;
+     margin-bottom: 30px;
+     margin-right: 10px;
+ }
+
+
+
+ /* 인증번호발송 Button */
+.btn1 {
+    background: rgb(224, 224, 224);
+    color: black;
+    width:140px;
+    height:55px;
+    font-size:20px;
+ }
+.btn1:hover {
+    background: #fff;
+    color: #000;
+ }
+
+ /* 인증완료 Button*/
+ .btnenroll {
+     width:140px;
+     height:55px;
+     font-size:20px;
+     color:white;
+     background-color: rgb(46, 45, 45);
+     margin:0 auto;
+     margin-top: 40px;
+ }
+
+ /* 비밀번호찾기 Button */
+ .password_search{
+   
+        width:265px;
+        height:60px;
+        font-size:20px;
+        color:white;
+        background-color: rgb(101, 100, 96);
+        margin-top: 40px;
+        margin-bottom: 70px;
+}
+
+ thead>tr>th{
+     width:300px;
+     height:93px;
+ }
+ 
+ tbody{
+     margin:0 auto;
+     font-size:20px;
+ 
+ }
+ 
+ 
+ ul.im1 {
+     list-style-type:disc; 
+     list-style-image: url( "images/marker.png" );
+     font-size: 20px;
+   }
+ ul.im2 {
+     list-style-image: url( "images/marker.png" );
+     font-size: 20px;
+   }
+ 
+ li {
+     text-align: left;
+   }

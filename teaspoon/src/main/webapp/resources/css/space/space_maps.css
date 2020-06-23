@@ -1,0 +1,28 @@
+@charset "UTF-8";
+
+
+/*찾아오시는길*/
+
+
+
+#hr{
+    width:993px;
+    margin-top:74px;
+    margin-left:105px;
+    border:1px solid gray;   
+}
+span{width:100%; dispaly:block; top:200px}
+#font1{
+    right:300px;
+    top:25px;
+    font-size:20px;
+    font-weight:bold;
+}
+#font2{
+    left:230px;
+    font-size:20px;
+    font-weight:bold;
+}
+#map{
+	border:1px solid black;
+}

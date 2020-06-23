@@ -1,0 +1,219 @@
+/* div{border: 1px solid #000;}  */
+
+/* 형제 바로 다음요소 선택자  */
+#navi>li>a:hover+ul{ display:block; }
+#navi>li>ul:hover{display:block;}
+
+/* banner css */
+#banner {height: 580px; margin-top:87px}
+
+#mainImg{width:100%; height:100%;}
+
+/* content css*/
+.contaniner {width: 1200px; margin: 0 auto; height: inherit;}
+
+/* PRODUCT */
+#content1{width:100%; height:830x; }
+.pname{margin: 0 auto; padding-top: 30px;  padding-bottom: 10px; margin-bottom:30px;
+    font-size: 20px; font-weight: 700; border-bottom: 3px solid #333; width:100px}
+#product_item{margin-left:160px; height: 730px;}
+#product_item_1>div{width:200px; height:auto; margin-left:15px; float:left; margin-bottom: 45px;}
+#product_item_1>div img{width:200px; height: 235px;}
+#product_item_1 .product_name{padding:10px 0px; }
+#product_item_1>div>p{height: 20px; text-align:center;}
+
+/* 맞춤추천, 공간대여 배너 */
+#content2{width:100%; height:300px;}
+#link>div{line-height: 3; height: 300px;float:left;}
+#link1{width:50%; background:#e4e4e4}
+#link2{width:50%;background-color: grey;}
+#btnLink1{background-color: lightgray;border: 1px solid black;width: 150px;height: 50px;}
+#btnLink2{background-color: gray;border: 1px solid black; width: 150px;height: 50px;}
+
+/* best coffee */
+#content3{width:100%; height:550px;}
+.bestname {margin: 0 auto; padding-top: 50px;  padding-bottom: 10px; margin-bottom:30px;
+           font-size: 20px; font-weight: 700; border-bottom: 3px solid #333; width:160px}
+#best_item{width:100%; height:427px;}           
+#best_item>.best_content{margin-left:40px; }
+#best_item>.best_content>.best_num{position: relative;}
+#best_item>.best_content>.best_num>p{text-align:center;}
+#best_item>.best_content>.best_num>.num{position:absolute; top: 0px ; left:20px; font-size:40px; font-weight: 900; font-style: italic;}
+
+#best_item img{width:250px; height:270px; }
+#best_item>div{height:300px;float:left;}
+.best_product_name{text-align:center;}
+.best_product_price{text-align:center;}
+
+/* coupon */
+#content4{width:100%; height:200px;}
+#coupon{
+    background-color: lightgrey;
+    text-align: center;
+    line-height: inherit;
+    font-size: 30px;
+    height:100%;
+}
+#coupon p{padding-top:75px}
+
+/* etc */
+#content5{width:100%; height:770px}
+#etc{float:left;  margin:0 auto;}
+#etc>a{padding:0; margin:0}
+#etc #etc_tb{margin-left:100px; margin-top:110px; border-spacing: 0; border-collapse:0; line-height: 0;}
+
+#etc1{ display: inline-block; width:400px; height: 550px;}
+#etc2{float:left; width:600px; height: 270px;}
+
+/* 이벤트, 어바웃, 매거진 */
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,500,700);
+.snip1273 {
+  font-family: 'Raleway', Arial, sans-serif;
+  position: relative;
+  margin: 10px;
+  min-width: 310px -60px;
+  max-width: 310px;
+  width: 100%;
+  color: #ffffff;
+  text-align: left;
+  background-color: #000000;
+  font-size: 16px;
+}
+.snip1273 * {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: all 0.4s ease-in;
+  transition: all 0.4s ease-in;
+}
+.snip1273 img {
+  position: relative;
+  max-width: 100%;
+  vertical-align: top;
+}
+.snip1273 figcaption {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0;
+  padding: 20px 30px;
+}
+.snip1273 figcaption:before,
+.snip1273 figcaption:after {
+  width: 1px;
+  height: 0;
+}
+.snip1273 figcaption:before {
+  right: 0;
+  top: 0;
+}
+.snip1273 figcaption:after {
+  left: 0;
+  bottom: 0;
+}
+.snip1273 h3,
+.snip1273 p {
+  line-height: 1.5em;
+}
+
+.snip1273 p {
+  font-size: 0.8em;
+  font-weight: 500;
+  margin: 0 0 15px;
+}
+.snip1273 a {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 1;
+}
+.snip1273:before,
+.snip1273:after,
+.snip1273 figcaption:before,
+.snip1273 figcaption:after {
+  position: absolute;
+  content: '';
+  background-color: #ffffff;
+  z-index: 1;
+  -webkit-transition: all 0.4s ease-in;
+  transition: all 0.4s ease-in;
+  opacity: 0.8;
+}
+.snip1273:before,
+.snip1273:after {
+  height: 1px;
+  width: 0%;
+}
+.snip1273:before {
+  top: 0;
+  left: 0;
+}
+.snip1273:after {
+  bottom: 0;
+  right: 0;
+}
+.snip1273:hover img,
+.snip1273.hover img {
+  opacity: 0.4;
+}
+.snip1273:hover figcaption,
+.snip1273.hover figcaption {
+  opacity: 1;
+}
+.snip1273:hover figcaption:before,
+.snip1273.hover figcaption:before,
+.snip1273:hover figcaption:after,
+.snip1273.hover figcaption:after {
+  height: 100%;
+}
+.snip1273:hover:before,
+.snip1273.hover:before,
+.snip1273:hover:after,
+.snip1273.hover:after {
+  width: 100%;
+}
+.snip1273:hover:before,
+.snip1273.hover:before,
+.snip1273:hover:after,
+.snip1273.hover:after,
+.snip1273:hover figcaption:before,
+.snip1273.hover figcaption:before,
+.snip1273:hover figcaption:after,
+.snip1273.hover figcaption:after {
+  opacity: 0.1;
+}
+
+
+
+
+/* 
+#etc{float:left;width:100%;height:550px;margin-bottom:100px;}
+#etc_center{float:left; margin: 100px 0; position: relative; width:90%;  height:100%;}
+#etc_1{position:absolute;  left:5%; width:550px;}
+#etc_2{position:absolute; left:47%; width:600px;}
+#etc_2_1,#etc_2_2{ margin:0px; height:275px;}*/
+
+#content6{width:100%; height:600px;}
+#insta{height:600px; width: 100%;}
+#insta_1>div,#insta_2>div{width:300; height:300px;float: left;}
+#insta img{width:100%;height:100%;}
+
+/* notice */
+#content7{width: 100%; height: 50px; background: lightgrey;}
+#notice{ text-align: left; width: 1200px;}
+#notice td{padding-top: 10px; padding-left: 15px;}
+#notice td .rg{padding-left:80px}
+#notice table a:hover{color:#222}
+
+ /* footer css */
+#foot{width:1200px; float:left;}
+#foot .ft_logo{float: left; width:230px; padding: 85px 0px; margin:0;}
+#foot .ft_content{width: 750px; float: left; font-size: 15px; text-align: left; margin-top:35px; padding-left: 15px;}
+#foot .ft_content>p{margin-top:15px}
+#foot .ft_content>ul>li{float:left;list-style: none; padding-left:45px}
+#foot .ft_content a{color:#333; font-weight: 500;}
+#foot .ft_quick{float:left; width:205px; text-align: right; margin-top:35px;}

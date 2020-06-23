@@ -1,0 +1,103 @@
+/* 폰트 초기화*/
+body, input, textarea, select, button, table {
+    font-family: 'Nanum Gothic',  'Noto Sans KR', 'Malgun Gothic','맑은 고딕', 'dotum','돋움',sans-serif; 
+    color: #222; font-size: 18px; line-height: 1.5;} 
+   
+
+#table1 {height:270px; width:1000px; margin:0 auto; border: 0.3px solid lightgrey; 
+        padding-top: 60px; padding-bottom: 30px;
+}
+ 
+ /* input */
+ #userId, #email, #identify{
+     width:400px;
+     height: 55px;
+     margin-top: 15px;
+     margin-bottom: 15px;
+ }
+
+ /* 인증번호발송 Button */
+.btn1 {
+    background: rgb(224, 224, 224);
+    color: black;
+    width:140px;
+    height:55px;
+    font-size:20px;
+    border-radius: 5px;
+    float: left; /*버튼 왼쪽정렬*/
+    
+ }
+.btn1:hover {
+    background: #fff;
+    color: #000;
+ }
+
+ 
+ /* 인증완료 Button*/
+ .btnenroll {
+     width:140px;
+     height:55px;
+     font-size:20px;
+     color:white;
+     background-color: rgb(46, 45, 45);
+     margin:0 auto;
+     margin-top: 40px;
+     border-radius: 5px;
+ }
+
+ /* 비밀번호찾기 Button */
+ .password_search{
+   
+        width:265px;
+        height:60px;
+        font-size:20px;
+        color:white;
+        background-color: rgb(101, 100, 96);
+        margin-top: 40px;
+        margin-bottom: 70px;
+        border-radius: 5px;
+    }
+
+ 
+
+ thead>tr>th{
+     width:300px;
+     height:93px;
+ }
+ 
+ tbody{
+     margin:0 auto;
+     font-size:20px;
+ 
+ }
+ 
+ 
+ /* 이메일 input*/
+ #email{
+ 
+     width:400px;
+     height:55px;
+ 
+ }
+ 
+ /* 인증번호입력 input*/
+ #verification{
+ 
+     width:400px;
+     height:55px;
+ 
+ }
+ /*
+ ul.im1 {
+     list-style-type:disc; 
+     list-style-image: url( "images/marker.png" );
+     font-size: 20px;
+   }
+ ul.im2 {
+     list-style-image: url( "images/marker.png" );
+     font-size: 20px;
+   }
+ */
+ li {
+     text-align: left;
+   }

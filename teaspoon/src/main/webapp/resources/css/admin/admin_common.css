@@ -1,0 +1,104 @@
+/* 폰트 초기화 */
+body, input, textarea, select, button, table {
+font-family: 'Nanum Gothic',  'Noto Sans KR', 'Malgun Gothic','맑은 고딕', 'dotum','돋움',sans-serif; 
+color: #222; font-size: 18px; line-height: 1.5;}
+
+/* 버튼 & a태그 */
+button {border: 1px solid lightgray; background-color: white; border-radius: 5px; width: 50px; height: 30px; font-size: 15px;}
+button:hover{border-color:coral; background-color: lightcoral; color: white;}
+a{text-decoration: none; color: black; font-size: 15px;}
+a:hover{text-decoration: none; color: white;}
+.deep>li>a{font-size: 20px;}
+
+/* 콘텐츠들 */
+#side a{
+text-decoration: none;
+color: black;
+}
+#side a:hover{
+text-decoration: none;
+color: lightcoral;
+}
+div{
+
+ box-sizing: border-box;
+}
+#wrap {width: 1202px; height: 700px; margin: 0 auto; text-align: center; margin-bottom: 100px;}
+#header {width: 100%; height: 100px; background-color:  #61646b;}
+#side {float: left; width: 240px; height: 600px;}
+#contents {float: left; width: 960px; height: 600px;}
+#header>div{
+height: 100%;;
+margin-bottom: 0px;
+float: left;
+}
+.h1{ width:240px;}
+.h2{
+width:810px;
+text-align: right;
+font-weight: bolder;
+font-size: 20px;
+}
+.h3 img{width: 50px; padding-top: 20px;}
+.h4 img{width: 50px; padding-top: 20px; margin-right:20px;}
+.deep{display: none;}
+#side{background-color: #efefef;}
+#side li.c-li {list-style:none; width:100%; text-align:left; font-size: 28px; font-weight: bold; cursor: pointer; color:#4e4f53 }
+.deep{display: none;}
+.deep > li { list-style:none; margin-left:-41px; margin-top:10px;text-align: left;font-size: 18px;}
+#c1{
+margin: auto;
+padding:15px;
+background-color: white;
+left: 50px;
+right: 50px;
+width:860px;
+height: 600px;
+} 
+#c1_1{height: 470px;}
+#c1_1_1{height: 50px;}
+#c1_1_2{height: 370px;padding-bottom: 10px;}
+#c1_2{height: 50px;}
+#c1_3{height: 50px;}
+#c1_1_1 div{float: left;vertical-align: middle;}
+#c1_1_1_1{height: 50px;}
+#c1_1_1_2{
+text-align: left;
+font-size: 25px;
+font-weight: bold;
+padding-top: 5px;
+padding-left: 15px;
+width:480px;
+height: 50px;
+}
+#c1_1_1_3{text-align: right;padding-top: 10px;width:290px;height: 50px;}
+/* #c1_1_1_3>#btn{ border: 1px solid lightgray; background-color: white; border-radius: 5px; width: 50px; height: 30px;} */
+/* #c1_1_1_3>#btn:hover{border-color:coral; background-color: lightcoral; color: white;} */
+
+#idName{size: 15px;}
+#c1_2{padding-top: 10px;}
+#c1_2 p{margin: 0px; float: left; padding-top:1px ; margin-left: 10px; margin-right: 10px; font-size: 18px; font-weight: bold;}
+/* .blackAdd{float: left; border: 1px solid lightgray; background-color: white; border-radius: 5px; width: 50px; height: 30px;} */
+/* .blackAdd:hover{border-color:coral; background-color: lightcoral; color: white;} */
+
+#c1_3 {padding-top: 10px;}
+#c1_3 * {vertical-align: middle; margin:auto;}
+#c1_3 button{border: 0px; font-size: 20px;}
+/* #c1_3 button:hover{color: lightcoral;} */
+
+
+/* <!--테이블 스타일--> */
+
+table {
+border-collapse: collapse;
+vertical-align: middle;
+font-size: 14px;
+width: 830px;
+
+}
+th,td {text-align: left;padding: 5px;}
+/* tfoot td button{ border: 1px solid lightgray; background-color: white; border-radius: 5px; width: 100px; height: 30px;} */
+/* tfoot td button:hover{border-color:coral; background-color: lightcoral; text-decoration: none;  color: white;} */
+/* tfoot a{text-decoration: none; color: black;} */
+
+/* <!--테이블스타일끝--> */

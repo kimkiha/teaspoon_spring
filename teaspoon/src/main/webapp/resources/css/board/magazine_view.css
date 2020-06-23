@@ -1,0 +1,24 @@
+/* #maga{width:1200px; height:2220px; margin:0 auto;} */
+#magazine{width:1000px; margin: 0 auto;}
+#magazine #title{width:100%; height:140px}
+#magazine #title #title_detail{float:left; width:700px; height: 100%;}
+/*매거진 타이틀*/
+#magazine #title #title_detail #con_tt{
+                                        float:left; text-align: left; width: 100%; 
+                                        font-size:24px; font-weight: 700; height:70%; 
+                                        line-height: 150px;
+                                    }
+#magazine #title #title_detail #con_wr{float:left; width:100%; height: 30%;}
+#magazine #title #title_detail #con_wr>ul>li{float:left; list-style: none;}
+/*sns 공유*/
+#magazine #title #sns{float:left; width:300px; height: 100%; }
+#magazine #title #sns>ul>li{float:right; list-style: none; padding-top:60px; padding-left:10px}
+/*매거진 내용*/
+#magazine .magazine_photo1{width:100%; height: 500px; background: #000;}
+#magazine .magazine_content1>p{line-height: 35px; margin:20px 0 50px 0;text-align: left; }
+
+.maga_con{display:block; width:100%; height:100%; }
+/*이전 매거진 다음 매거진*/
+#pre_next{display:inline-block; width: 100%; height: 300px; }
+#pre_next #next, #pre{float:left; width: 500px; height: 100%;}
+

@@ -1,0 +1,259 @@
+
+/* 폰트 초기화*/
+body, input, textarea, select, button, table1 {
+  font-family: 'Nanum Gothic',  'Noto Sans KR', 'Malgun Gothic','맑은 고딕', 'dotum','돋움',sans-serif; 
+  color: #222; font-size: 18px; line-height: 1.5;}
+
+
+#table1 {
+    border: 0.3px solid lightgrey; 
+    height:680px; 
+    width:780px;
+    padding-top:60px;
+    padding-bottom:60px;
+    margin:0 auto;
+    margin-top: 45px;
+    margin-bottom: 45px;
+    padding-left: 40px;
+    padding-right: 25px;
+    align:center;
+  }
+    
+ 
+ table>th{font-weight: 100;}
+ 
+li {
+  font-size: 20px;
+  text-align: left;
+}
+
+
+/* 탭 button버튼 모음 */
+.tab1 {
+    margin-top: 60px;
+    margin-bottom: 45px;
+    overflow: hidden;
+    border: 1px solid rgb(151, 146, 146);
+    background-color: #f1f1f1;
+    width:800px;
+    margin: 0 auto;
+    height:100px;
+    border-radius: 5px;
+    font-size: 20px;
+  
+   
+  }
+  .contaniner{margin:auto; width:100%; margin-left:i}
+  
+  /* Style the buttons inside the tab */
+  .tab1 button {
+    background-color: inherit;
+    float: left;
+    border: 1px;
+    outline: none;
+    cursor: pointer;
+    padding: 25px 40px;
+    transition: 0.3s;
+    font-size: 17px;
+    width:198px;
+    height:inherit;
+
+   
+
+  }
+
+  /* 모두동의 button */
+  .btnenroll {
+      width:140px;
+      height:55px;
+      font-size:20px;
+      color:white;
+      background-color: rgb(101, 100, 96);
+      border-radius: 5px;    
+  }
+
+
+  /* 본인인증 및 회원가입 button */
+  .btnenroll2 {
+    width:260px;
+    height:60px;
+    font-size:20px;
+    color:white;
+    background-color: rgb(101, 100, 96);
+    border-radius: 5px;
+    margin-bottom:150px;
+
+}
+
+  .btnenroll3 {
+    width:140px;
+    height:55px;
+    font-size:20px;
+    color:white;
+    background-color:  rgb(101, 100, 96);
+    margin-top: 40px;
+    border-radius: 5px;
+	margin-bottom:150px;
+}
+
+
+  
+  /* Change background color of buttons on hover */
+  .tab1 button:hover {
+    background-color: #ddd;
+  }
+  
+  /* Create an active/current tablink class */
+  .tab1 button.active {
+    background-color: #ccc;
+  }
+  
+  /* Style the tab content */
+  .tabcontent {
+    display: none;
+    padding: 6px 20px;
+    border-top: none;
+
+  }
+ 
+  div{
+     
+      box-sizing:border-box;
+  }
+
+  
+
+
+  #content>div{
+      height:100%;
+      float:left;
+      
+  }
+  #content_1{width:30%;}
+  #content_2{width:40%;}
+  #content_3{width:30%;}
+
+ textarea{
+     margin-top: 45px;
+     width:600px;
+     height:350px;
+     resize:none; /*크기고정*/
+ }
+
+#enroll{
+
+    width: 200px;
+    height: 30px;
+}
+
+/* 인증번호확인 페이지 input*/
+#identify{
+  width: 400px;
+  height: 55px;
+}
+
+
+/* 인증번호 확인 페이지 폼*/
+#ul{
+    font-size: 15px;
+    width:730px;
+    height:170px;
+    margin: 0 auto;
+    text-align: left;
+    margin-top: 45px;
+    border:0.3 solid lightgrey;
+}
+
+#ul2{
+  font-size: 15px;
+  width:750px;
+  height:310px;
+  margin: 0 auto;
+  margin-top: 45px;
+  border:0.3 solid lightgrey;
+  align:center;
+}
+
+
+#ul li{
+  color:#303030;
+  font-size: 20px;
+}
+
+#enrollinfo{
+    margin-left:180px;
+    margin-top: 50;
+    height:170px;
+    width:790px;
+
+}
+
+
+.btn-default {
+    background: #000;
+    color: #fff;
+ }
+.btn-default:hover {
+    background: #fff;
+    color: #000;
+ }
+ #agree{font-size: 15px;}
+
+
+/*input*/
+#userName{
+  margin-top:15px;
+  margin-bottom: 15px;
+  width:320px;
+  height:55px;
+}
+
+#userId, #userPwd1, #userPwd2, #email{
+  width:320px;
+  height:55px;
+  margin-top:12px;
+  margin-bottom: 12px;
+  margin-right: 15px;
+}
+#birthday {
+  width:145px;
+  height:60px;
+  margin-top:5px;
+  margin-bottom: 5px;
+  
+}
+
+#verification{
+  width:190px;
+  height:55px;
+}
+
+
+/* 성별 버튼*/
+.btn_gender{
+  width: 80px;
+  height: 60px;
+}
+
+/*이메일 인증번호 발송 버튼*/
+#email_send{
+  width: 150px;
+  height: 50px;
+  margin-left: 10px;
+  background: #000;
+  color:white;
+  border-radius: 5px;
+	
+}
+/*아이디 중복확인 버튼*/
+#idCheck{
+  width:150px;
+  height:50px;
+  margin-left:3px;
+  background: #808080;
+  color:white;
+  border-radius: 5px;
+  align:left;
+	
+	
+}

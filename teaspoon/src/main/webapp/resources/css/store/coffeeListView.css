@@ -1,0 +1,93 @@
+#productArea {height:inherit; margin: 0 100px;}
+#productList>div {background-color: black; margin-top:50px; width:300px; height:250px; float:left}
+.p1 {margin-left:50px; margin-right:50px;}
+.fr {float:right}
+
+/*상품개별*/
+.product {position:relative; box-sizing: border-box; cursor: pointer;}
+.product_img{width:300px; height:250px; position: absolute; }
+.product .product_detail{
+    background:rgb(101, 100, 96); 
+    font-size:15px; 
+    top:70%; 
+    text-align: left;
+    position: absolute;
+    opacity:0;
+}
+.product:hover .product_detail{opacity:1; } 
+.product:hover .product_detail>p{color:white;}
+.product .like_icon {width:50px; height:50px; cursor: pointer;}
+.product .like {top:72%; left:180px; position: absolute; opacity:0; z-index:1;}
+.product:hover .like {opacity:1;}
+
+.basket_icon {width: 50px; height:50px; cursor: pointer;}
+.product .basket {top:72%; left:240px; position: absolute; opacity:0; z-index:1;}
+.product:hover .basket {opacity: 1;}
+
+/*Pagination*/
+#paging {float:left; width:1000px; height:50px; margin-top:50px;}
+
+.pagination {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.pagination a {
+    border-radius: 50%;
+    color: black;
+    padding: 8px 20px;
+    text-decoration: none;
+    transition-duration: 0.4s;
+}
+.pagination a.active {
+    background-color: rgb(252, 216, 151);
+    color: black;
+    border-radius: 55%;
+}
+.pagination a:hover:not(.active) {
+    background-color: rgb(252, 216, 151);
+    border-radius: 55%;
+}
+
+/*장바구니 버튼 팝업 css*/
+.modal{
+    background-color:white;
+    border: 2px solid lightgrey;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 5px;
+    font-size: 14px;
+    position: absolute;
+    width: 250px;
+    height: 120px;
+    display: none;
+    margin-top: 60px;
+    margin-left: 25px;
+    z-index: 1;
+}
+.modal_content{
+    color: black;
+    margin-top: 20px;
+    padding: 5px;
+    width: 200px;
+    height: 100px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.gobasket,.close{
+    border-radius: 5px;
+    border: 1px solid lightgray; 
+    background-color: white; 
+    font-size: 14px;
+    width: 100px;
+    height: 40px;
+    float: right;
+}
+.gobasket:hover,.close:hover{
+    border-color:#ac8b5a; 
+    background-color: #d6ae71; 
+    color: white;
+}
+        

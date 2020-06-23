@@ -1,0 +1,111 @@
+
+        /*테이블초기화*/
+        table{border-spacing: 0; border-style:none; padding:0}
+        
+        /* 마이페이지 */
+        #mypage{width:1000px; height:auto;  margin: 0 auto; padding-bottom: 100px;}
+        .title{font-size:40px}
+         /*마이페이지 info*/
+        #mypage_info{width:100%; height:130px; border-top:1px solid #bebbb6; border-bottom: 1px solid #bebbb6; box-sizing: border-box;}
+        #mypage_info div{float:left; height:inherit; }
+        #mypage_info .user_info{display:inline-block; }
+        #mypage_info .detail_info2>a{font-style: italic; font-weight: 700;}
+        #mypage_info .user_info .user_photo{border:none;}
+        #mypage_info .user_info .detail_tb{width:100%; height:80%}
+        #mypage_info .user_info .detail_tb .d1{font-weight:700; text-align: left; }
+        #mypage_info .user_info .detail_tb .d1#usergrade{font-size:10px}
+        #mypage_info .user_info .detail_tb .d1>td{padding-top:30px; padding-bottom: 0;}
+        #mypage_info .user_info .detail_tb .d2 a{
+            float:left;padding:5px 15px; border: 1px solid #bebbb6; border-radius: 50px; font-size:15px;
+        }
+        /*적립포인트 할인쿠폰 위시리스트 바로보기*/
+        #mypage_info .detail_info2{width:150px; height:130px; border-right:1px solid #bebbb6;}
+        #mypage_info div .info_th{padding-top:25px; }
+        #mypage_info div p{line-height: 43px;}
+
+
+        /*마이페이지 tab메뉴*/
+        #mypage_tab{width:100%; height:195px; margin: 0 auto;}
+        #mypage_menu_tab{width:100%; height:195px;}
+        #mypage_menu_tab>a{
+            cursor: pointer;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            border:1px solid #939393;
+            float:left; text-align: center; line-height: 60px; 
+            margin-top:80px; 
+            margin-bottom:50px; height:60px; 
+            width:200px; background-color: #bebbb6;
+            box-sizing: border-box;
+            font-size: 18px;
+            color:white;
+            border-bottom:none;
+        }
+        #mypage_menu_tab>a:hover:not(.active){
+            transform: translateY(-5px);
+            display: inline-block;
+            border-color:#ac8b5a;
+            background-color: #d6ae71;
+            color:white
+        }
+        /*선택되어있을때*/
+        #mypage_menu_tab>a.active{background:white; color:#333333; transform: translateY(-5px);}
+        #mp_con1{text-align:left; width:100%; }
+        .adtitle1>p{padding-left:20px; padding-bottom:10px; font-size: 32px;}
+
+        /*테이블*/
+        #mypage_table{width:1000px; height:auto; font-size: 18px; color:#333333; text-align:center;}
+        #mypage_table th{ border-bottom: 1px solid #bebebe;height: 60px; }
+        #mypage_table td{border-bottom:1px solid #bebebe;height: 60px;}
+
+        /*버튼*/
+        .btn_review{background: white; border: 1px solid #bebebe; border-radius: 5px; padding: 10px 15px}
+        .btn_review:hover{
+            cursor: pointer;
+            border-color:#ac8b5a;
+            background: #d6ae71;
+            color:white;
+        }
+
+        /*1:1문의내역 상세*/
+        #opt *{margin-left:10px;font-size:16px;color:rgb(127,127,127);}
+        .mp-qna-title>p{border-bottom: 1px solid #bebebe;font-size: 32px;}
+        tr>th{background: rgb(224,224,224);}
+        #t{width: 780px;height: 40px;border-radius: 5px;border: 1px solid#bebebe;}
+        #textarea{width: 1000px;height: auto;margin-top: 15px;border-top:2px solid #bebebe;
+                    border-bottom: 2px solid #bebebe;
+                    }
+     
+        .func{width:1000px;height: 160px;line-height:9;}
+        .btn{width: 140px; height: 62px;background: white;font-size: 18px;border-radius: 5px;border:1px solid  #939393;}
+        .btn:hover{background: rgb(158,158,158);color: white;}
+        
+
+
+
+
+        
+
+
+
+       
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+       
+
+
