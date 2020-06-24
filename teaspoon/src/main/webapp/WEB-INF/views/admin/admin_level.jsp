@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.ArrayList, com.teaspoon.member.model.vo.*,com.teaspoon.common.PageInfo "%>
-<%
-ArrayList<Grade> gList = (ArrayList<Grade>)request.getAttribute("gList");
-
-%>
+    pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,12 +20,12 @@ ArrayList<Grade> gList = (ArrayList<Grade>)request.getAttribute("gList");
     </style>
 </head>
 <body>
-    <%@include file="../common/admin_sidebar.jsp" %>
+    <jsp:include page="../common/admin_sidebar.jsp"/>
         <div id="contents">
             <div id="c1" style="margin-top: 20px;">
                 <div id="c1_1" style="height: 420px;">
                     <div id="c1_1_1" >
-                        <div id="c1_1_1_1"><img src="<%=contextPath%>/resources/img/admin/회원등급.png" width="50px"></div>
+                        <div id="c1_1_1_1"><img src="${pageContext.servletContext.contextPath}/resources/images/admin/회원등급.png" width="50px"></div>
                         <div id="c1_1_1_2"><p>회원등급관리페이지입니다.</p></div>
                         <div id="c1_1_1_3"></div>
                     </div>
@@ -47,30 +44,33 @@ ArrayList<Grade> gList = (ArrayList<Grade>)request.getAttribute("gList");
                             </tbody>
 
                             <tfoot>
-                     <%if(gList.isEmpty()){%>
-				<tr>
-					<td colspan="5">조회된 리스트가 없습니다.</td>
-				</tr>
-				<%}else{%>
-					<%for(int i=0; i<gList.size();i++){ %>
-						<tr class="grade<%=gList.get(i).getGradeCode() %>">
-							<td><%=gList.get(i).getGradeCode() %></td>
-							<td><%=gList.get(i).getGradeName() %></td>
-							<td><%=gList.get(i).getMinAcount() %></td>
-							<td><%=gList.get(i).getGradeRate() %></td>
-							<%if(i==0){%>
-							<td>
-								기본 등급 수정불가
-							</td>
-							<%}else{ %>
-							<td>
-							<button type="button" class="btnUpdateForm">수정</button>
-							<button type="button" class="deleteButtondeleteButtondeleteButton">삭제</button>
-							</td>
-							<%} %>
+                    <c:if test="${empty gList }">
+						<tr>
+							<td colspan="5">조회된 리스트가 없습니다.</td>
 						</tr>
-					<%} %>
-				<%} %>
+					</c:if>
+					<c:forEach var="g" items="${gList }" varStatus="status" >
+						<tr class="grade">
+							<td>${g.gradeCode }</td>
+							<td>${g.gradeName }</td>
+							<td>${g.minAcount}</td>
+							<td>${g.gradeRate}</td>
+							<c:choose>
+							<c:when test="${status.index eq 0 }">
+								<td>
+									기본 등급 수정불가
+								</td>
+							</c:when>
+							<c:otherwise>
+								<td>
+								<button type="button" class="btnUpdateForm">수정</button>
+								<button type="button" class="deleteButtondeleteButtondeleteButton">삭제</button>
+								</td>
+							</c:otherwise>
+							</c:choose>
+						</tr>
+						</c:forEach>
+					
                                
                                
                                
@@ -149,11 +149,11 @@ ArrayList<Grade> gList = (ArrayList<Grade>)request.getAttribute("gList");
     </div>  
     
     
-    <form id="deleteGrade" action="<%=contextPath%>/deleteGrade.me" method="post">
+    <form id="deleteGrade" action="deleteGrade.me" method="post">
 		<input type="hidden" id="deleteGradeCode" name="deleteGradeCode">
 	</form>
 	
-	  <form id="maxGradeForm" action="<%=contextPath%>/maxGradeInsert.me" method="post">
+	  <form id="maxGradeForm" action="maxGradeInsert.me" method="post">
 		<input type="hidden" id="maxGradeName" name="maxGradeName">
 		<input type="hidden" id="maxMinMoney" name="maxMinMoney">
 		<input type="hidden" id="maxDiscountRate" name="maxDiscountRate">

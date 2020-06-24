@@ -1,5 +1,13 @@
 package com.kh.teaspoon.admin.model.service;
 
-public class AdminService {
+import org.springframework.stereotype.Service;
+
+@Service
+public class AdminServiceImpl implements AdminService  {
+
+	@Override
+	public int memberList() {
+		return 0;
+	}
 
 }
