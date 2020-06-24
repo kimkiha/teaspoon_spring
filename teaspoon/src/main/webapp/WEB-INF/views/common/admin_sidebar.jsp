@@ -21,7 +21,7 @@
     <!--부트스트랩 끝-->
     <script src=" http://code.jquery.com/jquery-latest.min.js" language="javascript"></script>
     <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap" rel="stylesheet">
-   <link href="<%=contextPath%>/resources/css/admin/admin_common.css" rel="stylesheet">
+   <link href="${pageContext.servletContext.contextPath}/resources/css/admin/admin_common.css" rel="stylesheet">
    
 <script>
 	$(function(){
