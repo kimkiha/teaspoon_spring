@@ -1,6 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="storeMapper">
-
+	
+	<resultMap type="Product" id="ProductResultSet">
+		<id column="product_no" property="productNo"/>
+		<result column="product_name" property="productName"/>
+		<result column="sup_price" property="supPrice"/>
+		<result column="price" property="price"/>
+		<result column="stock" property="stock"/>
+		<result column="status" property="status"/>
+		<result column="total_count" property="totalCount"/>
+		<result column="product_origin" property="productOrigin"/>
+		<result column="product_change" property="productChange"/>
+		<result column="product_filepath" property="productFilepath"/>
+		<result column="product_contents" property="productContents"/>
+	</resultMap>
+	
+	<!--               관리자                          -->
+	
+	<select id="selectProductListCount" resultType="_int">
+		select count(*)
+		  from product
+		 where status='Y'
+	</select>
+	
+	<select id="selectProductList" resultMap="ProductResultSet">
+		select *
+		  from product
+	</select>
+	
+	<insert id="insertProduct" parameterType="Product">
+		insert into product
+		values(product_no.nextval, #{productName}, #{supPrice}, #{price}, #{stock}, 
+			   default, default, #{productOrigin}, #{productChange}, #{productFilepath}, #{productContents})
+	</insert>
+	
 
 </mapper>

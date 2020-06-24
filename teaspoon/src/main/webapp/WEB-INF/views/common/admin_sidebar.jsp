@@ -19,7 +19,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap" rel="stylesheet">
    <link href="${pageContext.servletContext.contextPath}/resources/css/admin/admin_common.css" rel="stylesheet">
    
-<c:if test="${ !empty msg}" >
+	<c:if test="${ !empty msg}" >
 		<script>
 		alert('알림', '${msg}');
 		</script>

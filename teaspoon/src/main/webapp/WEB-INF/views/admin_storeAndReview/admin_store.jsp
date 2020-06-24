@@ -13,10 +13,9 @@
    
     <style>
         #c1_1_2 div{padding-left: 25px; float:left;}
-        #oneToOneKinds input{margin-right: 5px; vertical-align: middle;}
         table tr{border-bottom: 1px solid lightgray;}
         table tr:first-child{border-top: 1px solid lightgray;}
-        table th{background-color: #dbdbdb;}
+        table th{background-color: #dbdbdb; text-align:center;}
         table td{height:50px;}
     </style>
 </head>
@@ -25,11 +24,12 @@
         <div id="contents">
             <div id="c1" style="margin-top: 20px;">
                 <div id="c1_1">
-                    <div id="c1_1_1">
+                    <div id="c1_1_1"  style="height:80px;">
                         <div id="c1_1_1_1"><img src="${pageContext.servletContext.contextPath}/resources/images/admin/커피.png" width="50px"></div>
                         <div id="c1_1_1_2"><p>상품관리페이지입니다.</p></div>
                         <div id="c1_1_1_3">
-                            <input type="text" placeholder="상품이름" id="productKeyword">
+                        	<button type="button" style="width:255px; margin-bottom:5px;" id="productEnroll">상품등록</button>
+                            <input type="text" placeholder="상품명을 입력하세요" style="width:200px; height:28px; font-size:14px; ">
                             <button type="button" class="searchBtn" id="searchBtn1">검색</button>
                         </div>
                     </div>
@@ -37,78 +37,103 @@
                         <table>
                             <tbody>
                                 <tr>
-                                    <th style="width:50px;">상품번호</th>
-                                    <th style="width:170px;">상품명</th>
-                                    <th style="width:60px;">공급가</th>
-                                    <th style="width:60px;">가격</th>
-                                    <th style="width:50px;">재고</th>
-                                    <th style="width:50px;">진열상태</th>
-                                    <th style="width:170px;">키워드</th>
-                                    <th style="width:50px;">누적판매</th>
-                                    <th style="width:50px;">상품종류</th>
-                                    <th><button type="button" style="width: 100px;"><a href="enroll.st">상품등록</a></button></th>
-                                    </tr>
+                                    <th style="width:70px;">번호</th>
+                                    <th style="width:300px;">상품명</th>
+                                    <th style="width:100px;">공급가</th>
+                                    <th style="width:100px;">가격</th>
+                                    <th style="width:70px;">재고</th>
+                                    <th style="width:70px;">상태</th>
+                                    <th style="width:100px;">누적판매수</th>
+                                    <th style="width:100px;"> </th>
+                                </tr>
                             </tbody>
 							<tfoot>
-								
-								<tr>
-									<td colspan="10">조회된 리스트가 없습니다.</td>
-								</tr>
-								
-								<tr>
-								    <td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td>
-								    	<button type="button"><a href="productUpdateForm.st?pcode=">수정</a></button>
-								        <button type="button" onclick="deleteProduct();">삭제</button>
-								    </td>
-								</tr>
+								<c:choose>
+									<c:when test="${ empty list }">
+										<tr>
+											<td colspan="8" style="text-align:center;">조회된 리스트가 없습니다.</td>
+										</tr>
+									</c:when>
+									<c:otherwise>
+										<c:forEach items="${ list }" var="p">
+											<tr>
+											    <td>${ p.productNo }</td>
+												<td>${ p.productName }</td>
+												<td>${ p.supPrice }</td>
+												<td>${ p.price }</td>
+												<td>${ p.stock }</td>
+												<td>${ p.status }</td>
+												<td>${ p.totalCount }</td>
+												<td>
+											    	<button type="button" id="updateProduct">수정</button>
+											    </td>
+											</tr>
+										</c:forEach>
+									</c:otherwise>
+								</c:choose>
 							</tfoot>
-				
                       </table>
                     </div>
-				<form id="postForm" method="post" action="delete.st">
-					
-					<input type="hidden" name="pcode" value="">
-					
-				</form>
 			</div>
-                <div id="c1_2">
-
-                </div>
+                <div id="c1_2"></div>
                 <div id="c1_3">
-                    <a>&lt;</a>
-                   <button>1</button>
-                   <button>2</button>
-                   <button>3</button>
-                   <button>4</button>
-                   <button>5</button>
-                   <a>&gt;</a>
+                   
+                   <c:if test="${ !empty list }">
+	                    <div id="pagingArea">
+	                       <c:choose>
+			                	<c:when test="${ pi.currentPage eq 1 }">
+				                    <a href="#">&lt;</a>
+				                </c:when>
+				                <c:otherwise>
+			                    	<a href="list.st?currentPage=${ pi.currentPage -1 }">&lt;</a>
+			                    </c:otherwise>
+		                    </c:choose>
+		                    
+					        <c:forEach var="a" begin="${ pi.startPage }" end="${ pi.endPage }">
+		                    	<c:choose>
+		                    		<c:when test="${ a eq pi.currentPage }">
+			                    		<a href="#">${a}</a>
+			                    	</c:when>
+			                    	<c:otherwise>
+			                    		<a class="page-link" href="list.st?currentPage=${ a }">${a}</a>
+			                    	</c:otherwise>
+			                    </c:choose>
+		                    </c:forEach>
+		                    
+					        <c:choose>
+		                    	<c:when test="${ pi.currentPage eq pi.maxPage }">
+				                    <a>&gt;</a>
+				                </c:when>
+				                <c:otherwise>
+				                    <a href="list.st?currentPage=${ pi.currentPage +1 }">&gt;</a>
+				                </c:otherwise>
+		                    </c:choose>
+	                    </div>
+                    </c:if>
                 </div>
             </div>
         </div>
         
         <script>
+        	$(function(){
+        		$('#productEnroll').click(function(){
+        			location.href='enroll.st';
+        		});
+        	});
+        	
+        	$(function(){
+        		$('#updateProduct').click(function(){
+        			var productNo = $(this).parent().siblings().eq(0);
+        			location.href='update.st?productNo='+productNo;
+        		});
+        	});
         	
         	$(function(){
         		$("#searchBtn1").click(function(){
         			var productKeyword = $("#productKeyword").val();
         			location.href='productKeywordList.st?productKeyword='+productKeyword+"&currentPage=1";
         		});
-        	})
-        	
-        	// 삭제버튼 클릭시 실행
-        	function deleteProduct(){
-				$("#postForm").submit();
-			}
-        	
+        	});
         	
         </script>
 </body>
