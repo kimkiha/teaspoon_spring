@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="adminMapper">
+
+	<resultMap id="GradeResultSet" type="Grade">
+  	<id column="grade_no" property="gradeNo"/>
+  	<result column="grade_name" property="gradeName"/>
+  	<result column="min_acount" property="minAcount"/>
+  	<result column="grade_rate" property="gradeRate"/>
+
+  	</resultMap>
+ 
+ 	<select id="selectGradeList" resultMap="GradeResultSet">
+ 	select grade_no,grade_name,min_acount,grade_rate
+	from mem_grade 
+	order by min_acount
+ 	</select>
  
 </mapper>

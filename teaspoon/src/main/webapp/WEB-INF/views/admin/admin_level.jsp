@@ -53,7 +53,7 @@
 					</c:if>
 					<c:forEach var="g" items="${gList }" varStatus="status" >
 						<tr class="grade">
-							<td>${g.gradeCode }</td>
+							<td>${g.gradeNo }</td>
 							<td>${g.gradeName }</td>
 							<td>${g.minAcount}</td>
 							<td>${g.gradeRate}</td>
