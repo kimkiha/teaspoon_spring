@@ -1,23 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>찾아오시는길 | TeaSpoon</title>
-<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/reset.css">
-<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/menubar.css">
-<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/footer.css">
-<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/space/space_maps.css">
+<link rel="styleSheet" href="../teaspoon/resources/css/common/reset.css">
+<link rel="styleSheet" href="../teaspoon/resources/css/common/menubar.css">
+<link rel="styleSheet" href="../teaspoon/resources/css/common/footer.css">
+<link rel="styleSheet" href="../teaspoon/resources/css/space/space_maps.css">
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=11a2f0f1400eb504bd8b06c5fbd66ec2"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-
-    
-	
-
-
     
 
 <style>
@@ -27,7 +23,7 @@
 </head>
 <body>
   <div id="wrap">
-        <%@ include file="../common/menubar.jsp" %>
+        <jsp:include page="../common/menubar.jsp"/>
   
         <!-- //header -->
         <!-- //banner -->
@@ -44,7 +40,7 @@
             </div>
         </div>
         <!-- //content-->
-        <%@ include file="../common/footer.jsp" %>
+        <jsp:include page="../common/footer.jsp"/>
         <!-- //footer-->
     </div>
  <style>

@@ -1,37 +1,30 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.ArrayList, com.teaspoon.store.model.vo.*,com.teaspoon.common.*"%>
-<%
-	ArrayList<Product> list = (ArrayList<Product>)request.getAttribute("list");
-	PageInfo pi = (PageInfo)request.getAttribute("pi");
-	
-	int currentPage = pi.getCurrentPage();
-	int startPage = pi.getStartPage();
-	int endPage = pi.getEndPage();
-	int maxPage = pi.getMaxPage();
-	
-	
-%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Coffee | TeaSpoon</title>
-<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/reset.css">
-<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/store/coffeeListView.css">
-<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/menubar.css">
-<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/footer.css">
+<link rel="styleSheet" href="${pageContext.servletContext.contextPath}/resources/css/common/reset.css">
+<link rel="styleSheet" href="${pageContext.servletContext.contextPath}/resources/css/store/coffeeListView.css">
+<link rel="styleSheet" href="${pageContext.servletContext.contextPath}/resources/css/common/menubar.css">
+<link rel="styleSheet" href="${pageContext.servletContext.contextPath}/resources/css/common/footer.css">
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <style>
     #content1 {width:100%; height:inherit; background: #ffffff; }
-	#banner{height: 270px; line-height: 270px; background:url("<%=request.getContextPath() %>/resources/img/store/storetop_coffee.jpg") center top no-repeat;}
+	#banner{height: 270px; line-height: 270px; background:url("${pageContext.servletContext.contextPath}/resources/images/store/storetop_coffee.jpg") center top no-repeat;}
 	#paging button{border:0px; background:white; color:#4e4f53; font-weight:bold; margin:10px;}
 	#paging button:hover{cursor:pointer;color:#d6ae71;}
 </style>
 </head>
 <body>
 <div id="wrap">
-         <%@ include file="../common/menubar.jsp" %>
+        
+ 		<!-- header -->
+        <jsp:include page="../common/menubar.jsp"/>
         <!-- //header -->
         <div style="height:115px"></div>
         
@@ -49,49 +42,34 @@
                         <div id="productList">
                         
                         	<!-- listArea -->
-                        	<%for(int i=0; i<list.size(); i++) {%>
                         	
                             <div class="product" style="margin-top:50px; margin-right:30px;" >
                             	
                                 <div class="product_img">
-                                	<input type="hidden" class="pcode<%=i%>" name="pcode" value=<%=list.get(i).getPcode() %>>
-                                    <img src="<%=contextPath%>/resources/thumbnail_upfiles/<%=list.get(i).getTitleImg() %>" style="float:left; width:300px; height:inherit">
+                                	<input type="hidden" class="productNo" name="pcode" value=${ p.productNo }>
+                                    <img src="${pageContext.servletContext.contextPath}/resources/thumbnail_upfiles/${p.productChange }" style="float:left; width:300px; height:inherit">
                                 </div>
                                 <div class="product_detail" style="width:300px; height:60px; padding:0px">
-                                   <p style="padding-top:20px;padding-left:15px;"><%=list.get(i).getPname() %></p>
+                                   <p style="padding-top:20px;padding-left:15px;">${ p.productNo }</p>
                                 </div>
                                 <div class="like">
-                                    <img class="like_icon empty" src="<%=contextPath %>/resources/img/store/heart_emtpy.png">
+                                    <img class="like_icon empty" src="${pageContext.servletContext.contextPath}/resources/images/store/heart_emtpy.png">
                                 </div>
                                 
                                 <div class="basket">
-                                    <img id="open" class="basket_icon" src="<%=contextPath %>/resources/img/store/cart.png">
+                                    <img id="open" class="basket_icon" src="${pageContext.servletContext.contextPath}/resources/images/store/cart.png">
                                 </div>
                             </div>
-                            <%} %>
                         </div>
                         <div id="paging" class="pagination">
-                            <%if(currentPage != 1){%> <!-- 현재 페이지가 1페이지가 아닐경우 -->
-							<!-- 맨 처음으로(<<) -->
-							<button onclick="location.href='coffee.st?currentPage=1'">&lt;&lt;</button>
-							<!-- 이전페이지로(<) -->
-							<button onclick="location.href='coffee.st?currentPage=<%=currentPage-1%>'">&lt;</button>
-							<%} %>
-							
-							<%for(int p=startPage; p<=endPage; p++){%>
-								<%if(currentPage != p) {%>
-								<button onclick="location.href='coffee.st?currentPage=<%=p%>'"><%=p%></button>
-								<%}else{ %>
-								<button dispabled><%=p %></button>
-								<%} %>	
-							<%} %>
-							
-							<%if(currentPage != maxPage){ %>
-							<!-- 다음페이지로(<) -->
-							<button onclick="location.href='coffee.st?currentPage=<%=currentPage+1%>'">&gt;</button>
-							<!-- 맨 마지막으로(>>) -->
-							<button onclick="location.href='coffee.st?currentPage=<%=maxPage %>'">&gt;&gt;</button>
-							<%} %>
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
                         </div>
                     </div> 
                 </div>
@@ -99,10 +77,6 @@
         </div>
         
 
-		<!-- <form id="duplicateDeletePcode" action="deleteWish.me" method="post">
-			<input type="hidden" name="pcode" id="dPcode">
-		</form> -->
-		
 		
         <!--product-->
         <script>
@@ -110,7 +84,7 @@
         	$(function(){
         		$('.product_img').click(function(){
         			var pcode = $(this).children().eq(0).val();
-        			location.href="<%=contextPath%>/detail.co?pcode="+pcode;
+        			location.href="detail.co?pcode="+pcode;
         		});
         	});
         
@@ -123,7 +97,7 @@
     		function selectWishList(){
     			
     			var icon = $('.like_icon');
-    			var loginUser = "<%=loginUser%>";
+    			var loginUser = ${ loginUser };
     			if(loginUser != null){
     				$.ajax({
     					url:"selectWish.st",
@@ -136,7 +110,7 @@
 										var heart =$(p).parent().siblings().eq(1).children();
 										heart.removeClass("empty");
 										heart.addClass("full");
-										heart.attr("src","<%=contextPath %>/resources/img/store/heart_full.png");
+										heart.attr("src","resources/images/store/heart_full.png");
 									}
 								}
 							}
@@ -165,10 +139,10 @@
 	        					if(result > 0){
 				        			 icon.removeClass("empty");
 				        			 icon.addClass("full");
-				        			 icon.attr("src","<%=contextPath %>/resources/img/store/heart_full.png");
+				        			 icon.attr("src","resources/images/store/heart_full.png");
 				        			 var bool = window.confirm("위시리스로 등록되었습니다. 위시리스트로 이동하시겠습니까?");
 				        			 if(bool){
-				        				 location.href="<%=contextPath %>/wishList.me";
+				        				 location.href="wishList.me";
 				        			 }
 	        					} else if(result<0){
 	        						$("#dPcode").val(pcode1);
@@ -191,7 +165,7 @@
 								if(result > 0){
 				        			 icon.removeClass("full");
 				        			 icon.addClass("empty");
-									 icon.attr("src","<%=contextPath %>/resources/img/store/heart_emtpy.png");
+									 icon.attr("src","resources/images/store/heart_emtpy.png");
 									 window.alert("위시리스트에서 삭제되었습니다.")
 								}else{
 									
@@ -204,27 +178,12 @@
         		 });
         	});
         	
-
-            // 장바구니 이동
-            /*$(function(){
-            	$('.basket_icon').click(function(){
-            		$.ajax({
-            			url:,
-            			type:"post",
-            			data:{pcode:pcode},
-            			
-            		})
-            	})
-            })*/
-            
-
-   
         </script>
         
 
 
         <!-- //content-->
-        <%@ include file="../common/footer.jsp" %>
+        <jsp:include page="../common/footer.jsp"/>
         <!-- //footer-->
     </div>
 </body>

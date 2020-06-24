@@ -1,17 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>공간대여 | TeaSpoon</title>
-<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/reset.css">
-<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/menubar.css">
-<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/footer.css">
-<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/space/space_rental.css">
+<link rel="styleSheet" href="../teaspoon/resources/css/common/reset.css">
+<link rel="styleSheet" href="../teaspoon/resources/css/common/menubar.css">
+<link rel="styleSheet" href="../teaspoon/resources/css/common/footer.css">
+<link rel="styleSheet" href="../teaspoon/resources/css/space/space_rental.css">
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="<%=request.getContextPath() %>/resources/js/space_rental.js"></script>
+<script src="../teaspoon/resources/js/space_rental.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
 <style>
@@ -26,7 +27,7 @@
 </head>
 <body>
   <div id="wrap">
-        <%@ include file="../common/menubar.jsp" %>
+        <jsp:include page="../common/menubar.jsp"/>
   
         <!-- //header -->
         <div id="banner">
@@ -49,19 +50,19 @@
                         <!-- 1번사진 -->
                         <div class="mySlides fade">
                           <div class="numbertext">1 / 3</div>
-                          <img class="placePictrue" src="<%=contextPath %>/resources/img/space/reserv4.png;" style="width:1000px; height:550px;">
+                          <img class="placePictrue" src="${ pageContext.servletContext.contextPath }/resources/img/space/reserv4.png;" style="width:1000px; height:550px;">
                           <div class="text">세련된 갬성인들의 공간 ACHAEA</div>
                         </div>
                         <!-- 2번사진 -->
                         <div class="mySlides fade">
                           <div class="numbertext">2 / 3</div>
-                          <img class="placePictrue" src="<%=contextPath %>/resources/img/space/reserv1.png;" style="width:1000px; height:550px;">
+                          <img class="placePictrue" src="${ pageContext.servletContext.contextPath }/resources/img/space/reserv1.png;" style="width:1000px; height:550px;">
                           <div class="text">세련된 갬성인들의 공간 ACHAEA</div>
                         </div>
                         <!-- 3번사진 -->
                         <div class="mySlides fade">
                           <div class="numbertext">3 / 3</div>
-                          <img class="placePictrue" src="<%=contextPath %>/resources/img/space/reserv3.png;" style="width:1000px; height:550px;">
+                          <img class="placePictrue" src="${ pageContext.servletContext.contextPath }/resources/img/space/reserv3.png;" style="width:1000px; height:550px;">
                           <div class="text">세련된 갬성인들의 공간 ACHAEA</div>
                         </div>
                         
@@ -80,13 +81,13 @@
                         <!-- 푸터부분 div -->
                         <span>
                             <div class="foot-container">
-                                <img src="<%=request.getContextPath() %>/resources/img/space/imo1.png">1인 - 30인 / 면적 - 23㎡ / 컨퍼런스 룸 / 초고속 WIFI  /  공용공간 및 라운지 / 커피와 허브차
+                                <img src="${ pageContext.servletContext.contextPath }/resources/img/space/imo1.png">1인 - 30인 / 면적 - 23㎡ / 컨퍼런스 룸 / 초고속 WIFI  /  공용공간 및 라운지 / 커피와 허브차
                                 <div>
-                                <%if(loginUser == null){ %>
+                                <%-- <%if(loginUser == null){ %>
                                	  <p style="margin-bottom:100px;"><label class="btn" style="left:750px;"><a href="<%=contextPath %>/loginPage.me">로그인후 이용가능</a> </label></p>
                                	<%}else{ %>
                                   <p><label id="rentalready" class="btn" for="modal-1">예약하기</label></p>
-                               	<%} %>
+                               	<%} %> --%>
                                 </div>    
                             </div>
                         </span>
@@ -107,19 +108,19 @@
 
                                 <div class="mySlidet fades" >
                                   <div class="numbertexts">1 / 3</div>
-                                  <img src="<%=request.getContextPath() %>/resources/img/space/reserv2.png" style="width:650px; height:250px;">
+                                  <img src="${ pageContext.servletContext.contextPath }/resources/img/space/reserv2.png" style="width:650px; height:250px;">
                                   <div class="texts">TeaSpoon 내부</div>
                                 </div>
                                 
                                 <div class="mySlidet fades">
                                   <div class="numbertexts">2 / 3</div>
-                                  <img src="<%=request.getContextPath() %>/resources/img/space/reserv4.png" style="width:650px; height:250px;">
+                                  <img src="${ pageContext.servletContext.contextPath }/resources/img/space/reserv4.png" style="width:650px; height:250px;">
                                   <div class="texts">TeaSpoon 휴식공간</div>
                                 </div>
                                 
                                 <div class="mySlidet fades">
                                   <div class="numbertexts">3 / 3</div>
-                                  <img src="<%=request.getContextPath() %>/resources/img/space/reserv1.png" style="width:650px; height:250px;">
+                                  <img src="${ pageContext.servletContext.contextPath }/resources/img/space/reserv1.png" style="width:650px; height:250px;">
                                   <div class="texts">ACHAEA 내부</div>
                                 </div>
                                 
@@ -135,7 +136,7 @@
                             <h5><요금 및 예약 가능 여부 확인></h5>
                             
                             <br>
-                           <form id="enrollForm" action="<%= contextPath %>/insert.sp" method="post"> 
+                           <form id="enrollForm" action="insert.sp" method="post"> 
                             <div class="choice"> 
                                 <div class="choice1">날짜 선택</div>
                                 <div class="choice2">대여 시간</div>
@@ -208,7 +209,7 @@
             </div>
         </div>
         <!-- //content-->
-        <%@ include file="../common/footer.jsp" %>
+        <jsp:include page="../common/footer.jsp"/>
         <!-- //footer-->
     </div>
 

@@ -1,14 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.ArrayList, com.teaspoon.space.model.vo.*,com.teaspoon.common.PageInfo "%>
-<%
+    pageEncoding="UTF-8" %>
 
-ArrayList<Space> list = (ArrayList<Space>)request.getAttribute("list");
-PageInfo pi = (PageInfo)request.getAttribute("pi");
-int currentPage = pi.getCurrentPage();
-int startPage = pi.getStartPage();
-int endPage = pi.getEndPage();
-int maxPage = pi.getMaxPage();
-%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,12 +17,12 @@ int maxPage = pi.getMaxPage();
     </style>
 </head>
 <body>
-  <%@include file="../common/admin_sidebar.jsp" %>
+  <jsp:include page="../common/admin_sidebar.jsp"/>
         <div id="contents">
             <div id="c1" style="margin-top: 20px;">
                 <div id="c1_1">
                     <div id="c1_1_1" >
-                        <div id="c1_1_1_1"><img src="<%=contextPath%>/resources/img/admin/대관.png" width="50px"></div>
+                        <div id="c1_1_1_1"><img src="resources/img/admin/대관.png" width="50px"></div>
                         <div id="c1_1_1_2"><p>대관예약관리페이지입니다.</p></div>
                         <div id="c1_1_1_3">
                             <input type="text" placeholder="" name="idName">
@@ -56,31 +48,30 @@ int maxPage = pi.getMaxPage();
                                 </tr>
                             </thead>
                             <tbody>
-                  			<%if(list.isEmpty()){%>
+                  			
 								<tr>
 									<td colspan="11">조회된 리스트가 없습니다.</td>
 								</tr>
-							<%}else{%>
-                            <%for(int i=0; i<list.size(); i++){ %>
+							
+                          
                                 <tr>
-                                    <td><%=list.get(i).getReservNo() %></td>
-                                    <td><%=list.get(i).getAppDate() %></td>
-                                    <td><%=list.get(i).getReservTime() %></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
                                     <!--예약은 로그인한 회원만 가능하며 예약자명과 연락처는 회원번호로 불러옴-->
-                                    <td><%=list.get(i).getUserName() %></td>
-                                    <td><%=list.get(i).getPhone() %></td>
-                                    <td><%=list.get(i).getVisitNum() %></td>
-                                    <td><%=list.get(i).getReservReason() %></td>
-                                    <td><%=list.get(i).getGood() %></td>
-                                    <td><%=list.get(i).getTotal() %></td>
-                                    <td><%=list.get(i).getAccept() %></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
                                     <td>
                                         <button class="deny">거절</button>
                                         <button class="accept">승인</button>
                                     </td>
                                 </tr>
-                                <%} %>
-                              <%} %>
+                             
                             </tbody>
                              
                       </table>
@@ -90,28 +81,13 @@ int maxPage = pi.getMaxPage();
 
                 </div>
                 <div id="c1_3">
-                        	           <!-- 현재 페이지에 보여질 페이징바 -->
-			<%if(currentPage != 1){%> <!-- 현재 페이지가 1페이지가 아닐경우 -->
-			<!-- 맨 처음으로(<<) -->
-			<button onclick="location.href='Spacelist.sp?currentPage=1'">&lt;&lt;</button>
-			<!-- 이전페이지로(<) -->
-			<button onclick="location.href='Spacelist.sp?currentPage=<%=currentPage-1%>'">&lt;</button>
-			<%} %>
-			
-			<%for(int p=startPage; p<=endPage; p++){%>
-				<%if(currentPage != p) {%>
-				<button onclick="location.href='Spacelist.sp?currentPage=<%=p%>'"><%=p%></button>
-				<%}else{ %>
-				<button disabled><%=p %></button>
-				<%} %>	
-			<%} %>
-			
-			<%if(currentPage != maxPage){ %>
-			<!-- 다음페이지로(<) -->
-			<button onclick="location.href='Spacelist.sp?currentPage=<%=currentPage+1%>'">&gt;</button>
-			<!-- 맨 마지막으로(>>) -->
-			<button onclick="location.href='Spacelist.sp?currentPage=<%=maxPage %>'">&gt;&gt;</button>
-			<%} %>
+                           <a>&lt;</a>
+                   <button>1</button>
+                   <button>2</button>
+                   <button>3</button>
+                   <button>4</button>
+                   <button>5</button>
+                   <a>&gt;</a>	           
                 </div>
                
                

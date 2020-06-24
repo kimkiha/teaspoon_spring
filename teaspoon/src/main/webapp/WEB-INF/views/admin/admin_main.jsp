@@ -24,8 +24,8 @@
 
 </head>
 <body>
-	 <%@include file="../common/admin_sidebar.jsp" %>
-   
+	<jsp:include page="../common/admin_sidebar.jsp"/>
+    
         <div id="contents">
          	<div style="border:1px solid black; width:900px; height:500px; margin-top:60px; margin-left:30px;">
         		<img src="">	

@@ -1,21 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>맞춤추천 | TeaSpoon</title>
-<link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath() %>/resources/css/store/selectItem.css">
-<link rel="styleSheet"
-	href="<%=request.getContextPath() %>/resources/css/common/reset1.css">
-<link rel="styleSheet"
-	href="<%=request.getContextPath() %>/resources/css/common/menubar.css">
-<link rel="styleSheet"
-	href="<%=request.getContextPath() %>/resources/css/common/footer.css">
-<link
-	href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap"
-	rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="${pageContext.servletContext.contextPath}/resources/css/store/selectItem.css">
+<link rel="styleSheet" href="${pageContext.servletContext.contextPath}/resources/css/common/reset1.css">
+<link rel="styleSheet" href="${pageContext.servletContext.contextPath}/resources/css/common/menubar.css">
+<link rel="styleSheet" href="${pageContext.servletContext.contextPath}/resources/css/common/footer.css">
+<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 
 <style>
@@ -28,7 +25,8 @@
 </head>
 <body>
 	<div id="wrap">
-		<%@ include file="../common/menubar.jsp"%>
+		<!-- header -->
+        <jsp:include page="../common/menubar.jsp"/>
 		<!-- //header -->
 		<div id="banner">
 		
@@ -39,7 +37,7 @@
 
 				</div>
 				<div>
-					<img id="head_img" src="<%=contextPath %>/resources/img/store/storetop_coffee.jpg" width="1200"
+					<img id="head_img" src="${pageContext.servletContext.contextPath}/resources/img/store/storetop_coffee.jpg" width="1200"
 						height="270">
 				</div>
 			</div>
@@ -59,7 +57,7 @@
 						<div class="select-list">
 							<div class="select-item">
 								<div class="select-img" border="1">
-									<img src="<%=contextPath %>/resources/img/store/product5_1.jpg"
+									<img src="${pageContext.servletContext.contextPath}/resources/img/store/product5_1.jpg"
 										width="250" height="200">
 								</div>
 								<div class="select-title" border="1">
@@ -79,7 +77,7 @@
 							<div class="select-item">
 								<div class="select-img" border="1">
 									<img
-										src="<%=contextPath %>/resources/img/store/product8_1.jpg"
+										src="${pageContext.servletContext.contextPath}/resources/img/store/product8_1.jpg"
 										width="250" height="200">
 								</div>
 								<div class="select-title" border="1">
@@ -99,7 +97,7 @@
 							<div class="select-item">
 								<div class="select-img" border="1">
 									<img
-										src="<%=contextPath %>/resources/img/store/product2_1.jpg"
+										src="${pageContext.servletContext.contextPath}/resources/img/store/product2_1.jpg"
 										width="250" height="200">
 								</div>
 								<div class="select-title" border="1">
@@ -127,7 +125,7 @@
 							<div class="select-list2">
 								<div class="select-item2">
 									<div class="select-img" border="1">
-										<img src="<%=contextPath %>/resources/img/store/product4_1.jpg" 
+										<img src="${pageContext.servletContext.contextPath}/resources/img/store/product4_1.jpg" 
 										width="250" height="200">
 									</div>
 									<div class="select-title2" border="1">
@@ -149,7 +147,7 @@
 								</div>
 								<div class="select-item2">
 									<div class="select-img" border="1">
-										<img src="<%=contextPath %>/resources/img/store/product13_1.jpg" width="250" height="200">
+										<img src="${pageContext.servletContext.contextPath}/resources/img/store/product13_1.jpg" width="250" height="200">
 									</div>
 									<div class="select-title2" border="1">
 										<div>
@@ -171,7 +169,7 @@
 								</div>
 								<div class="select-item2">
 									<div class="select-img" border="1">
-										<img src="<%=contextPath %>/resources/img/store/product12_1.jpg" width="250" height="200">
+										<img src="${pageContext.servletContext.contextPath}/resources/img/store/product12_1.jpg" width="250" height="200">
 									</div>
 									<div class="select-title2" border="1">
 										<div>
@@ -201,7 +199,7 @@
 							<div class="select-list2">
 								<div class="select-item2">
 									<div class="select-img" border="1">
-										<img src="<%=contextPath %>/resources/img/store/nutty.jpg" width="250" height="200">
+										<img src="${pageContext.servletContext.contextPath}/resources/img/store/nutty.jpg" width="250" height="200">
 									</div>
 									<div class="select-title2" border="1">
 										<div>
@@ -223,7 +221,7 @@
 								<div class="select-item2">
 									<div class="select-img" border="1">
 										<img
-											src="<%=contextPath %>/resources/img/store/fruty.jpg"
+											src="${pageContext.servletContext.contextPath}/resources/img/store/fruty.jpg"
 											width="250" height="200">
 									</div>
 									<div class="select-title2" border="1">
@@ -245,7 +243,7 @@
 								</div>
 								<div class="select-item2">
 									<div class="select-img" border="1">
-										<img src="<%=contextPath %>/resources/img/store/nuttynpruty.jpg" width="250" height="200">
+										<img src="${pageContext.servletContext.contextPath}/resources/img/store/nuttynpruty.jpg" width="250" height="200">
 									</div>
 									<div class="select-title2" border="1">
 										<div>
@@ -663,7 +661,7 @@
 								<div class="select-item3">
 									<div class="select-img" border="1">
 										<img
-											src="<%=contextPath %>/resources/img/store/product2_2.jpg.jsp"
+											src="${pageContext.servletContext.contextPath}/resources/images/store/product2_2.jpg.jsp"
 											width="250" height="200">
 									</div>
 									<div class="select-title3" border="1">
@@ -704,7 +702,11 @@
 		<!-- //footer-->
 
 	</div>
-	<%@ include file="../common/footer.jsp"%>
+	<jsp:include page="../common/footer.jsp"/>
+	
+	
+	
+	
 	<script>
     /* display */
         function showDiv(element){
