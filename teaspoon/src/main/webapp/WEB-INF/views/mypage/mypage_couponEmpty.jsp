@@ -6,19 +6,19 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="reset.css">
-    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/mypage/mypage_couponEmpty.css">
-	<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/reset1.css">
-	<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/menubar.css">
-	<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/footer.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.servletContext.contextPath}/resources/css/mypage/mypage_couponEmpty.css">
+	<link rel="styleSheet" href="${pageContext.servletContext.contextPath}/resources/css/common/reset1.css">
+	<link rel="styleSheet" href="${pageContext.servletContext.contextPath}/resources/css/common/menubar.css">
+	<link rel="styleSheet" href="${pageContext.servletContext.contextPath}/resources/css/common/footer.css">
     <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap" rel="stylesheet">
     <script type="text/javascript"src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <style>
-       #banner {margin-top:115px;height: 170px; line-height: 170px; background:url("<%=request.getContextPath()%>/resources/img/mypage/pattern.jpg") center top repeat-x;}
+       #banner {margin-top:115px;height: 170px; line-height: 170px; background:url("${pageContext.servletContext.contextPath}/resources/images/mypage/pattern.jpg") center top repeat-x;}
     </style>
 </head>
 <body>
 <div id="wrap">
-        <%@ include file="../common/menubar.jsp" %>
+        <jsp:include page="../common/menubar.jsp"/>
         <!-- //header -->
         <div id="banner">
             <div class="contaniner title">마이페이지</div>
@@ -31,7 +31,7 @@
                         <div id="mypage_info">
                             <div class="user_info" style="width:95px; border-left:1px solid #bebbb6">
                                 <div class="user_photo" style="margin-top:30px; padding-left:10px; float: left;">
-                                    <img src="<%=contextPath%>/resources/img/admin/user.png">
+                                    <img src="${pageContext.servletContext.contextPath}/resources/images/admin/user.png">
                                 </div>
                             </div>
                             <div class="user_info" style="width:450px;">
@@ -41,7 +41,7 @@
                                         <td style="color:#d6ae71; font-size: 15px;" name="usergrade" >골드등급</td>
                                     </tr>
                                     <tr class="d2">
-                                        <td colspan="2"><a href="<%=contextPath %>/memberModifyForm.me">회원정보수정</a> </td>
+                                        <td colspan="2"><a href="${pageContext.servletContext.contextPath}/memberModifyForm.me">회원정보수정</a> </td>
                                     </tr>
                                 </table>
                             </div>
@@ -89,7 +89,7 @@
         </div>
         
         <!-- //content-->
-         <%@ include file="../common/footer.jsp" %>
+         <jsp:include page="../common/footer.jsp"/>
         <!-- //footer-->
     </div>
     <script>
