@@ -8,10 +8,16 @@
 		<typeAliases>
 		<typeAlias type="com.kh.teaspoon.admin.model.vo.Grade" alias="Grade"/>
 		
+	<typeAliases>
+		<typeAlias type="com.kh.teaspoon.member.model.vo.Member" alias="Member"/>
+		<typeAlias type="com.kh.teaspoon.board.model.vo.Board" alias="Board"/>
 	</typeAliases>
 	
 	<mappers>
 		<mapper resource="mappers/member-mapper.xml"/>
 		<mapper resource="mappers/admin_mapper.xml"/>
+		<mapper resource="mappers/admin-mapper.xml"/>
+		<mapper resource="mappers/board-mapper.xml"/>
+		<mapper resource="mappers/space-mapper.xml"/>
 	</mappers>
 </configuration>

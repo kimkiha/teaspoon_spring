@@ -13,8 +13,8 @@
 	<!-- 프로젝트정보 -->
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.kh</groupId>
-	<artifactId>goodplace</artifactId>
-	<name>goodplace</name>
+	<artifactId>teaspoon</artifactId>
+	<name>teaspoon</name>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	
