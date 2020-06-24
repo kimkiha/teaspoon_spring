@@ -12,8 +12,8 @@
 	 <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 	 	<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
 	 	<property name="url" value="jdbc:oracle:thin:@localhost:1521:XE"/>
-	 	<property name="username" value="goodplace"/>
-	 	<property name="password" value="goodplace"/>
+	 	<property name="username" value="teaspoon2"/>
+	 	<property name="password" value="teaspoon2"/>
 	 </bean>
 
 	<!-- 

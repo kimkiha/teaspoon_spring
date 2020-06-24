@@ -1,0 +1,88 @@
+a{
+  text-decoration: none;
+  color: black;}
+div{
+  /* border: 1px solid red; */
+   box-sizing: border-box;
+}
+body {background: #c8e6c9; margin-top: 0;}
+#wrap {width: 1200px; height: 700px; margin: 0 auto; color: black; text-align: center; text-transform: uppercase; margin-bottom: 100px; }
+#header {width: 100%; height: 100px;  background: lightgrey;}
+#side {float: left; width: 20%; height: 600px; background:lightgrey;}
+#contents {float: left; width: 80%; height: 600px; background: white;}
+
+
+/* <!-- 헤더--> */
+
+#header>div{
+ height: 100%;;
+ margin-bottom: 0px;
+ float: left;
+}
+.h1{
+  
+  width:240px;
+}
+.h2{
+  width:860px;
+  text-align: right;
+  line-height: 100px;
+  font-weight: bolder;
+  color: black;
+  font-size: 20px;
+}
+.h3{
+ position: relative;
+  width: 95px;
+}
+.h3>img{
+  position: absolute;
+  top:25px;
+  right: 50px;
+}
+
+
+.outer{
+width:760px;
+height:550px;
+background:black;
+color:white;
+margin:auto;
+}
+#insertForm>table{
+border:1px solid white;
+}
+#insertForm input{
+width:450px;
+box-sizing:border-box;
+}
+#insertForm textarea{
+width:450px;
+height: 200px;
+}
+
+
+/* <!--사이드--> */
+
+.deep{display: none;}
+#side{background-color: lightgray; color: black; font-weight: bold;}
+#side li.c-li {list-style:none; width:100%; text-align:left; font-size: 28px;}
+.deep{display: none;}
+.deep > li { list-style:none; margin-left:-41px; margin-top:10px;text-align: left;font-size: 18px;}
+
+
+/* <!-- 사이드끝--> */
+
+#contents{
+position: relative;
+}
+#c1{
+position: absolute;
+left: 100px;;
+width:760px;
+height: 550px;
+} 
+
+#c1>*{
+float: left;
+}
