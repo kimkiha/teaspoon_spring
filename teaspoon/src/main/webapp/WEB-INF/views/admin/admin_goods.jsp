@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,7 +24,7 @@
             <div id="c1" style="margin-top: 20px;">
                 <div id="c1_1" style="height: 420px;">
                     <div id="c1_1_1">
-                        <div id="c1_1_1_1"><img src="resources/img/admin/비품.png" width="50px" width="50px"></div>
+                        <div id="c1_1_1_1"><img src="${pageContext.servletContext.contextPath}/resources/images/admin/비품.png" width="50px" width="50px"></div>
                         <div id="c1_1_1_2"><p>대관비품관리페이지입니다.</p></div>
                         <div id="c1_1_1_3"></div>
                     </div>

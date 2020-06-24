@@ -1,13 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" %>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>매거진 | Admin</title>
-   	<link rel="stylesheet" href="resources/css/admin/admin_EnrollForm.css">
+   	<link rel="stylesheet" href="${pageContext.servletContext.contextPath}/resources/css/admin/admin_EnrollForm.css">
     <style>
     .outer p{font-weight: bold;}
         table * {padding: 10px; font-size: 18px;}
@@ -46,7 +48,7 @@
 									<input type="hidden" name="originFileNo" value="">
 									<input type="hidden" name="originFileName" value=""> <%-- 실제서버에 올라간 파일명 --%>
 							
-								<img id="titleImg" name="upfile" width="150" height="120" required src="/resources/img/board/"></td>
+								<img id="titleImg" name="upfile" width="150" height="120" required src="${pageContext.servletContext.contextPath}/resources/images/board/"></td>
 	                 		   		<td width="150" class="tb_title">게시상태</td>
                  		   		<td class="tb_content">
                  		   			<input type="radio" name="status" required value='Y' > Y
