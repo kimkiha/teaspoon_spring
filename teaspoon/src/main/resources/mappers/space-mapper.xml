@@ -33,4 +33,4 @@
 		<result column="total" property="total"/>	
 		<result column="reserv_pay" property="reservPay"/>
 	</resultMap> 
-   
+</mapper>
