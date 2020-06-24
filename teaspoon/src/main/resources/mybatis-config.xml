@@ -10,12 +10,14 @@
 		<typeAlias type="com.kh.teaspoon.member.model.vo.Member" alias="Member"/>
 		<typeAlias type="com.kh.teaspoon.board.model.vo.Board" alias="Board"/>
 		<typeAlias type="com.kh.teaspoon.admin.model.vo.Grade" alias="Grade"/>
+		<typeAlias type="com.kh.teaspoon.space.model.vo.Space" alias="Space"/>
+		<typeAlias type="com.kh.teaspoon.space.model.vo.Goods" alias="Goods"/>
+		<typeAlias type="com.kh.teaspoon.space.model.vo.Payment" alias="Payment"/>
 	</typeAliases>
 	
 	<mappers>
 		<mapper resource="mappers/member-mapper.xml"/>
 		<mapper resource="mappers/admin_mapper.xml"/>
-		<mapper resource="mappers/admin-mapper.xml"/>
 		<mapper resource="mappers/board-mapper.xml"/>
 		<mapper resource="mappers/space-mapper.xml"/>
 	</mappers>
