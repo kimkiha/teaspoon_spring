@@ -77,7 +77,7 @@
                         		<c:when test="${ empty loginUser }">
 	                            	<li id="login_li"><button id="login">로그인</button></li>
 	                            </c:when>
-	                            <c:when test="${ loginUser.userKind eq 1 }">
+	                            <c:when test="${ loginUser.admin eq 'Y' }">
 	                            	<li style="padding:20px 0">
 	                            		<b>${ loginUser.userName }</b>님  환영합니다.<br>
 	                            		<a href="main.ad" style="curcor:pointer">관리자홈</a>
