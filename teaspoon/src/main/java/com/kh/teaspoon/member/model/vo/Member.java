@@ -24,6 +24,7 @@ public class Member {
 	private int birthday;
 	private String phone;
 	private String email;
+	private Date enrollDate;
 	private int buySum;
 	private int pointSum;
 	private Date modifyDate;
