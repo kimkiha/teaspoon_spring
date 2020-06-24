@@ -25,7 +25,7 @@
                                 <img src="/resources/img/main/logo.png" alt="" >
                             </div>
                         <div id="login">
-                             <form class="login" action="/login.me" method="post">
+                             <form class="login" action="login.me" method="post">
                             <fieldset>
                             <ul>
                              <li><input type="text" placeholder="아이디" name="userId" style="padding-left:15px"></li>
