@@ -1,18 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.ArrayList, com.teaspoon.store.model.vo.*, com.teaspoon.board.model.vo.*"%>
-<%
-	Product p = (Product)request.getAttribute("p");
-	ArrayList<Attachment> list = (ArrayList<Attachment>)request.getAttribute("list");
-%>    
+    pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>상품상세 | TeaSpoon</title>
-<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/store/itemDetailView.css">
-<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/reset.css">
-<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/menubar.css">
-<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/footer1.css">
+<link rel="styleSheet" href="${pageContext.servletContext.contextPath}/resources/css/store/itemDetailView.css">
+<link rel="styleSheet" href="${pageContext.servletContext.contextPath}/resources/css/common/reset.css">
+<link rel="styleSheet" href="${pageContext.servletContext.contextPath}/resources/css/common/menubar.css">
+<link rel="styleSheet" href="${pageContext.servletContext.contextPath}/resources/css/common/footer1.css">
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <style>
@@ -22,13 +21,16 @@
 </head>
 <body>
 <div id="wrap">
-         <%@ include file="../common/menubar.jsp" %>
+         <!-- header -->
+        <jsp:include page="../common/menubar.jsp"/>
+        
+        
          <div style="height:115px"></div>
         <!-- //header -->
         <div id="banner">
             <div class="contaniner">
                 <div style="margin: 100px 0px;">
-                    <p id="head_title"><%=p.getPname() %></p>
+                    <p id="head_title">${ p.productName }</p>
                 </div>
                 <div style="border: 1px solid; width:150px; float:left; margin-left: 500px;">
                 </div>
@@ -45,7 +47,7 @@
                                 <div class="pList1">
                                     <div class="thumbnail">
                                         <img width="500px" height="400px" 
-                                        	src="<%=contextPath %>/resources/thumbnail_upfiles/<%=list.get(0).getChangeName()%>">
+                                        	src="${pageContext.servletContext.contextPath}/resources/thumbnail_upfiles/${ p.productChange }">
                                     </div>
                                     <div class="move_review">
                                         <a href="#review"><p>REVIEW &gt;&gt;</p></a>
@@ -54,8 +56,7 @@
                                 <div class="pList2">
                                     <!--상품명, 상품설명요약 -->
                                     <div class="p_explain1">
-                                        <h4><%=p.getPname() %></h4>
-                                        <p><%=p.getKeyword() %></p>
+                                        <h4>${ p.productName }</h4>
                                    </div>
 
                                    <!-- 구매수량 변경 옵션 -->
@@ -65,11 +66,11 @@
                                         </div>
                                         <div class="number">
                                             <a href="#" id="decreaseQuantity">
-                                                <img src="<%=contextPath %>/resources/img/store/minus.png" width="20px" height="20px">
+                                                <img src="${pageContext.servletContext.contextPath}/resources/images/store/minus.png" width="20px" height="20px">
                                             </a>
                                             <b><span id="numberUpDown" style="padding-left: 20px; padding-right: 20px;">1</span></b>
                                             <a href="#" id="increaseQuantity">
-                                                <img src="<%=contextPath %>/resources/img/store/plus.png" width="20px" height="20px">
+                                                <img src="${pageContext.servletContext.contextPath}/resources/images/store/plus.png" width="20px" height="20px">
                                             </a>
                                         </div>
                                    </div>
@@ -77,8 +78,8 @@
                                    <!--상품금액 합계, 정기배송버튼, 장바구니버튼, 바로구매버튼 -->
                                    <div class="p_explain5">
                                         <span> 상품금액합계 </span>
-                                        <input id="price" type="hidden" value="<%=p.getPrice() %>">
-                                        <span id="totalPrice"><%=p.getPrice() %>원</span>
+                                        <input id="price" type="hidden" value="${ p.price }>">
+                                        <span id="totalPrice">${ p.price }원</span>
                                         <button id="basket">장바구니 담기</button>
                                         <button id="buyNow">바로 구매하기</button>
                                    </div>
@@ -94,14 +95,12 @@
                                 <div class="pList4"style="height:inherit;">
                                     <hr>
                                     <div>
-                                    	<p style="font-size:20px; text-align:left; padding-bottom:30px;"><%=p.getPcontent() %></p>
+                                    	<p style="font-size:20px; text-align:left; padding-bottom:30px;">${ p.productContents }</p>
                                     </div>
-                                   	<% for(int i=1; i<=list.size()-1; i++){ %>
                                     <div style="text-align:center; width:inherit;">
                                     	<img style="width:100%;"
-                                    		src="<%=contextPath %>/resources/thumbnail_upfiles/<%=list.get(i).getChangeName()%>">
+                                    		src="${pageContext.servletContext.contextPath}/resources/thumbnail_upfiles/${ p.productChange }">
                                     </div>
-                                   	<%} %>
                                    	<hr>
                                 </div>
 
@@ -113,9 +112,9 @@
                                 
                                
                                 <!-- 리뷰작성Area -->
-                                <% if(loginUser != null){ %>
+                                <c:if test="${ !empty loginUser }">
                                 <div id="reviewList">
-                                <form id="reviewForm" action="<%=contextPath %>/insert.re" method="post">
+                                <form id="reviewForm" action="insert.re" method="post">
 	                                <table id="writeReview" cellpadding="0" cellspacing="0" style="margin-top:100px">
 	                                    <tr>
 	                                		<td colspan="6" style="text-align:center; border-top: 1px solid #ddd; border-bottom:0px">
@@ -142,7 +141,7 @@
 	                                </table>
                                 </form>
                                 </div>
-                                <%} %>
+                              	</c:if>
                                 <!--//리뷰리뷰작성Area-->
 
                                 <div id="review" class="pList5">
@@ -169,7 +168,8 @@
             </div>
         </div>
         <!-- //content-->
-        <%@ include file="../common/footer.jsp" %>
+        <jsp:include page="../common/footer.jsp"/>
+        
         <!-- //footer-->
         <form id="insertCart" action="insertCart.st" method="post">
         	<input type="hidden" id="cartPcode" name="cartPcode">
@@ -235,7 +235,7 @@
 				$.ajax({
 					url:"insert.re",
 					type:"post",
-					data:{content:content, pcode:<%=p.getPcode()%>},
+					data:{content:content, productName:${ p.productName }},
 					success:function(result){
 						if(result>0){	// 리뷰작성 성공시 
 							selectReplyList();	// 갱신된데이터를 불러오도록 리뷰작성 메소드 호출
@@ -253,7 +253,7 @@
 			$.ajax({
 				url : "list.re",
 				//현재 페이지의 제품코드 보내서 해당 제품을 참조하고있는 댓글들 조회
-				data : {pcode:<%=p.getPcode()%>},
+				data : {productName:${ p.productName }},
 				type : "get",
 				success : function(list) {
 					//console.log(list);
@@ -282,7 +282,7 @@
 				$.ajax({
 					url : "listAdd.re",
 					//현재 페이지의 제품코드 보내서 해당 제품을 참조하고있는 댓글들 조회					
-					data : {pcode :<%=p.getPcode()%>,
+					data : {productName:${ p.productName },
 							addReview : addReview},
 					type : "get",
 					success : function(list) {

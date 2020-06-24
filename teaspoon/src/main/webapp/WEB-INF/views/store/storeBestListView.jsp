@@ -1,29 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.ArrayList, com.teaspoon.store.model.vo.*"%>
-<%
-	ArrayList<Product> list = (ArrayList<Product>)request.getAttribute("list");
-%> 
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Store Best | TeaSpoon</title>
-<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/store/storeBestListView.css">
-<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/reset.css">
-<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/menubar.css">
-<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/footer.css">
+<link rel="styleSheet" href="${pageContext.servletContext.contextPath}/resources/css/store/storeBestListView.css">
+<link rel="styleSheet" href="${pageContext.servletContext.contextPath}/resources/css/common/reset.css">
+<link rel="styleSheet" href="${pageContext.servletContext.contextPath}/resources/css/common/menubar.css">
+<link rel="styleSheet" href="${pageContext.servletContext.contextPath}/resources/css/common/footer.css">
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <style>
 	#content1 {width:100%; height:inherit; background: #ffffff; }
-	#banner {height: 270px; line-height: 270px; background:url("<%=request.getContextPath() %>/resources/img/store/storetop_best.jpg") center top no-repeat;}
+	#banner {height: 270px; line-height: 270px; background:url("${pageContext.servletContext.contextPath}/resources/images/store/storetop_best.jpg") center top no-repeat;}
 	.top_list>#top_list>tr *:hover{color:#d6ae71;}
 </style>
 </head>
 <body>
 <div id="wrap">
-         <%@ include file="../common/menubar.jsp" %>
-         
+        <!-- header -->
+        <jsp:include page="../common/menubar.jsp"/>
         <!-- //header -->
         <div style="height:115px"></div>
         <div id="banner">
@@ -44,18 +44,17 @@
                         </div>
                         <div class="product_top">
                             <div class="product_img">
-	                        	<input type="hidden" name="pcode" value=<%=list.get(0).getPcode() %>>
-	                            <input type="hidden" name="kind" value=<%=list.get(0).getKind() %>>
-                                <img src="<%=contextPath%>/resources/thumbnail_upfiles/<%=list.get(0).getTitleImg() %>" style="float:left; width:100%; height:inherit">
+	                        	<input type="hidden" name="pcode" value=${ p.productNo }>
+                                <img src="${pageContext.servletContext.contextPath}/resources/thumbnail_upfiles/${ p.productChange }" style="float:left; width:100%; height:inherit">
                             </div>
                             <div class="product_detail">
-                                <p style="font-size:22px; padding-bottom:10px;"><%=list.get(0).getPname()%></p>
+                                <p style="font-size:22px; padding-bottom:10px;">${ p.productName }</p>
                             </div>
                             <div class="like">
-                                <img class="like_icon empty" src="<%=contextPath %>/resources/img/store/heart_emtpy.png">
+                                <img class="like_icon empty" src="${pageContext.servletContext.contextPath}/resources/images/store/heart_emtpy.png">
                             </div>
                             <div class="basket">
-                                <img id="open" src="<%=contextPath %>/resources/img/store/cart.png">
+                                <img id="open" src="${pageContext.servletContext.contextPath}/resources/images/store/cart.png">
                             </div>
                             <div class="modal">
                                     <div class="modal_content">
@@ -70,36 +69,29 @@
                         <div class="top_list">
                             <table>
                                 <caption><b>베스트 상품 순위</b></caption>
-                                <% for(int i=0; i<8; i++) { %>
-                        		<% Product p = list.get(i); %>
                                 <tr class="top_list2">
-                                	<td><input type="hidden" name="pcode" value=<%=p.getPcode() %>></td>
-	                            	<td><input type="hidden" name="kind" value=<%=p.getKind() %>></td>
-                                    <th><%=i+1 %></th>
-                                    <td width="400px" style="padding-left:50px; cursor:pointer;"><%=p.getPname()%></td>
+                                	<td><input type="hidden" name="pcode" value=${ p.productNo }></td>
+                                    <th>i+1</th>
+                                    <td width="400px" style="padding-left:50px; cursor:pointer;">${ p.productChange }</td>
                                 </tr>
-                                <%} %>
                             </table>
 									
                         </div>
                         <div id="productList">
                         
-                        <% for(int i=1; i<list.size(); i++) { %>
-                        	<% Product p = list.get(i); %>
 	                            <div class="product" style="margin-top:50px; margin-right:30px;">
 	                                <div class="product_img">
-	                            		<input type="hidden" name="pcode" value=<%=p.getPcode() %>>
-	                            		<input type="hidden" name="kind" value=<%=p.getKind() %>>
-	                                    <img src="<%=contextPath%>/resources/thumbnail_upfiles/<%=p.getTitleImg() %>" style="float:left; width:300px; height:inherit">
+	                            		<input type="hidden" name="pcode" value=${ p.productNo }>
+	                                    <img src="${pageContext.servletContext.contextPath}/resources/thumbnail_upfiles/${ p.productChange }" style="float:left; width:300px; height:inherit">
 	                                </div>
 	                                <div class="product_detail" style="width:300px; height:60px; padding:0px">
-	                                    <p style="padding-top:20px;padding-left:12px;"><%=p.getPname() %></p>
+	                                    <p style="padding-top:20px;padding-left:12px;">${ p.productName }</p>
 	                                </div>
 	                                <div class="like">
-	                                    <img class="like_icon empty" src="<%=contextPath %>/resources/img/store/heart_emtpy.png">
+	                                    <img class="like_icon empty" src="${pageContext.servletContext.contextPath}/resources/images/store/heart_emtpy.png">
 	                                </div>
 	                                <div class="basket">
-	                                    <img id="open" src="<%=contextPath %>/resources/img/store/cart.png">
+	                                    <img id="open" src="${pageContext.servletContext.contextPath}/resources/images/store/cart.png">
 	                                </div>
 	                                <div class="modal">
 	                                   <div class="modal_content">
@@ -109,7 +101,6 @@
 	                                   </div>
 	                                </div>
 	                            </div>
-                      		<%} %>
                         </div>
                     </div> 
                 </div>
@@ -125,9 +116,9 @@
     			var kind = $(this).children().eq(1).val();
     			var pcode = $(this).children().eq(0).val();
     			if(kind=='C'){
-    				location.href="<%=contextPath%>/detail.co?pcode="+pcode;
+    				location.href="detail.co?pcode="+pcode;
     			} else{
-    				location.href="<%=contextPath%>/detail.it?pcode="+pcode;
+    				location.href="detail.it?pcode="+pcode;
     			}
     		});
     	});
@@ -140,9 +131,9 @@
     			var pcode = $(this).children().eq(0).children().val();
     			var kind = $(this).children().eq(1).val();
     			if(kind=='C'){
-    				location.href="<%=contextPath%>/detail.co?pcode="+pcode;
+    				location.href="detail.co?pcode="+pcode;
     			} else{
-    				location.href="<%=contextPath%>/detail.it?pcode="+pcode;
+    				location.href="detail.it?pcode="+pcode;
     			}
     		});
     	});
@@ -163,10 +154,10 @@
         					if(result > 0){
 			        			 icon.removeClass("empty");
 			        			 icon.addClass("full");
-			        			 icon.attr("src","<%=contextPath %>/resources/img/store/heart_full.png");
+			        			 icon.attr("src","resources/images/store/heart_full.png");
 			        			 var bool = window.confirm("위시리스로 등록되었습니다. 위시리스트로 이동하시겠습니까?");
 			        			 if(bool){
-			        				 location.href="<%=contextPath %>/wishList.me";
+			        				 location.href="wishList.me";
 			        			 }
         					} else if(result<0){
         						$("#dPcode").val(pcode1);
@@ -189,7 +180,7 @@
 							if(result > 0){
 			        			 icon.removeClass("full");
 			        			 icon.addClass("empty");
-								 icon.attr("src","<%=contextPath %>/resources/img/store/heart_emtpy.png");
+								 icon.attr("src","resources/images/store/heart_emtpy.png");
 								 window.alert("위시리스트에서 삭제되었습니다.")
 							}else{
 								
@@ -218,7 +209,7 @@
         </script>
 
         <!-- //content-->
-       <%@ include file="../common/footer.jsp" %>
+       <jsp:include page="../common/footer.jsp"/>
         <!-- //footer-->
     </div>
 </body>
