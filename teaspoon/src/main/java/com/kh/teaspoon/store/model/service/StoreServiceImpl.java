@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import com.kh.teaspoon.store.model.dao.StoreDao;
 
 @Service("stService")
-public class StoreServiceImpl {
+public class StoreServiceImpl implements StoreService{
 	
 	@Autowired
 	private SqlSessionTemplate sqlSession;
