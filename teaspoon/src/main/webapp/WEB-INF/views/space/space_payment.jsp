@@ -57,7 +57,7 @@
 </head>
 <body>
 <div id="wrap">
-        <%@ include file="../common/menubar.jsp" %>
+        <jsp:include page="../common/menubar.jsp"/>
         
         <div id="banner">
             <div class="contaniner title">주문/결제</div>
@@ -223,7 +223,7 @@
             <!-- //contaniner-->
         </div>
         <!-- //content-->
-        <%@ include file="../common/footer.jsp" %>
+        <jsp:include page="../common/footer.jsp"/>
         <!-- //footer-->
     </div>
 
