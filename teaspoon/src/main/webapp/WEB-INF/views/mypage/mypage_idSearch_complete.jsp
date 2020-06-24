@@ -1,21 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>아이디 찾기 | TeaSpoon </title>
- 	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/mypage/mypage_idSearch_complete.css">
-	<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/reset.css">
-	<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/menubar.css">
-	<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/footer.css">
+ 	<link rel="stylesheet" type="text/css" href="../teaspoon/resources/css/mypage/mypage_idSearch_complete.css">
+	<link rel="styleSheet" href="../teaspoon/resources/css/common/reset.css">
+	<link rel="styleSheet" href="../teaspoon/resources/css/common/menubar.css">
+	<link rel="styleSheet" href="../teaspoon/resources/css/common/footer.css">
     <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap" rel="stylesheet">
     <script type="text/javascript"src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     
 </head>
 <body>
 <div id="wrap">
-        <%@ include file="../common/menubar.jsp" %>
+        <jsp:include page="../common/menubar.jsp"/>
 
         <!-- //header -->
 
@@ -36,7 +37,7 @@
 
        			 <ul class="im1">
            
-            		<p style="font-size:20px; text-align:center; margin-top:40px; margin-bttom:40px;"><input type="text" id="userid" type="userid" placeholder="<%=loginUser.getUserName() %>"style="text-align:center;" disabled></p>
+            		<p style="font-size:20px; text-align:center; margin-top:40px; margin-bttom:40px;"><input type="text" id="userid" type="userid" <%-- placeholder="<%=loginUser.getUserName() %>" --%>style="text-align:center;" disabled></p>
           
            		 	<button type="button" class="login" style="margin-top:20px; margin-bttom:20px;">로그인</button> 
             
@@ -62,7 +63,7 @@
 
 
       <!-- //content-->
-       <%@ include file="../common/footer.jsp" %>
+       <jsp:include page="../common/footer.jsp"/>
     <!-- //footer-->
 </body>
 </html>
