@@ -23,7 +23,19 @@ public class StoreDao {
 	}
 
 	public int insertProduct(Product p, SqlSessionTemplate sqlSession) {
-		return sqlSession.insert("storeMapper.insertProduct");
+		return sqlSession.insert("storeMapper.insertProduct", p);
+	}
+
+	public Product selectProduct(int productNo, SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("storeMapper.selectProduct", productNo);
+	}
+
+	public int updateProduct(Product p, SqlSessionTemplate sqlSession) {
+		return sqlSession.update("storeMapper.updateProduct", p);
+	}
+
+	public int deleteProduct(int productNo, SqlSessionTemplate sqlSession) {
+		return sqlSession.update("storeMapper.deleteProduct", productNo);
 	}
 
 	

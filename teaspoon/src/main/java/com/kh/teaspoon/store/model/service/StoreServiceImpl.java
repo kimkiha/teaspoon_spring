@@ -33,6 +33,21 @@ public class StoreServiceImpl implements StoreService{
 	public int insertProduct(Product p) {
 		return stDao.insertProduct(p, sqlSession);
 	}
+
+	@Override
+	public Product selectProduct(int productNo) {
+		return stDao.selectProduct(productNo, sqlSession);
+	}
+
+	@Override
+	public int updateProduct(Product p) {
+		return stDao.updateProduct(p, sqlSession);
+	}
+
+	@Override
+	public int deleteProduct(int productNo) {
+		return stDao.deleteProduct(productNo, sqlSession);
+	}
 	
 	
 

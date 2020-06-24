@@ -13,13 +13,15 @@
 
 <style>
 .b{
-	margin-top: 30px;
-	margin-bottom: 30px;
+	margin-top: 15px;
+	margin-bottom: 10px;
 	font-size: 30px;
 	font-weight: bold;
+	text-align:left;
 }
-table .a{font-size:18px; font-weight:bold; float:right; margin-right:50px; margin-bottom:25px;}
+table .a{font-size:18px; font-weight:bold; float:right; margin-right:50px; margin-bottom:20px;}
 table .inputBox{width:320px; height:30px; border:1px solid #dbdbdb; border-radius:4px; margin-left:10px;}
+table .inputR{margin-left:20px;}
 </style>
 </head>
 <body>
@@ -28,13 +30,15 @@ table .inputBox{width:320px; height:30px; border:1px solid #dbdbdb; border-radiu
 		<div id="c1" style="margin-top: 20px;">
 			<div class="outer">
 				<p class="b">상품 수정</p>
-				<hr>
-
 				<form id="productUpdateForm" action="" method="post" enctype="multipart/form-data">
 					<table>
 						<tr>
 							<td style="width:370px; padding:10px;">
-								<img style="width:350px; height:250px; border-radius:4px; border:1px solid #dbdbdb" id="thumbNail">
+								<img style="width:350px; height:250px; border-radius:4px; border:1px solid #dbdbdb" id="titleImg"
+									 src="${pageContext.request.contextPath}/resources/uploadFiles/${ p.productChange }">
+								<div id="fileArea">
+									<input type="file" name="thumb" id="thumb" onchange="loadImg(this,1);" required>
+								</div>
 							</td>
 							<td>
 								<input type="hidden" name="productNo" value="${ p.productNo }">
@@ -42,6 +46,10 @@ table .inputBox{width:320px; height:30px; border:1px solid #dbdbdb; border-radiu
 								<p class="a">공급가  <input class="inputBox" type="number" name="supPrice" value="${ p.supPrice }" required></p>
 								<p class="a">판매가  <input class="inputBox" type="number" name="price" value="${ p.price }" required></p>
 								<p class="a">재고    <input class="inputBox" type="number" name="stock" value="${ p.stock }" required></p>
+								<p class="a">상품종류
+									<label style="padding-right:20px; padding-left:5px;"><input class="inputR" type="radio" name="kind" id="coffee" value="c" style="margin:0px 10px;">커피 </label>
+									<label style="padding-right:145px;"><input class="inputR" type="radio" name="kind" id="item" value="i" style="margin:0px 10px;">아이템</label>
+								</p>
 							</td>
 						</tr>
 						<tr style="border-bottom:0px;">
@@ -56,16 +64,12 @@ table .inputBox{width:320px; height:30px; border:1px solid #dbdbdb; border-radiu
 
 					</table>
 					<br>
-					<div id="fileArea">
-						<input type="file" name="file1" id="file1" onchange="loadImg(this,1);">
-						<input type="file" name="file2" id="file2" onchange="loadImg(this,2);"> 
-						<input type="file" name="file3" id="file3" onchange="loadImg(this,3);">
-						<input type="file" name="file4" id="file4" onchange="loadImg(this,4);">
-					</div>
-				
 					<div class="btns">
-						<button type="button" style="width: 120px;" onclick="updateProduce(1);">수정하기</button>
-						<button type="button" style="width: 120px;" onclick="updateProduce(2);">삭제하기</button>
+						<button type="button" style="width: 120px;" onclick="javascript:history.go(-1);">목록으로</button>
+						<c:if test="${ p.status eq 'Y' }">
+							<button type="button" style="width: 120px;" onclick="updateProduce(1);">수정하기</button>
+							<button type="button" style="width: 120px;" onclick="updateProduce(2);">삭제하기</button>
+						</c:if>
 					</div>
 				</form>
 			</div>
@@ -76,47 +80,42 @@ table .inputBox{width:320px; height:30px; border:1px solid #dbdbdb; border-radiu
 			$("#fileArea").hide();
 			
 			$("#titleImg").click(function(){
-				$("#file1").click();
+				$("#thumb").click();
 			});
-			$("#contentImg1").click(function(){
-				$("#file2").click();
-			});
-			$("#contentImg2").click(function(){
-				$("#file3").click();
-			});
-			$("#contentImg3").click(function(){
-				$("#file4").click();
-			});
+			
 		});
 
 		function loadImg(inputFile, num) {
-			// inputFile : 현재 변화가 생긴 input type="file" 요소
-			// num : 몇번째 input 요소인지 확인 후 해당 영역에 미리보기 하려고 받는 숫자값
+			if(inputFile.files.length==1){
+	      			// 파일을 읽어들일 FileReader 객체생성
+	      			var reader = new FileReader();
 
-			// [참고] https://developer.mozilla.org/ko/docs/Web/API/FileReader
-
-			//file이 존재할 경우 --> inputFile요소의 files속성인 배열의 0번 인덱스에  파일이 담김
-			if (inputFile.files.length == 1) {
-				// 파일을 읽어들일 FileReader 객체생성
-				var reader = new FileReader();
-
-				//파일을 읽어주는 메소드 --> 해당 파일을 읽어들이는 순간 해당 파일만의 고유한 url부여
-				reader.readAsDataURL(inputFile.files[0]);
-
-				//파일 읽기가 완료 되었을때 실행할 메소드
-				// e : 현재 이벤트가 발생한 이벤트객체
-				reader.onload = function(e) {
-					switch (num) {
-					case 1: $("#titleImg").attr("src", e.target.result); break;
-					case 2: $("#contentImg1").attr("src", e.target.result); break;
-					case 3: $("#contentImg2").attr("src", e.target.result); break;
-					case 4: $("#contentImg3").attr("src", e.target.result); break;
-
-					}
+	      			// 파일을 읽어주는 메소드 : 파일을 읽어들이는 순간 고유한 url부여
+	      			reader.readAsDataURL(inputFile.files[0]);
+	      			
+	      			//파일 읽기가 완료 되었을때 실행할 메소드
+					// e : 현재 이벤트가 발생한 이벤트객체
+	      			reader.onload = function(e){
+					$("#titleImg").attr("src", e.target.result); 
 				};
-
 			}
-
+		}
+		
+		$(function(){
+			if('${p.kind}'=='c'){
+				$("#coffee").prop("checked", true);
+			}else{
+				$("#item").prop("checked",true);
+			}
+		});
+		
+		function updateProduce(num){
+			if(num==1){
+				$("#productUpdateForm").attr("action", "update.st");
+			}else{
+				$("#productUpdateForm").attr("action", "delete.st");
+			}
+			$("#productUpdateForm").submit();
 		}
 	</script>
 	

@@ -27,6 +27,7 @@ public class Product {
 	private String productChange;	// 썸네일 수정명
 	private String productFilepath;	// 썸네일 파일경로
 	private String productContents;	// 상품설명(summerNote)
+	private String kind;			// 상품종류
 	
 	/* 상품상세 테이블 */
 	private int detailNo;			// 상품상세번호 +상품번호,옵션코드

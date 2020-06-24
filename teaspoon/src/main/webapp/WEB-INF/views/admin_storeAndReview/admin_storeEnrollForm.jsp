@@ -13,13 +13,15 @@
 
 <style>
 .b{
-	margin-top: 30px;
-	margin-bottom: 30px;
+	margin-top: 15px;
+	margin-bottom: 10px;
 	font-size: 30px;
 	font-weight: bold;
+	text-align:left;
 }
-table .a{font-size:18px; font-weight:bold; float:right; margin-right:50px; margin-bottom:25px;}
+table .a{font-size:18px; font-weight:bold; float:right; margin-right:50px; margin-bottom:20px;}
 table .inputBox{width:320px; height:30px; border:1px solid #dbdbdb; border-radius:4px; margin-left:10px;}
+table .inputR{margin-left:20px;}
 </style>
 </head>
 <body>
@@ -28,8 +30,6 @@ table .inputBox{width:320px; height:30px; border:1px solid #dbdbdb; border-radiu
 		<div id="c1" style="margin-top: 20px;">
 			<div class="outer">
 				<p class="b">상품 등록</p>
-				<hr>
-
 				<form id="productInsertForm" action="insert.st" method="post" enctype="multipart/form-data">
 					<table>
 						<tr>
@@ -41,9 +41,13 @@ table .inputBox{width:320px; height:30px; border:1px solid #dbdbdb; border-radiu
 							</td>
 							<td>
 								<p class="a" style="margin-top:20px;">상품명  <input class="inputBox" type="text" name="productName" value="" required></p>
-								<p class="a">공급가  <input class="inputBox" type="number" name="supPrice" value="" required></p>
-								<p class="a">판매가  <input class="inputBox" type="number" name="price" value="" required></p>
-								<p class="a">재고    <input class="inputBox" type="number" name="stock" value="" required></p>
+								<p class="a">공급가<input class="inputBox" type="number" name="supPrice" value="" required></p>
+								<p class="a">판매가<input class="inputBox" type="number" name="price" value="" required></p>
+								<p class="a">재고<input class="inputBox" type="number" name="stock" value="" required></p>
+								<p class="a">상품종류
+									<label style="padding-right:20px; padding-left:5px;"><input class="inputR" type="radio" name="kind" value="c" style="margin:0px 10px;">커피 </label>
+									<label style="padding-right:145px;"><input class="inputR" type="radio" name="kind" value="i" style="margin:0px 10px;">아이템</label>
+								</p>
 							</td>
 						</tr>
 						<tr style="border-bottom:0px;">
@@ -58,6 +62,7 @@ table .inputBox{width:320px; height:30px; border:1px solid #dbdbdb; border-radiu
 
 					</table>
 					<div class="btns">
+						<button type="button" style="width: 120px;" onclick="javascript:history.go(-1);">목록으로</button>
 						<button type="submit" style="width: 120px;">등록하기</button>
 					</div>
 				</form>

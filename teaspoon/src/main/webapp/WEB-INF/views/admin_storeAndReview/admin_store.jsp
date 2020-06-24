@@ -16,7 +16,8 @@
         table tr{border-bottom: 1px solid lightgray;}
         table tr:first-child{border-top: 1px solid lightgray;}
         table th{background-color: #dbdbdb; text-align:center;}
-        table td{height:50px;}
+        table td{height:50px;text-align:center;}
+        #pagingArea a:hover{color:red;}
     </style>
 </head>
 <body>
@@ -42,8 +43,8 @@
                                     <th style="width:100px;">공급가</th>
                                     <th style="width:100px;">가격</th>
                                     <th style="width:70px;">재고</th>
-                                    <th style="width:70px;">상태</th>
                                     <th style="width:100px;">누적판매수</th>
+                                    <th style="width:70px;">상태</th>
                                     <th style="width:100px;"> </th>
                                 </tr>
                             </tbody>
@@ -59,11 +60,11 @@
 											<tr>
 											    <td>${ p.productNo }</td>
 												<td>${ p.productName }</td>
-												<td>${ p.supPrice }</td>
-												<td>${ p.price }</td>
-												<td>${ p.stock }</td>
+												<td><fmt:formatNumber value="${ p.supPrice }"/>원</td>
+												<td><fmt:formatNumber value="${ p.price }"/>원</td>
+												<td>${ p.stock }개</td>
+												<td>${ p.totalCount }개</td>
 												<td>${ p.status }</td>
-												<td>${ p.totalCount }</td>
 												<td>
 											    	<button type="button" id="updateProduct">수정</button>
 											    </td>
@@ -123,8 +124,9 @@
         	
         	$(function(){
         		$('#updateProduct').click(function(){
-        			var productNo = $(this).parent().siblings().eq(0);
-        			location.href='update.st?productNo='+productNo;
+        			var productNo = $(this).parent().siblings().eq(0).text();
+        			//console.log(productNo);
+        			location.href='updateForm.st?productNo='+productNo;
         		});
         	});
         	

@@ -108,7 +108,7 @@ public String saveFile(MultipartFile file, HttpServletRequest request) {
 			p.setProductFilepath(request.getSession().getServletContext().getRealPath("resources") + "\\uploadFiles\\" + changeName);
 		}
 		
-		System.out.println(p);
+		//System.out.println(p);
 		
 		int result = stService.insertProduct(p);
 		
@@ -118,6 +118,50 @@ public String saveFile(MultipartFile file, HttpServletRequest request) {
 			return "common/errorPage_admin";
 		}
 	}
+	
+	@RequestMapping("updateForm.st")
+	public String productUpdateForm(int productNo, Model model) {
+		Product p = stService.selectProduct(productNo);
+		model.addAttribute("p", p);
+		return "admin_storeAndReview/admin_storeUpdateForm";
+	}
+	
+	@RequestMapping("update.st")
+	public String updateProduct(Product p, @RequestParam(name="thumb", required=true) MultipartFile file, 
+			HttpServletRequest request) {
+		
+		if(!file.getOriginalFilename().equals("")) {
+			if(p.getProductChange() != null) {
+				deleteFile(p.getProductChange(), request);
+			}
+			String changeName = saveFile(file, request);
+			p.setProductOrigin(file.getOriginalFilename());
+			p.setProductChange(changeName);
+			p.setProductFilepath(request.getSession().getServletContext().getRealPath("resources") + "\\uploadFiles\\" + changeName);
+		}
+		
+		int result = stService.updateProduct(p);
+		
+		if(result>0) {
+			return "redirect:list.st?currentPage=1";
+		} else {
+			return "common/errorPage_admin";
+		}
+	
+	}
+	
+	@RequestMapping("delete.st")
+	public String deleteProduct(int productNo, Model model) {
+		int result = stService.deleteProduct(productNo);
+		
+		if(result>0) {
+			return "redirect:list.st?currentPage=1";
+		} else {
+			return "common/errorPage_admin";
+		}
+	}
+	
+	
 	
 	
 }

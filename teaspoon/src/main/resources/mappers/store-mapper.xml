@@ -14,6 +14,7 @@
 		<result column="product_change" property="productChange"/>
 		<result column="product_filepath" property="productFilepath"/>
 		<result column="product_contents" property="productContents"/>
+		<result column="kind" property="kind"/>
 	</resultMap>
 	
 	<!--               관리자                          -->
@@ -32,8 +33,29 @@
 	<insert id="insertProduct" parameterType="Product">
 		insert into product
 		values(product_no.nextval, #{productName}, #{supPrice}, #{price}, #{stock}, 
-			   default, default, #{productOrigin}, #{productChange}, #{productFilepath}, #{productContents})
+			   default, default, #{productOrigin}, #{productChange}, #{productFilepath}, #{productContents}, #{kind})
 	</insert>
 	
+	<select id="selectProduct" parameterType="_int" resultMap="ProductResultSet">
+		select *
+		  from product
+		 where product_no=#{productNo}
+	</select>
 
+	<update id="updateProduct" parameterType="Product">
+		update product 
+		   set product_name=#{productName}, sup_price=#{supPrice}, price=#{price}, stock=#{stock},
+		   	   product_origin=#{productOrigin}, product_change=#{productChange}, 
+		   	   product_filepath=#{productFilepath}, product_contents=#{productContents}, kind=#{kind}
+		 where product_no=#{productNo}
+	</update>
+	
+	<update id="deleteProduct" parameterType="_int">
+		update product 
+		   set status='N'
+		 where product_no=#{productNo}
+	</update>
+	
+	
+	
 </mapper>
