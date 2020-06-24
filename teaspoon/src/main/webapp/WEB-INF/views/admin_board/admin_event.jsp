@@ -1,16 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.ArrayList, com.teaspoon.board.model.vo.*,com.teaspoon.common.PageInfo "%>
-<% 
-	ArrayList<Board> list = (ArrayList<Board>)request.getAttribute("list");
-	PageInfo pi = (PageInfo)request.getAttribute("pi");
+    pageEncoding="UTF-8"%>
 
-	String eventKeyword = String.valueOf(request.getAttribute("eventKeyword"));
-
-	int currentPage = pi.getCurrentPage();
-	int startPage = pi.getStartPage();
-	int endPage = pi.getEndPage();
-	int maxPage = pi.getMaxPage();
-%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,12 +18,12 @@
     </style>
 </head>
 <body>
-   <%@include file="../common/admin_sidebar.jsp" %>
+   <jsp:include page="../common/admin_sidebar.jsp"/>
         <div id="contents">
             <div id="c1" style="margin-top: 20px;">
                 <div id="c1_1">
                     <div id="c1_1_1" >
-                        <div id="c1_1_1_1"><img src="<%=contextPath%>/resources/img/admin/이벤트.png" width="50px" width="50px"></div>
+                        <div id="c1_1_1_1"><img src="resources/img/admin/이벤트.png" width="50px" width="50px"></div>
                         <div id="c1_1_1_2"><p>이벤트관리 페이지입니다.</p></div>
                         <div id="c1_1_1_3">
                              <input type="text" placeholder="이벤트제목" id="eventKeyword">
@@ -55,26 +45,24 @@
                                 </tr>
                             </thead>
                             <tbody>
-                             <%if(list.isEmpty()){%>
+                             
 								<tr>
 									<td colspan="8">조회된 리스트가 없습니다.</td>
 								</tr>
-								<%}else{%>
-									<%for(Board b : list){ %>
+								
 										<tr>
-											<td><%=b.getBoardNo() %></td>
-											<td><%=b.getBoardTitle() %></td>
-											<td><%=b.getCreateDate() %></td>
-											<td><%=b.getModifyDate() %></td>
-											<td class="status"><%=b.getStatus()%></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td class="status"></td>
 		                                    <td>
-	                                        <button><a href="<%=contextPath%>/eventUpdateForm.bo?bno=<%=b.getBoardNo()%>">수정</a></button>
-	                                        <button><a href="<%=contextPath%>/eventDelete.bo?bno=<%=b.getBoardNo()%>">삭제</a></button>
+	                                        <button><a href="eventUpdateForm.bo?bno=">수정</a></button>
+	                                        <button><a href="eventDelete.bo?bno=">삭제</a></button>
                                    			</td>
 										</tr>
 									
-									<%} %>
-								<%} %>
+								
                       </table>
                     </div>
                 </div>
@@ -82,54 +70,14 @@
 
                 </div>
                 <div id="c1_3">
-                <% if(!eventKeyword.equals("null")){ %>
-                	<!-- 현재 페이지에 보여질 페이징바 -->
-					<%if(currentPage != 1){%> <!-- 현재 페이지가 1페이지가 아닐경우 -->
-						<!-- 맨 처음으로(<<) -->
-						<button onclick="location.href='eventKeywordList.bo?currentPage=1&eventKeyword=<%=eventKeyword %>'">&lt;&lt;</button>
-						<!-- 이전페이지로(<) -->
-						<button onclick="location.href='eventKeywordList.bo?currentPage=<%=currentPage-1%>&eventKeyword=<%=eventKeyword%>'">&lt;</button>
-					<%} %>
-					
-					<%for(int p=startPage; p<=endPage; p++){%>
-						<%if(currentPage != p) {%>
-						<button onclick="location.href='eventKeywordList.bo?currentPage=<%=p%>&eventKeyword=<%=eventKeyword %>'"><%=p%></button>
-						<%}else{ %>
-						<button disabled><%=p %></button>
-						<%} %>	
-					<%} %>
-					
-					<%if(currentPage != maxPage){ %>
-						<!-- 다음페이지로(<) -->
-						<button onclick="location.href='eventKeywordList.bo?currentPage=<%=currentPage+1%>&eventKeyword=<%=eventKeyword %>'">&gt;</button>
-						<!-- 맨 마지막으로(>>) -->
-						<button onclick="location.href='eventKeywordList.bo?currentPage=<%=maxPage %>&eventKeyword=<%=eventKeyword %>'">&gt;&gt;</button>
-					<%} %>
-                    
-                <%}else { %>
-                    <!-- 현재 페이지에 보여질 페이징바 -->
-					<%if(currentPage != 1){%> <!-- 현재 페이지가 1페이지가 아닐경우 -->
-						<!-- 맨 처음으로(<<) -->
-						<button onclick="location.href='eventAdminList.bo?currentPage=1>'">&lt;&lt;</button>
-						<!-- 이전페이지로(<) -->
-						<button onclick="location.href='eventAdminList.bo?currentPage=<%=currentPage-1%>'">&lt;</button>
-					<%} %>
-					
-					<%for(int p=startPage; p<=endPage; p++){%>
-						<%if(currentPage != p) {%>
-						<button onclick="location.href='eventAdminList.bo?currentPage=<%=p%>'"><%=p%></button>
-						<%}else{ %>
-						<button disabled><%=p %></button>
-						<%} %>	
-					<%} %>
-					
-					<%if(currentPage != maxPage){ %>
-						<!-- 다음페이지로(<) -->
-						<button onclick="location.href='eventAdminList.bo?currentPage=<%=currentPage+1%>'">&gt;</button>
-						<!-- 맨 마지막으로(>>) -->
-						<button onclick="location.href='eventAdminList.bo?currentPage=<%=maxPage %>'">&gt;&gt;</button>
-					<%} %>
-				<%} %>
+              	  <a>&lt;</a>
+                   <button>1</button>
+                   <button>2</button>
+                   <button>3</button>
+                   <button>4</button>
+                   <button>5</button>
+                   <a>&gt;</a>
+                
                 </div>
                
                

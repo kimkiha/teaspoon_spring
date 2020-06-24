@@ -1,25 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.ArrayList, com.teaspoon.board.model.vo.*"%>
- <% 
- 	Board b = (Board)request.getAttribute("b"); 
- 	String status = b.getStatus();
- 	Attachment at = (Attachment)request.getAttribute("at");
- 
- String[] selected = new String[2];
- 
- switch(status){
- case "Y" : selected[0] = "checked"; break;
- case "N" : selected[1] = "checked"; break;
- 
- }
-%>
+    pageEncoding="UTF-8" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>공지사항 | Admin</title>
-   	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/admin/admin_EnrollForm.css">
+   	<link rel="stylesheet" href="/resources/css/admin/admin_EnrollForm.css">
     <style>
     .outer p{font-weight: bold;}
         table * {padding: 10px; font-size: 18px;}
@@ -34,39 +22,38 @@
     </style>
 </head>
 <body>
-    <%@include file="../common/admin_sidebar.jsp" %>
+   <jsp:include page="../common/admin_sidebar.jsp"/>
         <div id="contents">
             <div id="c1" >
                 <div class="outer">
                     <p>공지사항 수정</p>
                     <form id="noticeUpdete" action="noticeUpdate.bo" method="post" enctype="multipart/form-data">
-                    <input type="hidden" name="bno" value="<%=b.getBoardNo() %>">
+                    <input type="hidden" name="bno" value="">
                     	<table>
                  		   	<tr>
 	                  		   	<td width="120" class="tb_title">제목</td>
 	                  		   	<td colspan="3" class="tb_content">
-	                  		   		<input type="text" style="width:100%" name="title" required value="<%=b.getBoardTitle() %>">
+	                  		   		<input type="text" style="width:100%" name="title" required value="">
 	                  		   	</td>
                  		   	</tr>
                  		   	<tr>
                  		   		<td class="tb_title">대표이미지</td>
                  		   		<td width="270" class="tb_content">
                  		   		
-	                 		   	<%if(at != null) {//기존에 첨부파일이 있었을 경우%>
-									<%= at.getOriginName() %><br>
-									<input type="hidden" name="originFileNo" value="<%=at.getFileNo() %>">
-									<input type="hidden" name="originFileName" value="<%=at.getChangeName() %>"> <%-- 실제서버에 올라간 파일명 --%>
-								<% } %>
-								<img id="titleImg" name="upfile" width="150" height="120" required src="<%=contextPath%>/resources/img/board/<%=at.getChangeName()%>"></td>
+	                 		  
+									<input type="hidden" name="originFileNo" value="">
+									<input type="hidden" name="originFileName" value=""> <%-- 실제서버에 올라간 파일명 --%>
+							
+								<img id="titleImg" name="upfile" width="150" height="120" required src="/resources/img/board/"></td>
 	                 		   		<td width="150" class="tb_title">게시상태</td>
                  		   		<td class="tb_content">
-                 		   			<input type="radio" name="status" required value='Y' <%= selected[0]%>> Y
-                                    <input type="radio"  name="status" required value='N' <%= selected[1]%>> N
+                 		   			<input type="radio" name="status" required value='Y' > Y
+                                    <input type="radio"  name="status" required value='N' > N
                  		   		</td>
                  		   	</tr>
                		    </table>
               		    <div class="c_div_cont">
-                         		<textarea id="summernote" name="Content"><%=b.getBoardContent() %></textarea>
+                         		<textarea id="summernote" name="Content"></textarea>
                          </div>
 	                         
 						<div id="fileArea">
@@ -75,7 +62,7 @@
                		    
                		    
                         <div class="btns">
-                            <button type="button" style="width: 100px;"  onclick="location.href='<%=contextPath%>/noticeAdminList.bo?currentPage=1'">목록으로</button>
+                            <button type="button" style="width: 100px;"  onclick="location.href='noticeAdminList.bo?currentPage=1'">목록으로</button>
                             <button type="submit" style="width: 100px;" >수정하기</button>
                         </div>
                     </form>
@@ -88,7 +75,7 @@
 		<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.js"></script>
 		
 	    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap" rel="stylesheet">
-	    <link href="<%=contextPath%>/resources/css/admin/admin_common.css" rel="stylesheet">
+	    <link href="resources/css/admin/admin_common.css" rel="stylesheet">
 	   
 		<style>
 		

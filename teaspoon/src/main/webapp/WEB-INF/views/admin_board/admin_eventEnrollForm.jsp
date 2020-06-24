@@ -21,10 +21,10 @@
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	
-    <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/admin/admin_EnrollForm.css">
+    <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/admin/admin_EnrollForm.css">
 </head>
 <body>
-     <%@include file="../common/admin_sidebar.jsp" %>
+     <jsp:include page="../common/admin_sidebar.jsp"/>
         <div id="contents">
             <div id="c1">
                 <div class="outer">
@@ -97,7 +97,7 @@
         <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.css" rel="stylesheet">
 		<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.js"></script>
 		<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap" rel="stylesheet">
-	    <link href="<%=contextPath%>/resources/css/admin/admin_common.css" rel="stylesheet">
+	    <link href="${ pageContext.servletContext.contextPath }/resources/css/admin/admin_common.css" rel="stylesheet">
 	   
 		<style>
 		button{width:auto;}

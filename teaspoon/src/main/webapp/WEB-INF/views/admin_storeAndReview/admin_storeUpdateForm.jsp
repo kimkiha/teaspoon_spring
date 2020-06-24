@@ -1,17 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.ArrayList, com.teaspoon.store.model.vo.*, com.teaspoon.board.model.vo.*" %>
-<%
-	Product p = (Product)request.getAttribute("p");
-	ArrayList<Attachment> list = (ArrayList<Attachment>)request.getAttribute("list");
+    pageEncoding="UTF-8" %>
 
-	String kind = p.getKind();
-	String[] checked = new String[2];
-	
-	switch(kind){
-	case "C" : checked[0] = "checked"; break;
-	case "I" : checked[1] = "checked"; break;
-	}
-%>
 	
 <!DOCTYPE html>
 <html lang="en">
@@ -35,13 +24,15 @@ table tr {border-bottom: 1px solid lightgray;}
 </style>
 </head>
 <body>
-	<%@include file="../common/admin_sidebar.jsp"%>
+	
+<jsp:include page="../common/admin_sidebar.jsp"/>
+
 	<div id="contents">
 		<div id="c1" style="margin-top: 20px;">
 			<div class="outer">
 				<p>상품 수정</p>
 
-				<form id="productInsertForm" action="update.st?pcode=<%=p.getPcode()%>" method="post" enctype="multipart/form-data">
+				<form id="productInsertForm" action="update.st?pcode=" method="post" enctype="multipart/form-data">
 					<table>
 						<tr>
 							<th>상품코드</th>
@@ -51,59 +42,44 @@ table tr {border-bottom: 1px solid lightgray;}
 							<th>재고</th>
 						</tr>
 						<tr>
-							<td><input id="pcode" type="text" style="width:90px" name="pcode" value="<%=p.getPcode() %>" readonly></td>
-							<td colspan="2"><input type="text" style="width:250px;" name="pname" value="<%=p.getPname() %>"></td>
-							<td><input type="text" style="width:150px" name="supPrice" value="<%=p.getSupPrice() %>"></td>
-							<td><input type="text" style="width:150px" name="price" value="<%=p.getPrice() %>"></td>
-							<td><input type="text" style="width:150px" name="stock" value="<%=p.getStock() %>"></td>
+							<td><input id="pcode" type="text" style="width:90px" name="pcode" value="" readonly></td>
+							<td colspan="2"><input type="text" style="width:250px;" name="pname" value=""></td>
+							<td><input type="text" style="width:150px" name="supPrice" value=""></td>
+							<td><input type="text" style="width:150px" name="price" value=""></td>
+							<td><input type="text" style="width:150px" name="stock" value=""></td>
 						</tr>
 						<tr>
 							<th>상품종류</th>
 							<td colspan="2">
-								<input type="radio" name="kind" value="C" <%=checked[0] %>>C
-								<input type="radio" name="kind" value="I" style="margin-left:20px;"<%=checked[1] %>>I
+								<input type="radio" name="kind" value="C" >C
+								<input type="radio" name="kind" value="I" style="margin-left:20px;">I
 							</td>
 							<th>키워드</th>
-							<td colspan="2"><input type="text" style="width:310px;" name="keyword" value="<%=p.getKeyword() %>"></td>
+							<td colspan="2"><input type="text" style="width:310px;" name="keyword" value=""></td>
 						</tr>
 						<tr>
 							<th>대표이미지</th>
-							<td><img id="titleImg" width="150" height="120" src="<%=contextPath%>/resources/thumbnail_upfiles/<%=list.get(0).getChangeName()%>" required></td>
+							<td><img id="titleImg" width="150" height="120" src="resources/thumbnail_upfiles/" required></td>
 							
 							
 							<th style="width:100px;">상세이미지</th>
-							<%if(list.size() == 4){ %>
-							<td><img id="contentImg1" width="150" height="120" src="<%=contextPath%>/resources/thumbnail_upfiles/<%=list.get(1).getChangeName()%>"></td>
-							<td><img id="contentImg2" width="150" height="120" src="<%=contextPath%>/resources/thumbnail_upfiles/<%=list.get(2).getChangeName()%>"></td>
-							<td><img id="contentImg3" width="150" height="120" src="<%=contextPath%>/resources/thumbnail_upfiles/<%=list.get(3).getChangeName()%>"></td>
 							
-							<%}else if(list.size()==3){ %>
-							<td><img id="contentImg1" width="150" height="120" src="<%=contextPath%>/resources/thumbnail_upfiles/<%=list.get(1).getChangeName()%>"></td>
-							<td><img id="contentImg2" width="150" height="120" src="<%=contextPath%>/resources/thumbnail_upfiles/<%=list.get(2).getChangeName()%>"></td>
-							<td><img id="contentImg3" width="150" height="120" ></td>
+							<td><img id="contentImg1" width="150" height="120" src="resources/thumbnail_upfiles/"></td>
+							<td><img id="contentImg2" width="150" height="120" src="resources/thumbnail_upfiles/"></td>
+							<td><img id="contentImg3" width="150" height="120" src="resources/thumbnail_upfiles/"></td>
 							
-							<%}else if(list.size()==2){ %>
-							<td><img id="contentImg1" width="150" height="120" src="<%=contextPath%>/resources/thumbnail_upfiles/<%=list.get(1).getChangeName()%>"></td>
-							<td><img id="contentImg2" width="150" height="120"></td>
-							<td><img id="contentImg3" width="150" height="120"></td>
-							
-							<%} else{%>
-							<td><img id="contentImg1" width="150" height="120"></td>
-							<td><img id="contentImg2" width="150" height="120"></td>
-							<td><img id="contentImg3" width="150" height="120"></td>
-							<%} %>
-							<td>
+						
 
-							<%for(int i=0; i<list.size(); i++) { %>
-								<input type="hidden" name="originFileNo<%=i %>" value="<%=list.get(i).getFileNo()%>">
-								<input type="hidden" name="originFileName<%=i %>" value="<%=list.get(i).getChangeName() %>">
-							<%} %>
+							
+								<input type="hidden" name="originFileNo" value="">
+								<input type="hidden" name="originFileName" value="">
+							
 							</td>
 						</tr>
 						<tr>
 							<th>상품상세</th>
 							<td colspan="5">
-								<textarea name="pcontent" cols=77 rows=3 style="resize:none;" name="pcontent" required><%=p.getPcontent() %></textarea>
+								<textarea name="pcontent" cols=77 rows=3 style="resize:none;" name="pcontent" required></textarea>
 							<td>
 						</tr>
 
