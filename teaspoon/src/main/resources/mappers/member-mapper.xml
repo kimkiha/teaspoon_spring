@@ -35,5 +35,11 @@
 			 where user_id=#{userId}
 			   and status='Y'
 	  </select>
+	  
+	  <update id="updateMember" parameterType="Member">
+	  		update member
+	  		   set PHONE=#{phone}, USER_PWD=#{userPwd}, EMAIL=#{email}
+	  		 where USER_ID=#{userId}
+	  </update>
   	  
 </mapper>

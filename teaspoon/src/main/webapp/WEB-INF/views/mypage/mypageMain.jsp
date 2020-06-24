@@ -52,7 +52,7 @@
 								</tr>
 								<tr class="d2">
 									<td colspan="2"><a
-										href="#">회원정보수정</a></td>
+										href="modifyPage.me">회원정보수정</a></td>
 								</tr>
 							</table>
 						</div>

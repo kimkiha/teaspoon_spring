@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -20,13 +21,13 @@ public class MemberController {
 	@Autowired
 	private BCryptPasswordEncoder bcryptPasswordEncoder;
 
-	// 로그인페이지
+	// 로그인페이지(완료)
 	@RequestMapping("loginPage.me")
 	public String loginPage() {
 		return "mypage/login";
 	}
 	
-	// 로그인
+	// 로그인(완료)
 	@RequestMapping("login.me")
 	public ModelAndView login(Member m, HttpSession session, ModelAndView mv) {
 		
@@ -51,6 +52,7 @@ public class MemberController {
 		return mv;
 	}
 	
+	// 로그아웃기능(완료)
 	@RequestMapping("logout.me")
 	public String logoutMember(HttpSession session) {
 		session.invalidate();
@@ -59,15 +61,56 @@ public class MemberController {
 	
 	
 	// 회원가입
-	@RequestMapping("loginPage1.me")
-	public String login1() {
-		return "member/login";
+	@RequestMapping("enroll.me")
+	public String enroll() {
+		return "mypage/mypageEnroll";
 	}
 	
-	// 회원정보변경
-	@RequestMapping("loginPage2.me")
-	public String login2() {
-		return "member/login";
+	// 마이페이지
+	@RequestMapping("mymain.me")
+	public String myPage() {
+		return "mypage/mypageMain";
+	}
+	
+	// 회원정보변경페이지(완료)
+	@RequestMapping("modifyPage.me")
+	public String modifyPage() {
+		return "mypage/mypageModify";
+	}
+	
+	// 회원정보변경(완료)
+	@RequestMapping("modify.me")
+	public String modify(Member m, String firstnumber, int phonenum, String userId, Model model, HttpSession session) {
+		
+		String encPwd = bcryptPasswordEncoder.encode(m.getUserPwd());
+		m.setUserPwd(encPwd);
+		
+		System.out.println("아이디 : " + userId);
+		
+		System.out.println("전화번호 1 : " + firstnumber);
+		System.out.println("전화번호 2 : " + phonenum);
+		
+		String phone = firstnumber + phonenum;
+		
+		m.setPhone(phone);
+		
+		System.out.println("정보변경 객체 : " + m);
+		
+		int result = mService.updateMember(m);
+		System.out.println("회원정보변경 성공여부 : " + result);
+		
+		if(result > 0) { // 회원정보 수정 성공 --> 마이페이지 요청
+			
+			session.setAttribute("loginUser", mService.loginMember(m));
+			session.setAttribute("msg", "회원정보 수정 성공!");
+			
+			return "mypage/mypageModifyComplete"; //mymain.me
+			
+		}else {
+			model.addAttribute("msg", "회원 정보 수정 실패!");
+			return "common/errorPage";
+		}
+		
 	}
 
 	// 아디찾기
