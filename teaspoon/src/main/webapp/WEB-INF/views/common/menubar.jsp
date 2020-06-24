@@ -4,9 +4,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>menubar</title>
+<title>menu</title>
+<link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/common/menubar.css">
+<script type="text/javascript" src="resources/js/main.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap" rel="stylesheet">
 </head>
 <body>
 

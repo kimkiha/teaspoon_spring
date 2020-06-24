@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html>
@@ -12,7 +14,6 @@
 <script src="resources/js/jquery-3.4.1.min.js"></script>
 <script src="resources/js/jquery.bxslider.js"></script>
 
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/menubar.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/footer.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/reset.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main/main.css">

@@ -1,12 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.teaspoon.member.model.vo.Member"%>
+    pageEncoding="UTF-8" %>
 <!DOCTYPE html>
-<%
-	String contextPath = request.getContextPath();
-	Member loginUser = (Member)session.getAttribute("loginUser"); 
-	String msg = (String)session.getAttribute("msg");
-	
-%>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -21,12 +15,12 @@
     <!--부트스트랩 끝-->
     <script src=" http://code.jquery.com/jquery-latest.min.js" language="javascript"></script>
     <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap" rel="stylesheet">
-   <link href="<%=contextPath%>/resources/css/admin/admin_common.css" rel="stylesheet">
+   <link href="${ pageContext.servletContext.contextPath }/resources/css/admin/admin_common.css" rel="stylesheet">
    
 <script>
 	$(function(){
 			//자바의 변수를 담아올떄는 반드시 ""로 감싸주어야한다.
-			var message = "<%=msg%>";
+			var message = ${msg};
 			//자바에서 자바스트립트에 담을 때 null이면 "null"로 담기기떄문에 아래처럼 비교
 			if(message != "null"){
 			alert(message);				
@@ -70,7 +64,7 @@
             <!-- Modal footer -->
             <div class="modal-footer" >
               <button type="button" class="btn btn-danger" data-dismiss="modal" style="width:150px" id="logout">로그아웃</button>
-              <a href="<%= contextPath %>/logout.me" style="padding-bottom:10px"></a>
+              <a href="${ pageContext.servletContext.contextPath }/logout.me" style="padding-bottom:10px"></a>
             </div>
       
           </div>

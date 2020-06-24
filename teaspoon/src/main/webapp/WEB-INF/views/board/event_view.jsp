@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.teaspoon.board.model.vo.*"%>
-<%
- Board b = (Board)request.getAttribute("b");
-int random = (int)(Math.random() * 100 +1);
-%>
+    pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,7 +25,7 @@ int random = (int)(Math.random() * 100 +1);
 
 <body>
 <div id="wrap">
-        <%@ include file="../common/menubar.jsp" %>
+        <jsp:include page="../common/menubar.jsp"/>
         <!-- //header -->
         <br clear="both">
         <div id="banner">
@@ -38,25 +38,25 @@ int random = (int)(Math.random() * 100 +1);
                     <div id="magazine">
                         <div id="title">
                             <div id="title_detail">
-                                <div id="con_tt"><p><%=b.getBoardTitle() %></p></div>
+                                <div id="con_tt"><p>${b.BoardTitle}</p></div>
                                 <br><br>
                                 <div id="con_wr">
                                     <ul>
                                         <li>Editor's letter &nbsp;|</li>
-                                        <li>&nbsp;<%=b.getCreateDate() %></li>
+                                        <li>&nbsp;</li>
                                     </ul>
                                 </div>
                             </div>
                             <div id="sns">
                                 <ul>
-                                    <li><a href="#"><img src="<%=contextPath %>/resources/img/board/twitter.png" alt="트위터공유하기"></a></li>
-                                    <li><a href="#"><img src="<%=contextPath %>/resources/img/board/facebook.png" alt="페이스북 공유하기"></a></li>
+                                    <li><a href="#"><img src="${ pageContext.servletContext.contextPath }/resources/img/board/twitter.png" alt="트위터공유하기"></a></li>
+                                    <li><a href="#"><img src="${ pageContext.servletContext.contextPath }/resources/img/board/facebook.png" alt="페이스북 공유하기"></a></li>
                                 </ul>
                             </div>
                         </div>
                         <div class="maga_con">
                             <div class="event_img_1" style="position: relative;">
-						        <img src="<%=contextPath%>/resources/img/board/teaspoonevent.jpg">
+						        <img src="${ pageContext.servletContext.contextPath }/resources/img/board/teaspoonevent.jpg">
 						    </div>
 						    <div class="click_div" style="position:absolute; top:95.2%; left:39.6%; z-index:100;width:275px; height:73px; border-radius:50px;" ></div>
                         </div>
@@ -64,14 +64,14 @@ int random = (int)(Math.random() * 100 +1);
                     <!-- //event -->
                   </div>
                 <!-- //maga -->
-         <%@ include file="../common/footer.jsp" %>
+         <jsp:include page="../common/footer.jsp"/>
         <!-- //footer-->
         </div>
         <!-- //content -->
 	</div>
     <!-- //wrap-->
     <script>
-    	$(function(){
+    	<%-- $(function(){
     		$(".click_div").click(function(){
     			
     			$.ajax({
@@ -88,7 +88,7 @@ int random = (int)(Math.random() * 100 +1);
     				}
     			})
     		});
-    	})
+    	}) --%>
     </script>
 </body>
 </html>
