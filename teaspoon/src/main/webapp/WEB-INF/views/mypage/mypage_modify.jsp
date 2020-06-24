@@ -7,18 +7,15 @@
 <title>개인정보수정 | TeaSpoon</title>
 	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/mypage/mypage_modify.css">
 	<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/reset.css">
-	<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/menubar.css">
 	<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/footer.css">
-    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap" rel="stylesheet">
-    <script type="text/javascript"src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 </head>
 <body>
 <div id="wrap">
-        <%@ include file="../common/menubar.jsp" %>
+        <jsp:include page="../common/menubar.jsp"/>
         <!-- //header -->
 
             <!-- product -->
-            <form id="modify" action="<%= contextPath %>/update.me" method="post">
+            <form id="modify" action="${ pageContext.servletContext.contextPath }/update.me" method="post">
             <div id="content" class="contaniner">
             
             <center style="padding:35px;">
@@ -34,14 +31,14 @@
                         <ul class=im1>
                         <tr>
                             <td style="font-size:20px; width: 250px; height:55px;" ><li>성 명</li></td>
-                            <td style= "text-align:left;" colspan="1"><input type="text" id="userName" name="username" placeholder="<%=loginUser.getUserName() %>" disabled></td>
+                            <td style= "text-align:left;" colspan="1"><input type="text" id="userName" name="username" placeholder="${ loginUser.UserName }" disabled></td>
                              <td></td>       
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td style= "font-size:20px;"><li>생 년 월 일</li></td>
-                            <td style= "text-align:left;" colspan="1"><input type="number" id="birthday" type="birthday" placeholder="<%=loginUser.getBirthday() %>" disabled>
+                            <td style= "text-align:left;" colspan="1"><input type="number" id="birthday" type="birthday" placeholder="${ loginUser.UserName }" disabled>
                             <td></td>
                         </tr>
                         <tr>
@@ -64,7 +61,7 @@
 
                         <tr>
                             <td style= "font-size:20px;"><li>아 이 디</li></td>
-                            <td style= "text-align:left;"><input type="text" id="userId" name="UserId" placeholder="<%=loginUser.getUserId() %>" disabled></td>
+                            <td style= "text-align:left;"><input type="text" id="userId" name="UserId" placeholder="${ loginUser.UserName }" disabled></td>
                             <td style= "font-size:15px; color:rgb(131, 2, 2); text-align:left; width:280px;"> </td>
                         </tr>
                         <tr>
@@ -97,7 +94,7 @@
     	
     </div>
       <!-- //content-->
-       <%@ include file="../common/footer.jsp" %>
+       <jsp:include page="../common/footer.jsp"/>
     <!-- //footer-->
     
 
@@ -147,10 +144,6 @@
                     form.email.focus();
                     return false;
                  }
-
- 				
- 				
-    		
     				
     			$("#Modify_final").submit();
     				
@@ -158,6 +151,5 @@
        	 	
     	</script>
  
-    
 </body>
 </html>
