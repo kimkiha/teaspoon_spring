@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="com.teaspoon.member.model.vo.* "%>
+	pageEncoding="UTF-8" %>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -41,41 +41,41 @@
 							style="width: 95px; border-left: 1px solid #bebbb6">
 							<div class="user_photo"
 								style="margin-top: 30px; padding-left: 10px; float: left;">
-								<img src="<%=contextPath%>/resources/img/admin/user.png">
+								<img src="#">
 							</div>
 						</div>
 						<div class="user_info" style="width: 450px;">
 							<table class="detail_tb" cellpadding="0" cellspacing="0">
 								<tr class="d1">
-									<td width="60" name="username"><%= loginUser.getUserName() %></td>
-									<td style="color: #d6ae71; font-size: 15px;" name="usergrade"><%=loginUser.getGradeName() %></td>
+									<td width="60" name="username"></td>
+									<td style="color: #d6ae71; font-size: 15px;" name="usergrade"></td>
 								</tr>
 								<tr class="d2">
 									<td colspan="2"><a
-										href="<%=contextPath %>/memberModifyForm.me">회원정보수정</a></td>
+										href="#">회원정보수정</a></td>
 								</tr>
 							</table>
 						</div>
 						<div class="detail_info2"
 							style="border-left: 1px solid #bebbb6; height: inherit;">
 							<p class="info_th">적립포인트</p>
-							<a href="<%=contextPath%>/mypoint.me?currentPage=1"><%= loginUser.getPoint() %>Point</a>
+							<a href="#">Point</a>
 						</div>
 						<div class="detail_info2">
 							<p class="info_th">할인쿠폰</p>
-							<a href="#"><%= loginUser.getCouponCount() %>장</a>
+							<a href="#">장</a>
 						</div>
 						<div class="detail_info2">
 							<p class="info_th">위시리스트</p>
-							<a href="<%=contextPath %>/wishList.me"><%=loginUser.getWishCount() %>개</a>
+							<a href="#">개</a>
 						</div>
 					</div>
 					<div id="mypage_menu_tab">
-						<a href="<%=contextPath %>/mydelivery.me?currentPage=1" class=" float"> 주문내역확인</a>
-						<a href="<%=contextPath %>/myReserv.me?currentPage=1" class=" float">공간대여확인</a>
-						<a href="<%=contextPath %>/myAdress.me" class=" float">나의배송지</a>
-						<a href="<%=contextPath %>/myqna.me?currentPage=1" class="float">1:1문의</a>
-						<a href="<%=contextPath %>/mycart.me" class="float">장바구니</a>
+						<a href="#" class=" float"> 주문내역확인</a>
+						<a href="#" class=" float">공간대여확인</a>
+						<a href="#" class=" float">나의배송지</a>
+						<a href="#" class="float">1:1문의</a>
+						<a href="#" class="float">장바구니</a>
 					</div>
 					<div class="pagename"></div>
 
@@ -95,7 +95,7 @@
 									</div>
 									<div class="myorder">
 										<div class="l">
-											<img src="<%=contextPath%>/resources/img/mypage/주문관리.png" width="80"
+											<img src="#" width="80"
 												height="80"><br>
 											<br>주문접수
 											<P>0</P>
@@ -104,7 +104,7 @@
 											<span>></span>
 										</div>
 										<div class="l">
-											<img src="<%=contextPath%>/resources/img/mypage/카드.png" width="80"
+											<img src="#" width="80"
 												height="80"><br>
 											<br>결제완료
 											<P>0</P>
@@ -113,7 +113,7 @@
 											<span>></span>
 										</div>
 										<div class="l">
-											<img src="<%=contextPath%>/resources/img/mypage/상품준비.png" width="80"
+											<img src="" width="80"
 												height="80"><br>
 											<br>상품준비
 											<P>0</P>
@@ -122,7 +122,7 @@
 											<span>></span>
 										</div>
 										<div class="l">
-											<img src="<%=contextPath%>/resources/img/mypage/배송중.png" width="80"
+											<img src="#" width="80"
 												height="80"><br>
 											<br>배송중
 											<P>0</P>
@@ -131,7 +131,7 @@
 											<span>></span>
 										</div>
 										<div class="l">
-											<img src="<%=contextPath%>/resources/img/mypage/배송완료.png" width="80"
+											<img src="#" width="80"
 												height="80"><br>
 											<br>배송완료
 											<P>0</P>
@@ -151,19 +151,19 @@
 								<div class="cp2">
 									<div class="cp">
 										<div align="center">
-											<img src="<%=contextPath%>/resources/img/mypage/쿠폰.png" width="150" height="110">
+											<img src="#" width="150" height="110">
 										</div>
 										<span>멤버십 3천원할인쿠폰</span>
 									</div>
 									<div class="cp">
 										<div align="center">
-											<img src="<%=contextPath%>/resources/img/mypage/쿠폰.png" width="150" height="110">
+											<img src="#" width="150" height="110">
 										</div>
 										<span>멤버십 3천원할인쿠폰</span>
 									</div>
 									<div class="cp">
 										<div align="center">
-											<img src="<%=contextPath%>/resources/img/mypage/쿠폰.png" width="150" height="110">
+											<img src="#" width="150" height="110">
 										</div>
 										<span>멤버십 3천원할인쿠폰</span>
 									</div>
@@ -240,7 +240,7 @@
 			</div>
 		</div>
 		<!-- //content-->
-		<%@ include file="../common/footer.jsp"%>
+		<jsp:include page="../common/footer.jsp"/>
 		<!-- //footer-->
 	</div>
 </body>
