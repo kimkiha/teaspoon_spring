@@ -5,10 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
- 	<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/common/menubar.css">
-	<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/common/footer.css">
-	<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/common/reset.css">
-	<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/main/main.css">
+ 	<link rel="stylesheet" href="${pageContext.servletContext.contextPath}/resources/css/common/menubar.css">
+	<link rel="stylesheet" href="${pageContext.servletContext.contextPath}/resources/css/common/footer.css">
+	<link rel="stylesheet" href="${pageContext.servletContext.contextPath}/resources/css/common/reset.css">
+	<link rel="stylesheet" href="${pageContext.servletContext.contextPath}/resources/css/main/main.css">
 	
 	<script type="text/javascript" src="resources/js/main.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -19,7 +19,7 @@
 </head>
 <body>
 <div id="wrap">
-        <%@ include file="../common/menubar.jsp" %>
+        <jsp:include page="../common/menubar.jsp"/>
         <!-- //header -->
         <br clear="both">
         <div id="banner" >
@@ -75,7 +75,7 @@
       		  </div>
             <!--//개인정보처리방침 -->
           <!--// content -->  
-            <%@ include file="../common/footer.jsp" %>
+          <jsp:include page="../common/footer.jsp"/>
         <!-- //footer-->
     </div>
     <!-- //wrap-->
