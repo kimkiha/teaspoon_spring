@@ -19,17 +19,12 @@
     <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap" rel="stylesheet">
    <link href="${pageContext.servletContext.contextPath}/resources/css/admin/admin_common.css" rel="stylesheet">
    
-<script>
-	$(function(){
-			//자바의 변수를 담아올떄는 반드시 ""로 감싸주어야한다.
-			var message = "${msg}";
-			//자바에서 자바스트립트에 담을 때 null이면 "null"로 담기기떄문에 아래처럼 비교
-			if(message != "null"){
-			alert(message);				
-			}			
-			
-	});
-</script>
+<c:if test="${ !empty msg}" >
+		<script>
+		alert('알림', '${msg}');
+		</script>
+		<c:remove var="msg" scope="request"/>
+	</c:if>
     <script>
         $(function(){
             $(".click").click(function(){

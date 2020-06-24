@@ -184,7 +184,7 @@
     		})
     		
     	});
-    	
+    <%-- 	
     	$(function(){
     		$("#enroll").click(function(){
     			var gradeCount = <%=gList.size()%>;
@@ -222,8 +222,8 @@
     				$("#levelInsertForm").submit();
     			}
     		});
-    	});
-    </script> 
+    	});--%>
+    </script>  
     
     <script>
     	$(".deleteButton").click(function(){

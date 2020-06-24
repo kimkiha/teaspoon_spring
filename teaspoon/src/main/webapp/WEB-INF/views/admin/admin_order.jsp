@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.ArrayList, com.teaspoon.member.model.vo.* "%>
-<%
-	ArrayList<Orders> list = (ArrayList<Orders>)request.getAttribute("list");
-	
-%>
+    pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,12 +20,12 @@
     </style>
 </head>
 <body>
-    <%@include file="../common/admin_sidebar.jsp" %>
+   <jsp:include page="../common/admin_sidebar.jsp"/>
         <div id="contents">
             <div id="c1" style="margin-top: 20px;">
                 <div id="c1_1">
                     <div id="c1_1_1">
-                        <div id="c1_1_1_1"><img src="<%=contextPath%>/resources/img/admin/주문현황.png" width="50px"></div>
+                        <div id="c1_1_1_1"><img src="resources/img/admin/주문현황.png" width="50px"></div>
                         <div id="c1_1_1_2"><p>주문현황페이지입니다.</p></div>
                         <div id="c1_1_1_3">
                             <input type="text" placeholder="주문자" name="idName">
@@ -63,21 +60,21 @@
                                 </tbody>
 
                                 <tfoot>
-                                <%for(int i=0; i<list.size(); i++) {%>
+                              
                                 <tr>
-	                                <td><%=list.get(i).getOrderDate() %></td>
-	                                <td><%=list.get(i).getOrderNo() %></td>
-	                                <td><%=list.get(i).getOrderer() %></td>
-	                                <td><%=list.get(i).getRecipient() %></td>
-	                                <td><%=list.get(i).getPayment() %></td>
-	                                <td><%=list.get(i).getProgress() %></td>
+	                                <td></td>
+	                                <td></td>
+	                                <td></td>
+	                                <td></td>
+	                                <td></td>
+	                                <td></td>
 	                                <td>
 		                                <button type="button" style="width: 100px;">
 		                                    <a href="adminOrderDetailView.html">상세보기</a>
 		                                </button>
 	                                </td>
                                 </tr>
-                                <%} %>
+                                
                                 </tfoot>
                                 </table>
                             </div>

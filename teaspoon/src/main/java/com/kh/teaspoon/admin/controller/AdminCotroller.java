@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class AdminCotroller {
 
 	@RequestMapping("level.me")
-	public String enrollForm() {
-		return "admin/admin_level";
+	public String level() {
+		return "";
 	}
 }

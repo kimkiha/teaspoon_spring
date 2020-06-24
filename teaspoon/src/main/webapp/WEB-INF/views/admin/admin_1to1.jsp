@@ -1,15 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.ArrayList, com.teaspoon.member.model.vo.*, com.teaspoon.common.*"%>
-<%
-	ArrayList<MenToMen> list = (ArrayList<MenToMen>)request.getAttribute("list");
-	
-	PageInfo pi = (PageInfo)request.getAttribute("pi");
-	
-	int currentPage = pi.getCurrentPage();
-	int startPage = pi.getStartPage();
-	int endPage = pi.getEndPage();
-	int maxPage = pi.getMaxPage();
-%>
+    pageEncoding="UTF-8" "%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,7 +27,7 @@
             <div id="c1" style="margin-top: 20px;">
                 <div id="c1_1" style="height: 150px;">
                     <div id="c1_1_1">
-                        <div id="c1_1_1_1"><img src="<%=contextPath%>/resources/img/admin/1대1문의.png" width="50px" height="50px"></div>
+                        <div id="c1_1_1_1"><img src="${pageContext.servletContext.contextPath}/resources/images/admin/1대1문의.png" width="50px" height="50px"></div>
                         <div id="c1_1_1_2"><p>1대1문의페이지입니다.</p></div>
                         <div id="c1_1_1_3"></div>
                     </div>
@@ -76,13 +67,13 @@
                         </tbody>
                        
                           <tfoot>
-						  <% for(MenToMen mtm : list){ %>      
+					
                               <tr>
-                                <td><%=mtm.getMtmNo() %></td>
-                                <td><%=mtm.getMtmName() %></td>
-                                <td><%=mtm.getMtmTitle() %></td>
-                                <td><%=mtm.getCreateDate() %></td>
-                                <td><%=mtm.getAnswer() %></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
                                 <td>
                                 	<button type="submit" style="width: 100px;"class="answer">
                                 	
@@ -90,34 +81,17 @@
                                 	</button>
                                 </td>
                               </tr>
-                            <%} %>
+                          
                           </tfoot>
                        
                   </table>
                 </div>
                <div id="c1_3">
-                 <!-- 현재 페이지에 보여질 페이징바 -->
-				<%if(currentPage != 1){%> <!-- 현재 페이지가 1페이지가 아닐경우 -->
-				<!-- 맨 처음으로(<<) -->
-				<button onclick="location.href='qnalist.me?currentPage=1'">&lt;&lt;</button>
-				<!-- 이전페이지로(<) -->
-				<button onclick="location.href='qnalist.me?currentPage=<%=currentPage-1%>'">&lt;</button>
-				<%} %>
-				
-				<%for(int p=startPage; p<=endPage; p++){%>
-					<%if(currentPage != p) {%>
-					<button onclick="location.href='qnalist.me?currentPage=<%=p%>'"><%=p%></button>
-					<%}else{ %>
-					<button dispabled><%=p %></button>
-					<%} %>	
-				<%} %>
-				
-				<%if(currentPage != maxPage){ %>
-				<!-- 다음페이지로(<) -->
-				<button onclick="location.href='qnalist.me?currentPage=<%=currentPage+1%>'">&gt;</button>
-				<!-- 맨 마지막으로(>>) -->
-				<button onclick="location.href='qnalist.me?currentPage=<%=maxPage %>'">&gt;&gt;</button>
-				<%} %>
+              		<button>1</button>
+              		<button>2</button>
+              		<button>3</button>
+              		<button>4</button>
+              		<button>5</button>
                 </div>
                
             </div>
@@ -128,16 +102,16 @@
 	$('#searchBtn').click(function(){
 		var mtmName = $('input[name="advice"]:checked').val();
 		if(mtmName=='전체'){
-			location.href="<%=contextPath%>/qnalist.me?currentPage=1";
+			location.href="qnalist.me?currentPage=1";
 		}else{
-			location.href="<%=contextPath%>/qnalisttype.me?mtmName=" + mtmName+'&currentPage=1';
+			location.href="qnalisttype.me?mtmName=" + mtmName+'&currentPage=1';
 		}
 			});
 	});
 	$(function(){
 		$(".listArea>tfoot>tr").click(function(){
 			var mtmNo = $(this).children().eq(0).text();
-			location.href="<%=contextPath%>/QnaAnswer.me?mtmNo=" + mtmNo;
+			location.href="QnaAnswer.me?mtmNo=" + mtmNo;
 		});
 	});
 	

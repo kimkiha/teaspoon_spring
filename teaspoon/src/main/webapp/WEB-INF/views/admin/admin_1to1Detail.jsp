@@ -18,7 +18,7 @@
     </style>
 </head>
 <body>
-     <%@include file="../common/admin_sidebar.jsp" %>
+    <jsp:include page="../common/admin_sidebar.jsp"/>
         <div id="contents">
             <div id="c1">
                 <div class="outer">
@@ -55,7 +55,7 @@
                     <br>
                     <div class="btns" >
                         <button type="button" style="width: 100px;">
-                            <a href="<%=contextPath%>/qnalist.me?currentPage=1">목록으로</a>
+                            <a href="qnalist.me?currentPage=1">목록으로</a>
                         </button>
                     </div>
                 </div>

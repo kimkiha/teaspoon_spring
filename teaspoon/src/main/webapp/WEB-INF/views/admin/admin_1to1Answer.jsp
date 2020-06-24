@@ -1,10 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="com.teaspoon.member.model.vo.* , com.teaspoon.board.model.vo.*"%>
-<%
-	MenToMen mtm = (MenToMen) request.getAttribute("mtm");
-	Attachment at = (Attachment)request.getAttribute("at");
-	//System.out.println(mtm);
-%>
+	pageEncoding="UTF-8"%>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -55,56 +51,52 @@ table tr {
 </style>
 </head>
 <body>
-	<%@include file="../common/admin_sidebar.jsp"%>
+	 <jsp:include page="../common/admin_sidebar.jsp"/>
 	<div id="contents">
 		<div id="c1">
 			<div class="outer">
 				<p>1:1문의 답변</p>
-				<form method="post" action="<%=contextPath%>/QnaDetail.me" id="qnaForm">
+				<form method="post" action="QnaDetail.me" id="qnaForm">
 				<table>
-						<input type="hidden" name="mtmNo" value="<%=mtm.getMtmNo()%>">
+						<input type="hidden" name="mtmNo" value="">
 					<tr>
 						<th width="100px">문의번호</th>
-						<td><%=mtm.getMtmNo()%></td>
+						<td></td>
 						<th>상담유형</th>
-						<td><%=mtm.getMtmName()%></td>
+						<td></td>
 					</tr>
 					<tr>
 						<th>제목</th>
-						<td><%=mtm.getMtmTitle()%></td>
+						<td></td>
 						<th>상담신청일</th>
-						<td><%=mtm.getCreateDate()%></td>
+						<td></td>
 					</tr>
 					<tr>
 						<th>회원명</th>
-						<td><%=mtm.getUserName()%></td>
+						<td></td>
 						<th>회원아이디</th>
-						<td><%=mtm.getUserId()%></td>
+						<td></td>
 					</tr>
 					<tr>
 						<th>고객 내용</th>
 						<td colspan="3"><textarea cols="60" rows="5"
-								style="resize: none" required><%=mtm.getMtmContent()%></textarea></td>
+								style="resize: none" required></textarea></td>
 					</tr>
 					<tr>
 						<th>답변내용</th>
 						<td colspan="3"><textarea cols="60" rows="5"style="resize: none" required name="reComment">
-								<%if(mtm.getReComment() != null){ %>
-									<%=mtm.getReComment()%>
-								<%} %>
+								
 					</textarea></td>
 					</tr>
-					<%if(at != null){ //첨부파일이 존재할 경우 %>
+				
 							<div>첨부파일 :
-								 <a href="<%=contextPath %>/resources/thumbnail_upfiles/<%=at.getChangeName()%>"><%= at.getOriginName() %></a>
+								 <a href=""></a>
 							</div>
-							<% }else{ %>
-							첨부파일이 없습니다
-							<% }%>
+							
 					
 						<div class="btns">
 						<button type="button" style="width: 100px;">
-							<a href="<%=contextPath%>/qnalist.me?currentPage=1">목록으로</a>
+							<a href="qnalist.me?currentPage=1">목록으로</a>
 						</button>
 						<button type="submit" style="width: 100px;">답변달기</button>
 						</div>

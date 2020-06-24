@@ -17,7 +17,7 @@
     </style>
 </head>
 <body>
-     <%@include file="../common/admin_sidebar.jsp" %>
+     <jsp:include page="../common/admin_sidebar.jsp"/>
         <div id="contents">
             <div id="c1" style="margin-top: 20px;">
                 <div class="outer">
