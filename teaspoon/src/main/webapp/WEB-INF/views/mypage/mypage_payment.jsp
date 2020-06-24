@@ -1,10 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.ArrayList,com.teaspoon.member.model.vo.*"%>
-<%
-	ArrayList<Cart> list = (ArrayList<Cart>)request.getAttribute("list");
-	int totalPrice = 0;
-	int totalPoint = 0;
-%>
+    pageEncoding="UTF-8" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -50,8 +46,8 @@
 </head>
 <body>
 <div id="wrap">
-        <%@ include file="../common/menubar.jsp" %>
-        <form action="<%=contextPath %>/storePayment.st" method="POST">
+        <jsp:include page="../common/menubar.jsp"/>
+        <form action="#" method="POST">
         <div id="banner">
             <div class="contaniner title">주문/결제</div>
         </div>
@@ -75,22 +71,20 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    <%for(int i=0; i<list.size(); i++) {%>
+                                    
                                         <tr>
                                             <td>
-                                                <img src="<%=contextPath %>/resources/thumbnail_upfiles/<%=list.get(i).getChangeName()%>" width="100" height="100">
+                                                <img src="#" width="100" height="100">
                                             </td>
                                             <td style="text-align:left; padding-left:20px;font-weight: 700;">
-                                            	<%=list.get(i).getPname() %>
-                                            	<p style="font-weight:100; font-size:16px;padding:0px;"><%=list.get(i).getOptionType1() %>, <%=list.get(i).getOptionType2() %></p>
+                                            	
+                                            	<p style="font-weight:100; font-size:16px;padding:0px;">,</p>
                                             </td>
-                                            <td><%=list.get(i).getAmount() %>개</td>
-                                            <td><%=(list.get(i).getPrice()+list.get(i).getAddPrice())*list.get(i).getAmount()%>원</td>
-                                            <td><%=(int)((list.get(i).getPrice()+list.get(i).getAddPrice())*list.get(i).getAmount()*0.01) %>p</td>
+                                            <td>개</td>
+                                            <td>원</td>
+                                            <td>p</td>
                                         </tr>
-                                        <% totalPrice += (list.get(i).getPrice()+list.get(i).getAddPrice())*list.get(i).getAmount(); %>
-                                        <% totalPoint += (int)((list.get(i).getPrice()+list.get(i).getAddPrice())*list.get(i).getAmount()*0.01); %>
-                                    <%} %>
+                                       
                                     </tbody>
                                 </table>
                             </div>
@@ -117,12 +111,12 @@
                                         <tr>
                                             <td class="left_text_st top_bd ">이름</td>
                                             <td class="top_bd "colspan="3">
-                                                <input type="text" name="userName" value="<%=loginUser.getUserName()%>" style="padding-left:20px;" readonly>
+                                                <input type="text" name="userName" value="#" style="padding-left:20px;" readonly>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td class="left_text_st" width="170">휴대전화</td>
-                                            <td><input type="text" name="phone" value="<%=loginUser.getPhone() %>" style="padding-left:20px;" readonly></td>
+                                            <td><input type="text" name="phone" value="#" style="padding-left:20px;" readonly></td>
                                         </tr>
                                 </table>
                             </div>
@@ -191,7 +185,7 @@
                                 <tbody>
                                     <tr>
                                         <td class="pay_lt">상품가격</td>
-                                        <td class="pay_rt"><%=totalPrice %>원</td>
+                                        <td class="pay_rt">원</td>
                                     </tr>
                                     <tr>
                                         <td class="bd_none pay_lt">포인트 할인</td>
@@ -209,15 +203,15 @@
                                     </tr>
                                     <tr>
                                         <td colspan="2" class=" pay_rt">
-                                        	<input id="addPoint" name="addPoint" value=<%=totalPoint %> style="border:0px; text-align:right; font-weight:bold;" readonly>p
+                                        	<input id="addPoint" name="addPoint" value= style="border:0px; text-align:right; font-weight:bold;" readonly>p
                                         </td>
                                     </tr>
                                     <tr class="">
                                         <td colspan="2" class="pay_lt bd_none">총 결제 금액</td>
                                     </tr>
                                     <tr>
-                                        <td colspan="2"  id='totalPay' class=" pay_rt"><%=totalPrice+2500 %>원</td>
-                                        <input type="hidden" id="total" name="total" value='<%=totalPrice+2500 %>'>
+                                        <td colspan="2"  id='totalPay' class=" pay_rt">원</td>
+                                        <input type="hidden" id="total" name="total" value='#'>
                                     </tr>
                                 </tbody> 
                                 <tfoot>
@@ -242,7 +236,7 @@
                 </div>
             <!-- //contaniner-->
         </div>
-   <%@ include file="../common/footer.jsp" %>
+   <jsp:include page="../common/footer.jsp"/>
         <!-- //footer-->
     </form>
     </div>
@@ -280,11 +274,11 @@
 				//var tPay= $("#totalPay").text();
 				//var aa = tPay.substring(0,tPay.length-1);
 				//$("#totalPay").text(aa-pointUse+"원");
-				$('#totalPay').text((<%=totalPrice+2500%>-pointUse)+"원");
+				$('#totalPay').text((-pointUse)+"원");
 
 				$('#usePoint').val(pointUse);
 				//var a = $('#totalPay').text();
-				$('#total').val(<%=totalPrice+2500%>-pointUse);
+				$('#total').val(-pointUse);
 				console.log($("total").val());
 				return false;
 			}

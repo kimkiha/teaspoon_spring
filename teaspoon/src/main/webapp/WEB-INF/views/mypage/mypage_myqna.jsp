@@ -1,16 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"
-	import="java.util.ArrayList, com.teaspoon.member.model.vo.*,com.teaspoon.common.*"%>
-<%
-	
-	ArrayList<Member> list = (ArrayList<Member>)request.getAttribute("list");
-	PageInfo pi = (PageInfo)request.getAttribute("pi");
-	int currentPage = pi.getCurrentPage();
-	int startPage = pi.getStartPage();
-	int endPage = pi.getEndPage();
-	int maxPage = pi.getMaxPage();
-	
-%>
+	%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -74,41 +65,41 @@
 							style="width: 95px; border-left: 1px solid #bebbb6">
 							<div class="user_photo"
 								style="margin-top: 30px; padding-left: 10px; float: left;">
-								<img src="<%=contextPath%>/resources/img/admin/user.png">
+								<img src="#">
 							</div>
 						</div>
 						<div class="user_info" style="width: 450px;">
 							<table class="detail_tb" cellpadding="0" cellspacing="0">
 								<tr class="d1">
-									<td width="60" name="username"><%=loginUser.getUserName() %></td>
-									<td style="color: #d6ae71; font-size: 15px;" name="usergrade"><%=loginUser.getGradeName()%></td>
+									<td width="60" name="username"></td>
+									<td style="color: #d6ae71; font-size: 15px;" name="usergrade"></td>
 								</tr>
 								<tr class="d2">
 									<td colspan="2"><a
-										href="<%=contextPath %>/memberModifyForm.me">회원정보수정</a></td>
+										href="#">회원정보수정</a></td>
 								</tr>
 							</table>
 						</div>
 						<div class="detail_info2"
 							style="border-left: 1px solid #bebbb6; height: inherit;">
 							<p class="info_th">적립포인트</p>
-							<a href="<%=contextPath%>/mypoint.me?currentPage=1"><%= loginUser.getPoint() %>Point</a>
+							<a href="#">Point</a>
 						</div>
 						<div class="detail_info2">
 							<p class="info_th">할인쿠폰</p>
-							<a href="#"><%= loginUser.getCouponCount() %>장</a>
+							<a href="#">장</a>
 						</div>
 						<div class="detail_info2">
 							<p class="info_th">위시리스트</p>
-							<a href="<%=contextPath %>/wishList.me"><%=loginUser.getWishCount() %>개</a>
+							<a href="#">개</a>
 						</div>
 					</div>
 					<div id="mypage_menu_tab">
 						<a href="#" class=" float"> 주문배송조회</a> <a href="#" class=" float">공간대여확인</a>
-						<a href="<%=contextPath %>/myAdress.me" class=" float">나의배송지</a> <a
-							href="<%=contextPath %>/myqna.me?currentPage=1"
+						<a href="#" class=" float">나의배송지</a> <a
+							href="#"
 							class="active float">1:1문의</a> <a
-							href="<%=contextPath %>/mycart.me" class="float">장바구니</a>
+							href="#" class="float">장바구니</a>
 					</div>
 					<div class="pagename"></div>
 					<div id="mp_con1">
@@ -118,11 +109,11 @@
 							</div>
 							<div class="mp-qna-title1">
 								<div class="mp-qna-title2">
-									총<span><%=pi.getListCount() %></span>건의 상담내역이 있습니다
+									총<span></span>건의 상담내역이 있습니다
 								</div>
 								<div class="mp-qna-title3">
 									<button
-										onclick="location.href='<%=contextPath%>/myqnaUpdate.me';">상담신청</button>
+										onclick="location.href='#';">상담신청</button>
 								</div>
 							</div>
 						</div>
@@ -140,32 +131,31 @@
 							</tr>
 						</thead>
 						<tbody>
-							<%if(list.isEmpty()){ %>
+							
 							<tr>
 								<td colspan="8">1:1 상담내역이 없습니다.</td>
 							</tr>
-							<%}else{ %>
-								<% for(Member m : list){ %>
+							
 								<tr>
-									<td style="dispaly: none"><%= m.getMtm_no() %>
+									<td style="dispaly: none">
 									<td>
-									<td><%= m.getMtm_name() %></td>
-									<td colspan="2" class="qna-t"><%= m.getMtm_title() %></td>
-									<td><%=m.getCreate_date() %></td>
+									<td></td>
+									<td colspan="2" class="qna-t"></td>
+									<td></td>
 	
-									<%if(m.getAnswer().equals("N") ){ %>
+									
 									<td>답변대기중</td>
-									<% }else{%>
+									
 									<td>답변완료</td>
-									<%} %>
+									
 									<td><input type="checkbox" name="mno"
-										value="<%=m.getMtm_no()%>">
+										value="">
 									</th>
 								</tr>
-								<%} %>
+								
 							
 							
-							<%} %>
+						
 						</tbody>
 
 					</table>
@@ -174,39 +164,10 @@
 					</div>
 					<br>
 					<br>
-					<%if(list.isEmpty()){ %>
-						
-					<%}else{ %>	
-					<div class="pagingarea">
-						<div id="paging" class="pagingbar">
-							<%if(currentPage != 1){%>
-							<!-- 현재 페이지가 1페이지가 아닐경우 -->
-							<!-- 맨 처음으로(<<) -->
-							<button onclick="location.href='myqna.me?currentPage=1'">&lt;&lt;</button>
-							<!-- 이전페이지로(<) -->
-							<button
-								onclick="location.href='myqna.me?currentPage=<%=currentPage-1%>'">&lt;</button>
-							<%} %>
-
-							<%for(int p=startPage; p<=endPage; p++){%>
-							<%if(currentPage != p) {%>
-							<button onclick="location.href='myqna.me?currentPage=<%=p%>'"><%=p%></button>
-							<%}else{ %>
-							<button dispabled><%=p %></button>
-							<%} %>
-							<%} %>
-
-							<%if(currentPage != maxPage){ %>
-							<!-- 다음페이지로(<) -->
-							<button
-								onclick="location.href='myqna.me?currentPage=<%=currentPage+1%>'">&gt;</button>
-							<!-- 맨 마지막으로(>>) -->
-							<button
-								onclick="location.href='myqna.me?currentPage=<%=maxPage %>'">&gt;&gt;</button>
-							<%} %>
-						</div>
+				
+					
 					</div>
-					<%} %>
+				
 					
 				</div>
 			</div>
@@ -222,7 +183,7 @@
     		$(".qna-t").click(function(){
     			var mno= $(this).siblings().eq(0).text();
     			
-    			location.href="<%=contextPath%>/myqnadetail.me?mno=" + mno;
+    			location.href="/myqnadetail.me?mno=" + mno;
     			
     		});
     	});
@@ -230,7 +191,7 @@
     		$(".delete").click(function(){
     			alert("정말 삭제하시겠습니까?");
     			var mno= $('input[name="mno"]:checked').val();
-    			location.href="<%=contextPath%>/myqnadelete.me?mno=" + mno;
+    			location.href="/myqnadelete.me?mno=" + mno;
     		});
     	});
     </script>
