@@ -1,11 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.teaspoon.member.model.vo.*"%>
-<% 
-
-	Orders or =	(Orders)request.getAttribute("or");
-	//System.out.print(or);
-
-%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,46 +27,47 @@
                     <table>
                         <tr>
                             <th width="100">주문번호</th>
-                            <td><%=or.getOrderNo() %></td>
-                            <th width="200">회원번호</th>
-                            <td><%=or.getUserNo() %></td>
+                            <td>003</td>
+                            <th width="200">회원아이디</th>
+                            <td>user01</td>
                         </tr>
                         <tr>
                             <th>주문인</th>
-                            <td><%=or.getOrderer() %></td>
+                            <td>박대광</td>
                             <th>주문자연락처</th>
-                            <td><%=or.getOrdererPhone() %></td>
+                            <td>010-5252-8585</td>
                         </tr>
                         <tr>
                             <th>수령인</th>
-                            <td><%=or.getRecipient() %></td>
+                            <td>박아무개</td>
                             <th>수령인연락처</th>
-                            <td><%=or.getRecipientPhone() %></td>
+                            <td>010-8888-8888</td>
                         </tr>
                         <tr>
-                            <th >배송비</th>
-                            <td><%=or.getShippingFee() %></td>
+                            <th >주문수량</th>
+                            <td>3</td>
                             <th>결제금액</th>
-                            <td><%=or.getPayment() %></td>
+                            <td>35000</td>
                         </tr>
                         <tr>
                             <th>배송지</th>
-                            <td><%=or.getRecipientAddress() %></td>
+                            <td>서울특별시 광진구 군자오 444-55</td>
                             <th>요청사항</th>
-                            <td><%=or.getOrderMessage() %></td>
+                            <td>문앞에놓아주세요</td>
                         </tr>
                         <tr>
                             <th>총상품 종류</th>
                             <td  colspan="3">
-                            <textarea cols="70" rows=4 readonly style="resize: none;"><%=or.getProductInfo() %></textarea>
+                            <textarea cols="70" rows=4 readonly style="resize: none;">케냐1(200g,홀빈), 과테말라1(400g,핸드드립), 키위2(600g,커피메이커) 케냐1(200g,홀빈), 과테말라1(400g,핸드드립), 키위2(600g,커피메이커) 케냐1(200g,홀빈), 과테말라1(400g,핸드드립), 키위2(600g,커피메이커)
+                            </textarea>
                         </td>
                            
                         </tr>
                         <tr>
                             <th>주문날짜</th>
-                            <td><%=or.getOrderDate() %></td>
+                            <td>2020.12.12</td>
                             <th>진행상태</th>
-                            <td><%=or.getProgress() %></td>
+                            <td>상품준비중</td>
                         </tr>
                        
                         
@@ -81,7 +76,7 @@
                     
                     <div class="btns">
                         <button type="submit" style="width: 100px;">
-                            <a href="<%=contextPath%>/orderCondition.st?currentPage=1">목록보기</a>
+                            <a href="adminOder.html">목록보기</a>
                         </button>
                     </div>
                     
