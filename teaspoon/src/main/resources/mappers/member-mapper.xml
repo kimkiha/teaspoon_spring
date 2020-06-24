@@ -13,6 +13,7 @@
   	  		<result column="PHONE" property="phone"/>
   	  		<result column="EMAIL" property="email"/>
   	  		<result column="ENROLL_DATE" property="enrollDate"/>
+  	  		<result column="BUY_SUM" property="buySum"/>
   	  		<result column="POINT_SUM" property="pointSum"/>
   	  		<result column="MODIFY_DATE" property="modifyDate"/>
   	  		<result column="ADMIN" property="admin"/>
