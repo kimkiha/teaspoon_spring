@@ -5,7 +5,13 @@
 		<setting name="jdbcTypeForNull" value="NULL"/>
 	</settings>	
 	
+		<typeAliases>
+		<typeAlias type="com.kh.teaspoon.admin.model.vo.Grade" alias="Grade"/>
+		
+	</typeAliases>
+	
 	<mappers>
 		<mapper resource="mappers/member-mapper.xml"/>
+		<mapper resource="mappers/admin_mapper.xml"/>
 	</mappers>
 </configuration>
