@@ -13,6 +13,7 @@
 		<typeAlias type="com.kh.teaspoon.space.model.vo.Space" alias="Space"/>
 		<typeAlias type="com.kh.teaspoon.space.model.vo.Goods" alias="Goods"/>
 		<typeAlias type="com.kh.teaspoon.space.model.vo.Payment" alias="Payment"/>
+		<typeAlias type="com.kh.teaspoon.space.model.vo.Store" alias="Store"/>
 	</typeAliases>
 	
 	<mappers>
@@ -20,5 +21,6 @@
 		<mapper resource="mappers/admin_mapper.xml"/>
 		<mapper resource="mappers/board-mapper.xml"/>
 		<mapper resource="mappers/space-mapper.xml"/>
+		<mapper resource="mappers/store-mapper.xml"/>
 	</mappers>
 </configuration>
