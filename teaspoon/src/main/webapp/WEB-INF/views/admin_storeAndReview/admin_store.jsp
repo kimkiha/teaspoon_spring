@@ -1,17 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.ArrayList, com.teaspoon.store.model.vo.* , com.teaspoon.common.*" %>
-<%
-	ArrayList<Product> list =  (ArrayList<Product>)request.getAttribute("list");
-	PageInfo pi = (PageInfo)request.getAttribute("pi");
-	
-	String productKeyword = String.valueOf(request.getAttribute("productKeyword"));
-	
-	int currentPage = pi.getCurrentPage();
-	int startPage = pi.getStartPage();
-	int endPage = pi.getEndPage();
-	int maxPage = pi.getMaxPage();
+    pageEncoding="UTF-8" %>
 
-%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,12 +18,12 @@
     </style>
 </head>
 <body>
-     <%@include file="../common/admin_sidebar.jsp" %>
+   <jsp:include page="../common/admin_sidebar.jsp"/>
         <div id="contents">
             <div id="c1" style="margin-top: 20px;">
                 <div id="c1_1">
                     <div id="c1_1_1">
-                        <div id="c1_1_1_1"><img src="<%=contextPath%>/resources/img/admin/커피.png" width="50px"></div>
+                        <div id="c1_1_1_1"><img src="resources/img/admin/커피.png" width="50px"></div>
                         <div id="c1_1_1_2"><p>상품관리페이지입니다.</p></div>
                         <div id="c1_1_1_3">
                             <input type="text" placeholder="상품이름" id="productKeyword">
@@ -54,94 +43,51 @@
                                     <th style="width:170px;">키워드</th>
                                     <th style="width:50px;">누적판매</th>
                                     <th style="width:50px;">상품종류</th>
-                                    <th><button type="button" style="width: 100px;"><a href="<%=contextPath%>/enroll.st">상품등록</a></button></th>
+                                    <th><button type="button" style="width: 100px;"><a href="enroll.st">상품등록</a></button></th>
                                     </tr>
                             </tbody>
 							<tfoot>
-								<%if(list.isEmpty()){%>
+								
 								<tr>
 									<td colspan="10">조회된 리스트가 없습니다.</td>
 								</tr>
-								<%}else{%>
-								<%for(Product p : list){ %>
+								
 								<tr>
-								    <td><%=p.getPcode()%></td>
-									<td><%=p.getPname() %></td>
-									<td><%=p.getSupPrice() %></td>
-									<td><%=p.getPrice() %></td>
-									<td><%=p.getStock() %></td>
-									<td><%=p.getStatus() %></td>
-									<td><%=p.getKeyword() %></td>
-									<td><%=p.getTotalCount() %></td>
-									<td><%=p.getKind() %></td>
+								    <td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
 									<td>
-								    	<button type="button"><a href="<%=contextPath%>/productUpdateForm.st?pcode=<%=p.getPcode()%>">수정</a></button>
+								    	<button type="button"><a href="productUpdateForm.st?pcode=">수정</a></button>
 								        <button type="button" onclick="deleteProduct();">삭제</button>
 								    </td>
 								</tr>
 							</tfoot>
-					<%} %>
-				<%} %> 
+				
                       </table>
                     </div>
-				<form id="postForm" method="post" action="<%=contextPath%>/delete.st">
-					<% for (Product p : list) {%>
-					<input type="hidden" name="pcode" value="<%=p.getPcode()%>">
-					<%} %>
+				<form id="postForm" method="post" action="delete.st">
+					
+					<input type="hidden" name="pcode" value="">
+					
 				</form>
 			</div>
                 <div id="c1_2">
 
                 </div>
                 <div id="c1_3">
-                <%if(!productKeyword.equals("null")){ %>
-                	<!-- 현재 페이지에 보여질 페이징바 -->
-					<%if(currentPage != 1){%> <!-- 현재 페이지가 1페이지가 아닐경우 -->
-					<!-- 맨 처음으로(<<) -->
-					<button onclick="location.href='productKeywordList.st?currentPage=1&productKeyword=<%=productKeyword %>'">&lt;&lt;</button>
-					<!-- 이전페이지로(<) -->
-					<button onclick="location.href='productKeywordList.st?currentPage=<%=currentPage-1%>&productKeyword=<%=productKeyword %>'">&lt;</button>
-					<%} %>
-					
-					<%for(int p=startPage; p<=endPage; p++){%>
-						<%if(currentPage != p) {%>
-						<button onclick="location.href='productKeywordList.st?currentPage=<%=p%>&productKeyword=<%=productKeyword %>'"><%=p%></button>
-						<%}else{ %>
-						<button dispabled><%=p %></button>
-						<%} %>	
-					<%} %>
-					
-					<%if(currentPage != maxPage){ %>
-					<!-- 다음페이지로(<) -->
-					<button onclick="location.href='productKeywordList.st?currentPage=<%=currentPage+1%>&productKeyword=<%=productKeyword %>'">&gt;</button>
-					<!-- 맨 마지막으로(>>) -->
-					<button onclick="location.href='productKeywordList.st?currentPage=<%=maxPage %>&productKeyword=<%=productKeyword %>'">&gt;&gt;</button>
-					<%} %>
-                	
-                <%} else{ %>
-	                <!-- 현재 페이지에 보여질 페이징바 -->
-					<%if(currentPage != 1){%> <!-- 현재 페이지가 1페이지가 아닐경우 -->
-					<!-- 맨 처음으로(<<) -->
-					<button onclick="location.href='list.st?currentPage=1'">&lt;&lt;</button>
-					<!-- 이전페이지로(<) -->
-					<button onclick="location.href='list.st?currentPage=<%=currentPage-1%>'">&lt;</button>
-					<%} %>
-					
-					<%for(int p=startPage; p<=endPage; p++){%>
-						<%if(currentPage != p) {%>
-						<button onclick="location.href='list.st?currentPage=<%=p%>'"><%=p%></button>
-						<%}else{ %>
-						<button dispabled><%=p %></button>
-						<%} %>	
-					<%} %>
-					
-					<%if(currentPage != maxPage){ %>
-					<!-- 다음페이지로(<) -->
-					<button onclick="location.href='list.st?currentPage=<%=currentPage+1%>'">&gt;</button>
-					<!-- 맨 마지막으로(>>) -->
-					<button onclick="location.href='list.st?currentPage=<%=maxPage %>'">&gt;&gt;</button>
-					<%} %>
-				<%} %>
+                    <a>&lt;</a>
+                   <button>1</button>
+                   <button>2</button>
+                   <button>3</button>
+                   <button>4</button>
+                   <button>5</button>
+                   <a>&gt;</a>
                 </div>
             </div>
         </div>

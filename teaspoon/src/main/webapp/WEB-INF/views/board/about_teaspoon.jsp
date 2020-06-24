@@ -1,14 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>어바웃 | TeaSpoon</title>
-	<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/board/about_teaspoon.css">
-    <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/common/menubar.css">
-	<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/common/footer.css">
-	<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/common/reset.css">
+	<link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/board/about_teaspoon.css">
+	<link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/common/footer.css">
+	<link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/common/reset.css">
     
     
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -22,7 +25,7 @@
 
 <body>
 	   <div id="wrap">
-        <%@ include file="../common/menubar.jsp" %>
+	   <jsp:include page="../common/menubar.jsp"/>
         <!-- //header -->
         <!-- //banner -->
             <div id="content1" >
@@ -61,9 +64,9 @@
             </div>
             <div class="box" id="third" align="center">
             	<div style="width:1200px">
-	            	<div class="photo"><img src="<%=contextPath %>/resources/img/board/about_1.jpg" alt=""></div>
-	            	<div class="photo"><img src="<%=contextPath %>/resources/img/board/about_2.jpg" alt=""></div>
-	            	<div class="photo"><img src="<%=contextPath %>/resources/img/board/about_3.jpg" alt=""></div>
+	            	<div class="photo"><img src="${ pageContext.servletContext.contextPath }/resources/images/board/about_1.jpg" alt=""></div>
+	            	<div class="photo"><img src="${ pageContext.servletContext.contextPath }/resources/images/board/about_2.jpg" alt=""></div>
+	            	<div class="photo"><img src="${ pageContext.servletContext.contextPath }/resources/images/board/about_3.jpg" alt=""></div>
             	</div>
             	<ul >
             		<li>  			
@@ -80,7 +83,7 @@
             	</ul>
             </div>
         <!-- //content-->
-        <%@ include file="../common/footer.jsp" %>
+        <jsp:include page="../common/footer.jsp"/>
         <!-- //footer-->
     </div>
     <!-- //wrap-->

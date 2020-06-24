@@ -5,22 +5,18 @@
 <head>
 <meta charset="UTF-8">
 <title>인스타그램 | TeaSpoon</title>
- 	<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/common/menubar.css">
-	<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/common/footer.css">
-	<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/common/reset.css">
-	<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/main/main.css">
-	<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/board/instagram.css">
-    <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/board/instagram_photo.css">
-	<script type="text/javascript" src="resources/js/main.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/common/footer.css">
+	<link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/common/reset.css">
+	<link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/board/instagram.css">
+    <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/board/instagram_photo.css">
+	
     <style>
         #banner{height: 170px; line-height: 170px; background:rgb(222, 219, 210);}
     </style>
 </head>
 <body>
 <div id="wrap">
-        <%@ include file="../common/menubar.jsp" %>
+        <jsp:include page="../common/menubar.jsp"/>
         <!-- //header -->
         <br clear="both">
         <div id="banner" >
@@ -35,7 +31,7 @@
 	                        <ul>
 	                            <li style="margin-left:0;">
 	                                <figure class="snip1504" >
-	                                    <img src="<%=contextPath%>/resources/img/board/insta_1.jpg">
+	                                    <img src="${ pageContext.servletContext.contextPath }/resources/img/board/insta_1.jpg">
 	                                    <figcaption>
 	                                      <h3>@sometimes..</h3>
 	                                      <h5>#티스푼 #티스푼커피 #coffee</h5>
@@ -45,7 +41,7 @@
 	                            </li>
 	                            <li>
 	                                <figure class="snip1504" >
-	                                    <img src="<%=contextPath%>/resources/img/board/insta_2.jpg">
+	                                    <img src="${ pageContext.servletContext.contextPath }/resources/img/board/insta_2.jpg">
 	                                    <figcaption>
 	                                      <h3>@sometimes..</h3>
 	                                      <h5>#티스푼 #티스푼커피 #coffee</h5>
@@ -55,7 +51,7 @@
 	                            </li>
 	                            <li>
 	                                <figure class="snip1504" >
-	                                    <img src="<%=contextPath%>/resources/img/board/insta_3.jpg">
+	                                    <img src="${ pageContext.servletContext.contextPath }/resources/img/board/insta_3.jpg">
 	                                    <figcaption>
 	                                      <h3>@sometimes..</h3>
 	                                      <h5>#티스푼 #티스푼커피 #coffee</h5>
@@ -65,7 +61,7 @@
 	                            </li>
 	                            <li>
 	                                <figure class="snip1504" >
-	                                    <img src="<%=contextPath%>/resources/img/board/insta_4.jpg">
+	                                    <img src="${ pageContext.servletContext.contextPath }/resources/img/board/insta_4.jpg">
 	                                    <figcaption>
 	                                      <h3>@sometimes..</h3>
 	                                      <h5>#티스푼 #티스푼커피 #coffee</h5>
@@ -75,7 +71,7 @@
 	                            </li>
 	                            <li style="margin-left:0;">
 	                                <figure class="snip1504" >
-	                                    <img src="<%=contextPath%>/resources/img/board/insta_5.jpg">
+	                                    <img src="${ pageContext.servletContext.contextPath }/resources/img/board/insta_5.jpg">
 	                                    <figcaption>
 	                                      <h3>@sometimes..</h3>
 	                                      <h5>#티스푼 #티스푼커피 #coffee</h5>
@@ -85,7 +81,7 @@
 	                            </li>
 	                            <li>
 	                                <figure class="snip1504" >
-	                                    <img src="<%=contextPath%>/resources/img/board/insta_6.jpg">
+	                                    <img src="${ pageContext.servletContext.contextPath }/resources/img/board/insta_6.jpg">
 	                                    <figcaption>
 	                                      <h3>@sometimes..</h3>
 	                                      <h5>#티스푼 #티스푼커피 #coffee</h5>
@@ -95,7 +91,7 @@
 	                            </li>
 	                            <li>
 	                                <figure class="snip1504" >
-	                                    <img src="<%=contextPath%>/resources/img/board/insta_7.jpg">
+	                                    <img src="${ pageContext.servletContext.contextPath }/resources/img/board/insta_7.jpg">
 	                                    <figcaption>
 	                                      <h3>@sometimes..</h3>
 	                                      <h5>#티스푼 #티스푼커피 #coffee</h5>
@@ -105,7 +101,7 @@
 	                            </li>
 	                            <li>
 	                                <figure class="snip1504" >
-	                                    <img src="<%=contextPath%>/resources/img/board/insta_8.jpg">
+	                                    <img src="${ pageContext.servletContext.contextPath }/resources/img/board/insta_8.jpg">
 	                                    <figcaption>
 	                                      <h3>@sometimes..</h3>
 	                                      <h5>#티스푼 #티스푼커피 #coffee</h5>
@@ -115,7 +111,7 @@
 	                            </li>
 	                            <li style="margin-left:0;">
 	                                <figure class="snip1504" >
-	                                    <img src="<%=contextPath%>/resources/img/board/insta_1.jpg">
+	                                    <img src="${ pageContext.servletContext.contextPath }/resources/img/board/insta_1.jpg">
 	                                    <figcaption>
 	                                      <h3>@sometimes..</h3>
 	                                      <h5>#티스푼 #티스푼커피 #coffee</h5>
@@ -125,7 +121,7 @@
 	                            </li>
 	                            <li>
 	                                <figure class="snip1504" >
-	                                    <img src="<%=contextPath%>/resources/img/board/insta_2.jpg">
+	                                    <img src="${ pageContext.servletContext.contextPath }/resources/img/board/insta_2.jpg">
 	                                    <figcaption>
 	                                      <h3>@sometimes..</h3>
 	                                      <h5>#티스푼 #티스푼커피 #coffee</h5>
@@ -135,7 +131,7 @@
 	                            </li>
 	                            <li>
 	                                <figure class="snip1504" >
-	                                    <img src="<%=contextPath%>/resources/img/board/insta_3.jpg">
+	                                    <img src="${ pageContext.servletContext.contextPath }/resources/img/board/insta_3.jpg">
 	                                    <figcaption>
 	                                      <h3>@sometimes..</h3>
 	                                      <h5>#티스푼 #티스푼커피 #coffee</h5>
@@ -145,7 +141,7 @@
 	                            </li>
 	                            <li>
 	                                <figure class="snip1504" >
-	                                    <img src="<%=contextPath%>/resources/img/board/insta_4.jpg">
+	                                    <img src="${ pageContext.servletContext.contextPath }/resources/img/board/insta_4.jpg">
 	                                    <figcaption>
 	                                      <h3>@sometimes..</h3>
 	                                      <h5>#티스푼 #티스푼커피 #coffee</h5>
@@ -161,9 +157,9 @@
                     </div>
                 
           </div>
-            <!-- 공지사항 -->
+            <!-- 인스타그램 -->
             
-            <%@ include file="../common/footer.jsp" %>
+            <jsp:include page="../common/footer.jsp"/>
         <!-- //footer-->
     </div>
     <!-- //wrap-->

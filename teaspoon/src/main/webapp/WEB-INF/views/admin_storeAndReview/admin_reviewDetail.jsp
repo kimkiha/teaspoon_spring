@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.teaspoon.store.model.vo.* , com.teaspoon.common.*"%>
-<%
-	Review r = (Review)request.getAttribute("r");
-%>
+    pageEncoding="UTF-8" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,7 +16,7 @@
     </style>
 </head>
 <body>
-  <%@include file="../common/admin_sidebar.jsp" %>
+  <jsp:include page="../common/admin_sidebar.jsp"/>
         <div id="contents">
             <div id="c1" style="margin-top: 20px;">
                 <div class="outer">
@@ -26,19 +24,19 @@
                     <table>
                         <tr>
                             <th width="100px">리뷰번호</th>
-                            <td><%=r.getReviewNo()%></td>
+                            <td></td>
                             <th width="100px">상품명</th>
-                            <td><%=r.getPname() %></td>
+                            <td></td>
                         </tr>
                         <tr>
                             <th>작성자(작성자ID)</th>
-                            <td><%=r.getUserName() %>(<%=r.getUserId() %>)</td>
+                            <td></td>
                             <th>작성일자</th>
-                            <td><%=r.getCreateDate() %></td>
+                            <td></td>
                         </tr>
                         <tr>
                             <th>내용</th>
-                            <td colspan="3"><textarea cols="70" rows="4" style="resize: none;" readonly><%=r.getContent() %></textarea></td>
+                            <td colspan="3"><textarea cols="70" rows="4" style="resize: none;" readonly></textarea></td>
                         </tr>
                         
                     </table>

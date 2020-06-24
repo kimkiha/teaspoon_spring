@@ -23,10 +23,10 @@
 	  
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	
-    <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/admin/admin_EnrollForm.css">
+    <link rel="stylesheet" href="/resources/css/admin/admin_EnrollForm.css">
 </head>
 <body>
-     <%@include file="../common/admin_sidebar.jsp" %>
+    <jsp:include page="../common/admin_sidebar.jsp"/>
         <div id="contents">
             <div id="c1">
                 <div class="outer">
@@ -87,7 +87,7 @@
                         </div>
                         <br>-->
                         <div class="btns" style="margin-top:20px">
-                            <button type="button" style="width: 100px;"><a href="<%=contextPath%>/magazineAdminList.bo">목록으로</a></button>
+                            <button type="button" style="width: 100px;"><a href="magazineAdminList.bo">목록으로</a></button>
                             <button type="submit" id="sb_btn" style="width: 100px;">등록하기</button>
                         </div>
                     </form>
@@ -99,7 +99,7 @@
         <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.css" rel="stylesheet">
 		<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.js"></script>
 		<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap" rel="stylesheet">
-	    <link href="<%=contextPath%>/resources/css/admin/admin_common.css" rel="stylesheet">
+	    <link href="/resources/css/admin/admin_common.css" rel="stylesheet">
 	   
 		<style>
 		button{width:auto;}
