@@ -1,4 +1,4 @@
--<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
@@ -22,10 +22,10 @@
                 <div class="contaniner" >
                     <div class="outer">
                             <div class="login-title">
-                                <img src="<%=contextPath %>/resources/img/main/logo.png" alt="" >
+                                <img src="/resources/img/main/logo.png" alt="" >
                             </div>
                         <div id="login">
-                             <form class="login" action="<%=contextPath%>/login.me" method="post">
+                             <form class="login" action="/login.me" method="post">
                             <fieldset>
                             <ul>
                              <li><input type="text" placeholder="아이디" name="userId" style="padding-left:15px"></li>
@@ -34,11 +34,11 @@
                              <li><button type="submit">로그인</button></li>
                             </ul> 
                             <div id="enroll">
-                                <a href="<%=contextPath%>/memberEnroll.me">회원가입</a>
+                                <a href="#">회원가입</a>
                                 <span>|</span>
-                                <a href="<%=contextPath %>/idsearch.me" >아이디 찾기</a>
+                                <a href="#" >아이디 찾기</a>
                                 <span>|</span>
-                                <a href="<%=contextPath %>/pwsearch.me">비밀번호 찾기</a>
+                                <a href="#">비밀번호 찾기</a>
                       
                             </div>
                             </fieldset>
