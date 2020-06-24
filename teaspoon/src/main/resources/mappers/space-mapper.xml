@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="spaceMapper">
+
+  	<resultMap id="SpaceResult" type="Space">
+		<id column="reserv_no" property="reservNo"/>
+		<result column="user_no" property="userNo"/>
+		<result column="app_date" property="appDate"/>
+		<result column="reserv_date" property="reservDate"/>	
+		<result column="reserv_time" property="reservTime"/>
+		<result column="visit_num" property="visitNum"/>	
+		<result column="phone" property="phone"/>
+		<result column="reserv_reason" property="reservReason"/>
+		<result column="accept" property="accept"/>
+		<result column="goods" property="goods"/>
+		<result column="grade_code" property="gradeCode"/>
+		<result column="total" property="total"/>
+		<result column="user_name" property="userName"/>
+	</resultMap> 
+   
+    <resultMap id="GoodsResult" type="Goods">
+		<id column="goods_no" property="gsNo"/>
+		<result column="gs_name" property="gsName"/>
+		<result column="gs_price" property="gsPrice"/>
+		<result column="gs_count" property="gsCount"/>	
+		<result column="gs_using" property="gsUsing"/>
+		<result column="gs_saving" property="gsSaving"/>	
+	</resultMap>
+	
+	<resultMap id="PaymentResult" type="Payment">
+		<id column="reserv_no" property="reservNo"/>
+		<result column="goods_pay" property="goodsPay"/>
+		<result column="total" property="total"/>	
+		<result column="reserv_pay" property="reservPay"/>
+	</resultMap> 
+   

@@ -13,11 +13,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-
-    
-	
-
-
     
 
 <style>
@@ -27,7 +22,7 @@
 </head>
 <body>
   <div id="wrap">
-        <%@ include file="../common/menubar.jsp" %>
+        <jsp:include page="../common/menubar.jsp"/>
   
         <!-- //header -->
         <!-- //banner -->
@@ -44,7 +39,7 @@
             </div>
         </div>
         <!-- //content-->
-        <%@ include file="../common/footer.jsp" %>
+        <jsp:include page="../common/footer.jsp"/>
         <!-- //footer-->
     </div>
  <style>
