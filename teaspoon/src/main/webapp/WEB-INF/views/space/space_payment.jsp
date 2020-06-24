@@ -1,30 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.ArrayList, com.teaspoon.space.model.vo.*"%>
- 
- <%
-	
-	Space s = (Space)(request.getAttribute("s"));
- 	ArrayList<Goods> list = (ArrayList<Goods>)request.getAttribute("list");
- 	String[] goods = s.getGood().split(",");
- 	int gTotalPrice =0;
- 	int gToralSaving=0;
- 	
- 
+    pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-%>
     
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>결제 | TeaSpoon</title>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/space/space_payment.css">
-<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/reset1.css">
-<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/menubar.css">
-<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/footer.css">
+<link rel="stylesheet" type="text/css" href="../teaspoon/resources/css/space/space_payment.css">
+<link rel="styleSheet" href="../teaspoon/resources/css/common/reset1.css">
+<link rel="styleSheet" href="../teaspoon/resources/css/common/menubar.css">
+<link rel="styleSheet" href="../teaspoon/resources/css/common/footer.css">
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap" rel="stylesheet">
 <style>
-        #banner {margin-top:115px;height: 170px; line-height: 170px; background:url("<%=request.getContextPath()%>/resources/img/mypage/pattern.jpg") center top repeat-x;}
+        #banner {margin-top:115px;height: 170px; line-height: 170px; background:url("../teaspoon/resources/img/mypage/pattern.jpg") center top repeat-x;}
     
 	.adsideWrapper { 
 	  position: relative;
@@ -91,7 +81,7 @@
                                             <td>200,000원</td>
                                             <td>960P</td>
                                         </tr>
-                                        <%for(int i=0; i<goods.length; i++){ %>
+                                       <%--  <%for(int i=0; i<goods.length; i++){ %>
                                         <tr>
                                             <td colspan="2" >(+)<%=goods[i] %></td>
                                             <td>1개</td>
@@ -106,7 +96,7 @@
                                         </tr>
                                         
                                         <%} %>
-                                       
+                                        --%>
                                         
                                     </tbody>
                                 </table>
@@ -119,7 +109,7 @@
                                 <table class="tb2"  cellspacing="0" cellpadding="0">
                                         <tr>
                                             <td class="left_text_st top_bd" width="150">고객총포인트</td>
-                                            <td class="top_bd"> <div id='pointUse1' class="point" name="point" width="400" style="padding-inline-start: 15px;"><%=loginUser.getPoint() %></div></td>
+                                            <td class="top_bd"> <div id='pointUse1' class="point" name="point" width="400" style="padding-inline-start: 15px;"><%-- "${ loginUser.getPoint }" --%></div></td>
                                         </tr>
                                 </table>
                                 
@@ -140,16 +130,16 @@
                                         <tr>
                                             <td class="left_text_st top_bd " >이름</td>
                                             <td class="top_bd "colspan="3" >
-                                                <input type="text" name="userName" value="<%=loginUser.getUserName()%>">
+                                                <input type="text" name="userName" <%-- value="<%=loginUser.getUserName()%>" --%>>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td class="left_text_st" width="170">휴대전화</td>
-                                            <td width="220" colspan="2"><input type="text" value="<%=loginUser.getPhone()%>"></td>
+                                            <td width="220" colspan="2"><input type="text" <%-- value="<%=loginUser.getPhone()%>" --%>></td>
                                         </tr>
                                         <tr >
                                             <td class="left_text_st" >이메일</td>
-                                            <td colspan="3" ><input type="email" value="<%=loginUser.getEmail()%>"></td>
+                                            <td colspan="3" ><input type="email" <%-- value="<%=loginUser.getEmail()%>" --%>></td>
                                         </tr>
                                 </table>
                             </div>
@@ -157,7 +147,7 @@
                         </div>
                        <!-- //orderlist -->
                        <div id="payment" class="adside" style="float:left">
-                        <form action="<%= contextPath %>/insert.py" method="POST">
+                        <form action="insert.py" method="POST">
                             <table class="pay_tb" >
                                 <thead>
                                     <tr>
@@ -172,7 +162,7 @@
                                     
                                     <tr>
                                         <td class=" pay_lt bd_none">비품비용</td>
-                                        <td class=" pay_rt bd_none" ><input type="hidden" name="goodsPay" value=<%=gTotalPrice %>><%=gTotalPrice %></td>
+                                        <td class=" pay_rt bd_none" ><input type="hidden" name="goodsPay" <%-- value=<%=gTotalPrice %>><%=gTotalPrice %> --%>></td>
                                     </tr>
                                     <tr>
                                         <td class=" pay_lt">포인트 할인</td>
@@ -183,8 +173,8 @@
                                         <td colspan="2" class="bd_none pay_lt">적립예상포인트</td>
                                     </tr>
                                     <tr>
-                                        <td colspan="2" id="savePoint" class=" pay_rt"><%=gToralSaving+960 %>P</td>
-                                        <input type="hidden" id="addPoint" name='addPoint' value="<%=gToralSaving+960 %>">
+                                        <td colspan="2" id="savePoint" class=" pay_rt"><%-- <%=gToralSaving+960 %> --%>P</td>
+                                        <input type="hidden" id="addPoint" name='addPoint' <%-- value="<%=gToralSaving+960 %>" --%>>
                                     
                                     </tr>
                                     <tr class="">
@@ -192,8 +182,8 @@
                                     </tr>
                                     <tr> 
                                     
-                                        <td colspan="2"  class=" pay_rt" id='totalPay'><%=gTotalPrice+200000%></td>
-                                        <input type="hidden" id="total" name="total" value='<%=gTotalPrice+200000%>'>
+                                        <td colspan="2"  class=" pay_rt" id='totalPay'><%-- <%=gTotalPrice+200000%> --%></td>
+                                        <input type="hidden" id="total" name="total" <%-- value='<%=gTotalPrice+200000%>' --%>>
                                     </tr>
                                 </tbody> 
                                 <tfoot>
@@ -257,8 +247,8 @@
 			}else{
 
 				$("#useP").text('-'+pointUse+'원');
-				$('#totalPay').text((200000+<%=gTotalPrice%>-pointUse)+"원");
-				$("#total").val(200000+<%=gTotalPrice%>-pointUse);
+				$('#totalPay').text((200000+<%-- <%=gTotalPrice%> --%>-pointUse)+"원");
+				$("#total").val(200000+<%-- <%=gTotalPrice%> --%>-pointUse);
 				
 				
 				$('#usePoint').val(pointUse);
