@@ -1,5 +1,7 @@
 package com.kh.teaspoon.member.model.vo;
 
+import java.sql.Date;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,10 +24,9 @@ public class Member {
 	private int birthday;
 	private String phone;
 	private String email;
-	private date enrollDate;
 	private int buySum;
 	private int pointSum;
-	private date modifyDate;
+	private Date modifyDate;
 	private String admin;
 	private String status;
 	private String address;
