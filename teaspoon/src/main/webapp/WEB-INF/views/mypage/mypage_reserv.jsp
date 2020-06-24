@@ -1,13 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.ArrayList, com.teaspoon.member.model.vo.*,com.teaspoon.common.*"%>
-<%
-ArrayList<Member> list = (ArrayList<Member>)request.getAttribute("list");
-PageInfo pi = (PageInfo)request.getAttribute("pi");
-int currentPage = pi.getCurrentPage();
-int startPage = pi.getStartPage();
-int endPage = pi.getEndPage();
-int maxPage = pi.getMaxPage();
-%>
+    pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
     
 <!DOCTYPE html>
 <html>
@@ -15,13 +8,13 @@ int maxPage = pi.getMaxPage();
 <meta charset="UTF-8">
 <title>나의대관현황 | TeaSpoon</title>
 <link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath() %>/resources/css/mypage/mypage_reserv.css">
+	href="../teaspoon/resources/css/mypage/mypage_reserv.css">
 <link rel="styleSheet"
-	href="<%=request.getContextPath() %>/resources/css/common/reset1.css">
+	href="../teaspoon/resources/css/common/reset1.css">
 <link rel="styleSheet"
-	href="<%=request.getContextPath() %>/resources/css/common/menubar.css">
+	href="../teaspoon/resources/css/common/menubar.css">
 <link rel="styleSheet"
-	href="<%=request.getContextPath() %>/resources/css/common/footer.css">
+	href="../teaspoon/resources/css/common/footer.css">
 <link
 	href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap"
 	rel="stylesheet">
@@ -34,7 +27,7 @@ int maxPage = pi.getMaxPage();
 	height: 170px;
 	line-height: 170px;
 	background:
-		url("<%=request.getContextPath()%>/resources/img/mypage/pattern.jpg")
+		url("../teaspoon/resources/img/mypage/pattern.jpg")
 		center top repeat-x;
 }
 
@@ -54,7 +47,7 @@ int maxPage = pi.getMaxPage();
 </head>
 <body>
 	<div id="wrap">
-		<%@ include file="../common/menubar.jsp"%>
+		<jsp:include page="../common/menubar.jsp"/>
 		<!-- //header -->
 		<div id="banner">
 			<div class="contaniner title">마이페이지</div>
@@ -69,41 +62,41 @@ int maxPage = pi.getMaxPage();
 							style="width: 95px; border-left: 1px solid #bebbb6">
 							<div class="user_photo"
 								style="margin-top: 30px; padding-left: 10px; float: left;">
-								<img src="<%=contextPath%>/resources/img/admin/user.png">
+								<img src="${ pageContext.servletContext.contextPath }/resources/img/admin/user.png">
 							</div>
 						</div>
 						<div class="user_info" style="width: 450px;">
 							<table class="detail_tb" cellpadding="0" cellspacing="0">
 								<tr class="d1">
-									<td width="60" name="username"><%=loginUser.getUserName() %></td>
-									<td style="color: #d6ae71; font-size: 15px;" name="usergrade"><%=loginUser.getGradeName() %></td>
+									<td width="60" name="username"><%-- <%=loginUser.getUserName() %> --%></td>
+									<td style="color: #d6ae71; font-size: 15px;" name="usergrade"><%-- <%=loginUser.getGradeName() %> --%></td>
 								</tr>
 								<tr class="d2">
 									<td colspan="2"><a
-										href="<%=contextPath %>/memberModifyForm.me">회원정보수정</a></td>
+										href="${ pageContext.servletContext.contextPath }/memberModifyForm.me">회원정보수정</a></td>
 								</tr>
 							</table>
 						</div>
 						<div class="detail_info2"
 							style="border-left: 1px solid #bebbb6; height: inherit;">
 							<p class="info_th">적립포인트</p>
-							<a href="<%=contextPath%>/mypoint.me?currentPage=1"><%= loginUser.getPoint() %>Point</a>
+							<a href="${ pageContext.servletContext.contextPath }/mypoint.me?currentPage=1"><%-- <%= loginUser.getPoint() %> --%>Point</a>
 						</div>
 						<div class="detail_info2">
 							<p class="info_th">할인쿠폰</p>
-							<a href="#"><%= loginUser.getCouponCount() %>장</a>
+							<a href="#"><%-- <%= loginUser.getCouponCount() %> --%>장</a>
 						</div>
 						<div class="detail_info2">
 							<p class="info_th">위시리스트</p>
-							<a href="<%=contextPath %>/wishList.me"><%=loginUser.getWishCount() %>개</a>
+							<a href="${ pageContext.servletContext.contextPath }/wishList.me"><%-- <%=loginUser.getWishCount() %> --%>개</a>
 						</div>
 					</div>
 					<div id="mypage_menu_tab">
-						<a href="<%=contextPath %>/mydelivery.me" class=" float">주문배송조회</a>
+						<a href="${ pageContext.servletContext.contextPath }/mydelivery.me" class=" float">주문배송조회</a>
 						<a href="#" class="active float">공간대여확인</a>
-						<a	href="<%=contextPath %>/myAdress.me" class=" float">나의배송지</a> 
-						<a href="<%=contextPath %>/myqna.me?currentPage=1" class="float">1:1문의</a>
-						<a href="<%=contextPath %>/mycart.me" class="float">장바구니</a>
+						<a	href="${ pageContext.servletContext.contextPath }/myAdress.me" class=" float">나의배송지</a> 
+						<a href="${ pageContext.servletContext.contextPath }/myqna.me?currentPage=1" class="float">1:1문의</a>
+						<a href="${ pageContext.servletContext.contextPath }/mycart.me" class="float">장바구니</a>
 					</div>
 					<div class="pagename"></div>
 
@@ -182,7 +175,7 @@ int maxPage = pi.getMaxPage();
 								</tr>
 							</thead>
 							<tbody>
-							<% if(list.isEmpty()){ %>
+							<%-- <% if(list.isEmpty()){ %>
 								<tr>
 									<td colspan="7">
 									예약내역이 없습니다
@@ -210,12 +203,12 @@ int maxPage = pi.getMaxPage();
 								</tr>
 								<%} %>
 							<%} %>	
-
+ --%>
 							</tbody>
 						</table>
 						<div class="pagingarea">
 							<div id="paging" class="pagingbar">
-								<%if(currentPage != 1){%>
+								<%-- <%if(currentPage != 1){%>
 								<!-- 현재 페이지가 1페이지가 아닐경우 -->
 								<!-- 맨 처음으로(<<) -->
 								<button onclick="location.href='myReserv.me?currentPage=1'">&lt;&lt;</button>
@@ -232,14 +225,14 @@ int maxPage = pi.getMaxPage();
 								<%} %>
 								<%} %>
 
-								<%if(currentPage != maxPage){ %>
+								<%if(currentPage != maxPage){ %> --%>
 								<!-- 다음페이지로(<) -->
 								<button
-									onclick="location.href='myReserv.me?currentPage=<%=currentPage+1%>'">&gt;</button>
+									onclick="location.href='myReserv.me?currentPage=<%-- <%=currentPage+1%> --%>'">&gt;</button>
 								<!-- 맨 마지막으로(>>) -->
 								<button
-									onclick="location.href='myReserv.me?currentPage=<%=maxPage %>'">&gt;&gt;</button>
-								<%} %>
+									onclick="location.href='myReserv.me?currentPage=<%-- <%=maxPage %> --%>'">&gt;&gt;</button>
+								<%-- <%} %> --%>
 							</div>
 						</div>
 
@@ -248,7 +241,7 @@ int maxPage = pi.getMaxPage();
 			</div>
 		</div>
 		<!-- //content-->
-		<%@ include file="../common/footer.jsp"%>
+		<jsp:include page="../common/footer.jsp"/>
 		<!-- //footer-->
 	</div>
 	<script>

@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<% 
+<!--  
 String randomKey = (String)request.getAttribute("randomKey");
-%>  
+-->
 
 
 <!DOCTYPE html>
@@ -456,7 +456,7 @@ String randomKey = (String)request.getAttribute("randomKey");
                                 </table>
                                 
                          		<!-- 3_1. 본인인증 및 회원가입 버튼-->
-                         		    <form id="enroll_final" action="<%=contextPath%>/insert.me" method="post">
+                         		    <form id="enroll_final" action="/insert.me" method="post">
 										<input type="hidden" id="userName2" name="username">
 										<input type="hidden" id="birthday2" name="birthday">
 										<input type="hidden" id="gender2" name="gender">
@@ -479,7 +479,7 @@ String randomKey = (String)request.getAttribute("randomKey");
                                 <fieldset style="list-style-type:disc; border:1px solid lightgrey; margin-left:410px; margin-right:200px; margin-bottom:150px;" id=ul2>
                                     <ul style="border:0.3 solid lightgrey;"><br>
 		                                    <p style="padding:35px;">
-		                                    <p style="align:center;"><img src="<%=contextPath %>/resources/img/mypage/spoon.png" width="74px;" height="74px;"></p>
+		                                    <p style="align:center;"><img src="/resources/img/mypage/spoon.png" width="74px;" height="74px;"></p>
 		                                    <p style="margin:5px; font-size:24px; color:black; font-weight: bold; text-align:center;">회원가입완료!</p>
 		                                    <p style="margin-bottom:10px; text-align:center">티스푼의 가족이 되신걸 환영합니다!</p>
 		                                    <h6 style="color:gray; text-align:center;">3초뒤 메인페이지로 이동합니다.</h6>

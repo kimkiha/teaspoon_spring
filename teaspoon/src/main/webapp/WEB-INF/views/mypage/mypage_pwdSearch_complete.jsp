@@ -1,23 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%String newEmail = (String)request.getAttribute("newEmail"); 
-System.out.println(newEmail);%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>비밀번호찾기 | TeaSpoon</title>
-	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/mypage/mypage_idSearch_complete.css">
-	<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/reset.css">
-	<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/menubar.css">
-	<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/footer.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.servletContext.contextPath}/resources/css/mypage/mypage_idSearch_complete.css">
+	<link rel="styleSheet" href="${pageContext.servletContext.contextPath}/resources/css/common/reset.css">
+	<link rel="styleSheet" href="${pageContext.servletContext.contextPath}/resources/css/common/menubar.css">
+	<link rel="styleSheet" href="${pageContext.servletContext.contextPath}/resources/css/common/footer.css">
     <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap" rel="stylesheet">
     <script type="text/javascript"src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     
 </head>
 <body>
 <div id="wrap">
-        <%@ include file="../common/menubar.jsp" %>
+        <jsp:include page="../common/menubar.jsp"/>
         <!-- //header -->
 
             <!-- product -->
@@ -56,7 +57,7 @@ System.out.println(newEmail);%>
 
 
       <!-- //content-->
-       <%@ include file="../common/footer.jsp" %>
+        <jsp:include page="../common/footer.jsp"/>
        
        <script>
     	 /* (이메일) 인증번호 발송 버튼 클릭시 */

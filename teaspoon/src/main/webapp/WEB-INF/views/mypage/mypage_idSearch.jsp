@@ -1,24 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<% 
-String randomKey = (String)request.getAttribute("randomKey");
-%>
+    pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>아이디 찾기 | TeaSpoon</title>
-	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/mypage/mypage_idSearch.css">
-	<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/reset.css">
-	<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/menubar.css">
-	<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/footer.css">
+	<link rel="stylesheet" type="text/css" href="../teaspoon/resources/css/mypage/mypage_idSearch.css">
+	<link rel="styleSheet" href="../teaspoon/resources/css/common/reset.css">
+	<link rel="styleSheet" href="../teaspoon/resources/css/common/menubar.css">
+	<link rel="styleSheet" href="../teaspoon/resources/css/common/footer.css">
     <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap" rel="stylesheet">
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 	
 </head>
 <body>
 	<div id="wrap">
-		<%@ include file="../common/menubar.jsp" %>
+		<jsp:include page="../common/menubar.jsp"/>
 		<!-- //header -->
 
 		<!-- product -->
@@ -64,7 +62,7 @@ String randomKey = (String)request.getAttribute("randomKey");
 		</div>
 		</form>
 		
-	 <%@ include file="../common/footer.jsp" %>
+	 <jsp:include page="../common/footer.jsp"/>
 		    	
 		    	
 	<script>
@@ -169,7 +167,7 @@ String randomKey = (String)request.getAttribute("randomKey");
               	}else{
               		alert("인증 성공하였습니다.");
     				// $("#enroll_final").click(); // enroll_final이라는 hidden폼 submit
-    				//location.href ="<%= contextPath%>/idcomplete.me"; //페이지이동
+    				//location.href ="idcomplete.me"; //페이지이동
     				
 
     				

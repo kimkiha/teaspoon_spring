@@ -1,28 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
-String Address = (String)request.getAttribute("Address");
-int count =0;
-%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>나의배송지 | TeaSpoon </title>
- 	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/mypage/mypage_address1.css">
-	<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/reset1.css">
-	<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/menubar.css">
-	<link rel="styleSheet" href="<%=request.getContextPath() %>/resources/css/common/footer.css">
+ 	<link rel="stylesheet" type="text/css" href="/resources/css/mypage/mypage_address1.css">
+	<link rel="styleSheet" href="/resources/css/common/reset1.css">
+	<link rel="styleSheet" href="/resources/css/common/menubar.css">
+	<link rel="styleSheet" href="/resources/css/common/footer.css">
     <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"> </script>
     <style>
-      #banner {margin-top:115px;height: 170px; line-height: 170px; background:url("<%=request.getContextPath()%>/resources/img/mypage/pattern.jpg") center top repeat-x;}
+      #banner {margin-top:115px;height: 170px; line-height: 170px; background:url("/resources/img/mypage/pattern.jpg") center top repeat-x;}
     </style>
 </head>
 <body>
  <div id="wrap">
       
-      	<%@ include file="../common/menubar.jsp" %>
+      	<jsp:include page="../common/menubar.jsp"/>
         <!-- //header -->
         <div id="banner">
             <div class="contaniner title">마이페이지</div>
@@ -35,31 +32,31 @@ int count =0;
                         <div id="mypage_info">
                             <div class="user_info" style="width:95px; border-left:1px solid #bebbb6">
                                 <div class="user_photo" style="margin-top:30px; padding-left:10px; float: left;">
-                                    <img src="<%=contextPath%>/resources/img/admin/user.png">
+                                    <img src="/resources/img/admin/user.png">
                                 </div>
                             </div>
                             <div class="user_info" style="width:450px;">
                                 <table class="detail_tb" cellpadding="0" cellspacing="0"  >
                                     <tr class="d1">
-                                        <td width="60" name="username"><%=loginUser.getUserName() %></td>
-                                        <td style="color:#d6ae71; font-size: 15px;" name="usergrade" ><%=loginUser.getGradeName() %></td>
+                                        <td width="60" name="username"></td>
+                                        <td style="color:#d6ae71; font-size: 15px;" name="usergrade" ></td>
                                     </tr>
                                     <tr class="d2">
-                                        <td colspan="2"><a href="<%=contextPath %>/memberModifyForm.me" >회원정보수정</a> </td>
+                                        <td colspan="2"><a href="memberModifyForm.me" >회원정보수정</a> </td>
                                     </tr>
                                 </table>
                             </div>
                             <div class="detail_info2" style="border-left:1px solid #bebbb6; height:inherit;"> 
                                 <p class="info_th" >적립포인트</p>
-                                <a href="#" ><%=loginUser.getPoint()%></a>
+                                <a href="#" ></a>
                             </div>
                             <div class="detail_info2">
                                 <p class="info_th">할인쿠폰</p>
-                                <a  href="#" ><%=loginUser.getCouponCount()%></a>
+                                <a  href="#" ></a>
                             </div>
                             <div class="detail_info2">
                                 <p class="info_th"  >위시리스트</p>
-                                <a  href="#" ><%=loginUser.getWishCount() %></a>
+                                <a  href="#" ></a>
                             </div>
                         </div>
                         <div id="mypage_menu_tab">
@@ -88,7 +85,7 @@ int count =0;
                                         <th >선택</th>
                                     </tr>
                                 </thead>
-                                <%if(count !=0) {%>
+                               
                                 <tbody >
                                     <tr id="adAdd"class="add">
                                         <td><input type="text" name="address-info" id="address-info"></td><!-- 배송지명 -->
@@ -98,7 +95,7 @@ int count =0;
                                         <td colspan="2"><input type="phone" id="phone"></td><!-- 휴대폰번호 -->
                                         <td>
                                             <div id="func">
-                                             <form id="AddressInsert" action="<%=contextPath %>/insertAddress.me" method="post">
+                                             <form id="AddressInsert" action="insertAddress.me" method="post">
                                              <input type="hidden" id="address-info2" name="address-info">
                                              <input type="hidden" id="name2" name="name">
                                              <input type="hidden" id="address2" name="address">
@@ -112,7 +109,7 @@ int count =0;
                                     </tr>
                                     
                                 </tbody>
-                                <%} %>
+                                
                             </table>
                             </form>
                             <div class="non-address">
@@ -126,7 +123,7 @@ int count =0;
                 </div>
         </div>
         <!-- //content-->
-           <%@ include file="../common/footer.jsp" %>
+           <jsp:include page="../common/footer.jsp"/>
         <!-- //footer-->
     </div>
    
