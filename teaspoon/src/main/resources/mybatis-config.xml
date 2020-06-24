@@ -13,7 +13,7 @@
 		<typeAlias type="com.kh.teaspoon.space.model.vo.Space" alias="Space"/>
 		<typeAlias type="com.kh.teaspoon.space.model.vo.Goods" alias="Goods"/>
 		<typeAlias type="com.kh.teaspoon.space.model.vo.Payment" alias="Payment"/>
-		<typeAlias type="com.kh.teaspoon.space.model.vo.Store" alias="Store"/>
+		<typeAlias type="com.kh.teaspoon.store.model.vo.Store" alias="Store"/>
 	</typeAliases>
 	
 	<mappers>
