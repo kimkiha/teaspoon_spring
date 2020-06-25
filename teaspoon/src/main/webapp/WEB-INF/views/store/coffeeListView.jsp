@@ -108,6 +108,11 @@
 				</div>
 			</div>
 		</div>
+		
+		<!-- <form id="duplicateDeletePcode" action="deleteWish.me" method="post">
+			<input type="hidden" name="productNo" id="deleteProductNo">
+		</form>  -->
+		
 <!--product-->
 <script>
 // 개별 상품의 상세 페이지로 이동
@@ -158,13 +163,13 @@ function selectWishList() {
 // 위시리스트 등록 ajax
 $(function() {
 	$('.like_icon').click(function() {
-		var productNo = $(this).parent().siblings([ ".product_img" ]).children().eq(0).val();
-		//console.log(productNo);
+		var productNo1 = $(this).parent().siblings([ ".product_img" ]).children().eq(0).val();
+		//console.log(productNo1);
 		var icon = $(this);
 		if (icon.attr("class") == "like_icon empty") { // 빈 하트일 경우 --> 위시리스트 등록
 			$.ajax({
 				url : "insertWish.me",
-				data : {productNo : productNo},
+				data : {productNo : productNo1},
 				success : function(result) {
 					if (result > 0) {
 						icon.removeClass("empty");
@@ -175,8 +180,8 @@ $(function() {
 							//location.href = "wishList.me";
 						}
 					} else if (result < 0) {
-						//$("#dPcode").val(productNo);
-						//$("#duplicateDeletePcode").submit();
+						$("#deleteProductNo").val(productNo1);
+						$("#duplicateDeletePcode").submit();
 					} else if (result == 0) {
 						window.alert("로그인이 필요한 서비스입니다.");
 					}
@@ -187,12 +192,12 @@ $(function() {
 		} else { // 채워진 하트일 경우 --> 위시리스트 삭제
 			$.ajax({
 				url : "deleteWish.me",
-				data : {productNo : productNo},
+				data : {productNo : productNo1},
 				success : function(result) {
 					if (result > 0) {
 						icon.removeClass("full");
 						icon.addClass("empty");
-						icon.attr("src","resources/images/store/heart_emtpy.png");
+						icon.attr("src","${pageContext.servletContext.contextPath}/resources/images/store/heart_emtpy.png");
 						window.alert("위시리스트에서 삭제되었습니다.")
 					} else {
 						
