@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.teaspoon.common.model.vo.PageInfo;
 import com.kh.teaspoon.store.model.vo.Product;
+import com.kh.teaspoon.store.model.vo.Review;
 
 @Repository("stDao")
 public class StoreDao {
@@ -36,6 +37,24 @@ public class StoreDao {
 
 	public int deleteProduct(int productNo, SqlSessionTemplate sqlSession) {
 		return sqlSession.update("storeMapper.deleteProduct", productNo);
+	}
+
+	public int selectReviewListCount(SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("storeMapper.selectReviewListCount");
+	}
+
+	public ArrayList<Review> selectReviewList(SqlSessionTemplate sqlSession, PageInfo pi) {
+		int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		return (ArrayList)sqlSession.selectList("storeMapper.selectReviewList", null, rowBounds);
+	}
+
+	public Review selectReview(SqlSessionTemplate sqlSession, int reviewNo) {
+		return sqlSession.selectOne("storeMapper.selectReview", reviewNo);
+	}
+
+	public int deleteReview(SqlSessionTemplate sqlSession, int reviewNo) {
+		return sqlSession.update("storeMapper.deleteReview", reviewNo);
 	}
 
 	

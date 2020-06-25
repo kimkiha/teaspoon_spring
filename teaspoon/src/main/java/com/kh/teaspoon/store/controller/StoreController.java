@@ -19,6 +19,7 @@ import com.kh.teaspoon.common.model.vo.PageInfo;
 import com.kh.teaspoon.common.template.Pagination;
 import com.kh.teaspoon.store.model.service.StoreService;
 import com.kh.teaspoon.store.model.vo.Product;
+import com.kh.teaspoon.store.model.vo.Review;
 
 @Controller
 public class StoreController {
@@ -161,6 +162,37 @@ public String saveFile(MultipartFile file, HttpServletRequest request) {
 		}
 	}
 	
+	
+	/* 리뷰관리 */
+	@RequestMapping("list.re")
+	public String selectReviewList(int currentPage, Model model) {
+		int listCount = stService.selectReviewListCount();
+		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 5, 5);
+		ArrayList<Review> list = stService.selectReviewList(pi);
+		
+		model.addAttribute("pi", pi);
+		model.addAttribute("list", list);
+		return "admin_storeAndReview/admin_review";
+	}
+	
+	@RequestMapping("detail.re")
+	public String reviewDetail(int reviewNo, Model model) {
+		Review r = stService.selectReview(reviewNo);
+		model.addAttribute("r", r);
+		
+		return "admin_storeAndReview/admin_reviewDetail";
+	}
+	
+	@RequestMapping("delete.re")
+	public String deleteReview(int reviewNo, Model model) {
+		int result = stService.deleteReview(reviewNo);
+		
+		if(result>0) {
+			return "redirect:list.st?currentPage=1";
+		} else {
+			return "common/errorPage_admin";
+		}
+	}
 	
 	
 	

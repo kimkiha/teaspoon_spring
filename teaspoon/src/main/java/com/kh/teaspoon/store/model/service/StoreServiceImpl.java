@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.kh.teaspoon.common.model.vo.PageInfo;
 import com.kh.teaspoon.store.model.dao.StoreDao;
 import com.kh.teaspoon.store.model.vo.Product;
+import com.kh.teaspoon.store.model.vo.Review;
 
 @Service("stService")
 public class StoreServiceImpl implements StoreService{
@@ -47,6 +48,26 @@ public class StoreServiceImpl implements StoreService{
 	@Override
 	public int deleteProduct(int productNo) {
 		return stDao.deleteProduct(productNo, sqlSession);
+	}
+
+	@Override
+	public int selectReviewListCount() {
+		return stDao.selectReviewListCount(sqlSession);
+	}
+
+	@Override
+	public ArrayList<Review> selectReviewList(PageInfo pi) {
+		return stDao.selectReviewList(sqlSession, pi);
+	}
+
+	@Override
+	public Review selectReview(int reviewNo) {
+		return stDao.selectReview(sqlSession, reviewNo);
+	}
+
+	@Override
+	public int deleteReview(int reviewNo) {
+		return stDao.deleteReview(sqlSession, reviewNo);
 	}
 	
 	

@@ -66,7 +66,14 @@
 												<td>${ p.totalCount }개</td>
 												<td>${ p.status }</td>
 												<td>
-											    	<button type="button" id="updateProduct">수정</button>
+													<c:choose>
+														<c:when test="${ p.status eq 'Y' }">
+												    		<button type="button" id="updateProduct">수정</button>
+												    	</c:when>
+												    	<c:otherwise>
+												    		<button type="button" id="detailProduct">보기</button>
+												    	</c:otherwise>
+											    	</c:choose>
 											    </td>
 											</tr>
 										</c:forEach>
@@ -126,6 +133,13 @@
         		$('#updateProduct').click(function(){
         			var productNo = $(this).parent().siblings().eq(0).text();
         			//console.log(productNo);
+        			location.href='updateForm.st?productNo='+productNo;
+        		});
+        	});
+        	
+        	$(function(){
+        		$('#detailProduct').click(function(){
+        			var productNo = $(this).parent().siblings().eq(0).text();
         			location.href='updateForm.st?productNo='+productNo;
         		});
         	});

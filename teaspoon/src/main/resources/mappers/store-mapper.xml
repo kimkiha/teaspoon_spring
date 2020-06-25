@@ -17,7 +17,28 @@
 		<result column="kind" property="kind"/>
 	</resultMap>
 	
-	<!--               관리자                          -->
+	<resultMap type="Review" id="ReviewResultSet">
+		<id column="review_no" property="reviewNo"/>
+		<result column="product_no" property="productNo"/>
+		<result column="user_no" property="userNo"/>
+		<result column="content" property="content"/>
+		<result column="create_date" property="createDate"/>
+		<result column="review_origin" property="reviewOrigin"/>
+		<result column="review_change" property="reviewChange"/>
+		<result column="review_filepath" property="reviewFilepath"/>
+		<result column="rating" property="rating"/>
+		<result column="review_status" property="reviewStatus"/>
+		
+		<result column="product_name" property="productName"/>
+		<result column="user_id" property="userId"/>
+		<result column="user_name" property="userName"/>
+	</resultMap>
+	
+	
+	
+	
+	
+	<!--               관리자  / 상품관리                      -->
 	
 	<select id="selectProductListCount" resultType="_int">
 		select count(*)
@@ -28,6 +49,7 @@
 	<select id="selectProductList" resultMap="ProductResultSet">
 		select *
 		  from product
+		 order by product_no desc
 	</select>
 	
 	<insert id="insertProduct" parameterType="Product">
@@ -56,6 +78,35 @@
 		 where product_no=#{productNo}
 	</update>
 	
+	
+	
+	
+	
+	
+	<!--               관리자  / 리뷰관리                      -->
+	
+	<select id="selectReviewListCount" resultType="_int">
+		select count(*)
+		  from review
+	</select>
+	
+	<select id="selectReviewList" resultMap="ReviewResultSet">
+		select review_no, content, create_date, review_origin, review_change, review_filepath, rating, review_status, 
+			   m.user_id, m.user_name, p.product_name
+		  from review
+		  join member m using (user_no)
+		  join product p using (product_no)
+		 order by review_no desc
+	</select>
+	
+	<select id="selectReview" parameterType="_int" resultMap="ReviewResultSet">
+		select review_no, content, create_date, review_origin, review_change, review_filepath, rating, reviewStatus, 
+			   m.user_id, m.user_name, p.product_name
+		  from review
+		  join member m using (user_no)
+		  join product p using (product_no)
+		 where review_no=#{reviewNo}
+	</select>
 	
 	
 </mapper>

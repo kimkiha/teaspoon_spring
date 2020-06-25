@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.kh.teaspoon.common.model.vo.PageInfo;
 import com.kh.teaspoon.store.model.vo.Product;
+import com.kh.teaspoon.store.model.vo.Review;
 
 public interface StoreService {
 
@@ -26,6 +27,18 @@ public interface StoreService {
 
 	// 6. 상품 삭제용 서비스
 	int deleteProduct(int productNo);
+
+	// 7. 전체리뷰 갯수 조회용 서비스
+	int selectReviewListCount();
+
+	// 8. 전체 리뷰 조회용 서비스
+	ArrayList<Review> selectReviewList(PageInfo pi);
+
+	// 9.리뷰 상세보기용 서비스  
+	Review selectReview(int reviewNo);
+
+	// 10. 리뷰 삭제용 서비스
+	int deleteReview(int reviewNo);
 	
 
 }
