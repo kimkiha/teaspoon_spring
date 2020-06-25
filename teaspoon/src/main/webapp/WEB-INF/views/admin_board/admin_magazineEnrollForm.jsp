@@ -38,12 +38,11 @@
                 		<table>
                  		   	<tr>
 	                  		   	<td width="120" class="tb_title">제목</td>
-	                  		   	<td class="tb_content"><input type="text" style="width:100%" name="title" required></td>
+	                  		   	<td class="tb_content"><input type="text" style="width:100%" name="boardTitle" required></td>
                  		   	</tr>
                  		   	<tr>
                  		   		<td class="tb_title">대표이미지</td>
-                 		   		<td class="tb_content"><img id="titleImg" width="150" height="120" required></td>
-                 		   		
+                 		   		<td class="tb_content"><img id="titleImg" name="thumb" width="150" height="120" required></td>
                  		   	</tr>
                		    </table>
               		    <div class="c_div_cont">
@@ -53,44 +52,8 @@
 						<div id="fileArea">
 							<input type="file" name="file1" id="file1" onchange="loadImg(this,1);">
 						</div>
-                         
-                                
-                                <!--  <textarea name="content" cols="70" rows="5" style="resize:none" required></textarea></td>
-                           		-->
-                           		<!--
-                           		                           		  <div id="toolbar-container" style="float:left; width:705px; padding:0"></div>
-								  <div id="editor" name="contents" style="float:left; width:705px; height:100%; margin-top:10px; border:1px solid lightgray; font-size:18px">
-								   
-								  </div>
-								  <script>
-								    DecoupledEditor
-								    .create( document.querySelector( '#editor' ) )
-								    .then( editor => {
-								        const toolbarContainer = document.querySelector( '#toolbar-container' );
-								
-								        toolbarContainer.appendChild( editor.ui.view.toolbar.element );
-								    } )
-								    .catch( error => {
-								        console.error( error );
-								    } );
-								   </script>
-								     -->
-                            <!-- 
-                            <tr>
-                                <th>썸네일</th>
-                                <td style="height: 120px;">
-                                    <img id="titleImg" width="150">
-                                </td>
-                            </tr>
-                             -->
-                        <!--
-                        <br>
-                        <div id="fileArea">
-                            <input type="file" name="file1" id="file1" onchange="loadImg(this);">
-                        </div>
-                        <br>-->
                         <div class="btns" style="margin-top:20px">
-                            <button type="button" style="width: 100px;"><a href="magazineAdminList.bo">목록으로</a></button>
+                            <button type="button" style="width: 100px;" onclick="javascript:history.go(-1);">목록으로</button>
                             <button type="submit" id="sb_btn" style="width: 100px;">등록하기</button>
                         </div>
                     </form>
@@ -130,102 +93,56 @@
 			}
 		</style>
     <script>
-    $(function(){
-
-        $('span').removeClass('note-icon-caret');
-    });
-    
-    $(document).ready(function() {
-        // 1. 단순히 에디터 폼만 보이게 하는거
-        //$("#summernote").summernote();
-        
-        // 2. 추가적인 속성들 부여 가능
-        // 간단하게 사이즈 조정(width, height) / 미리보기 값(placeholder)
-        $('#summernote').summernote({
-           //placeholder:" ",
-           //tabsize: 2,
-            height: 150,
-            width:800/* ,
-            toolbar: [
-                // [groupName, [list of button]]
-                ['Font Style', ['fontname']],
-                ['style', ['bold', 'italic', 'underline']],
-                ['font', ['strikethrough']],
-                ['fontsize', ['fontsize']],
-                ['color', ['color']],
-                ['para', ['paragraph']],
-                ['height', ['height']],
-                ['Insert', ['picture']]
-             ] */
-            
-        });
-     });
-	
-
-    /* $('#sb_btn').on('click', function(){
-        $('#summernote').append('<input type="hidden" name="Content", id="Content" />');
-        $('#Content').val($('.summernote').code());
-        $('#magazineInsertForm').submit();
-    }) */
-
-		/*
-		function loadImg(inputFile){
-			// inputFile : 현재 변화가 생긴 input type="file" 요소
-			
-			// [참고] https://developer.mozilla.org/ko/docs/Web/API/FileReader
-			
+	    $(function(){
+	        $('span').removeClass('note-icon-caret');
+	    });
+	    
+	    $(function() {
+	        // 1. 단순히 에디터 폼만 보이게 하는거
+	        //$("#summernote").summernote();
+	        
+	        // 2. 추가적인 속성들 부여 가능
+	        // 간단하게 사이즈 조정(width, height) / 미리보기 값(placeholder)
+	        $('#summernote').summernote({
+	           //placeholder:" ",
+	           //tabsize: 2,
+	            height: 300,
+	            width:800/* ,
+	            toolbar: [
+	                // [groupName, [list of button]]
+	                ['Font Style', ['fontname']],
+	                ['style', ['bold', 'italic', 'underline']],
+	                ['font', ['strikethrough']],
+	                ['fontsize', ['fontsize']],
+	                ['color', ['color']],
+	                ['para', ['paragraph']],
+	                ['height', ['height']],
+	                ['Insert', ['picture']]
+	             ] */
+	            
+	        });
+	     });
+		$(function(){
+			$("#fileArea").hide();
+			$("#titleImg").click(function(){
+				$("#file1").click();
+			});
+		});
+		function loadImg(inputFile, num) {
 			//file이 존재할 경우 --> inputFile요소의 files속성인 배열의 0번 인덱스에  파일이 담김
-			if(inputFile.files.length == 1){
+			if (inputFile.files.length == 1) {
 				// 파일을 읽어들일 FileReader 객체생성
 				var reader = new FileReader();
-				
 				//파일을 읽어주는 메소드 --> 해당 파일을 읽어들이는 순간 해당 파일만의 고유한 url부여
 				reader.readAsDataURL(inputFile.files[0]);
-				
-				//파일 읽기가 완료 되었을때 실행할 메소드
 				// e : 현재 이벤트가 발생한 이벤트객체
-				reader.onload = function(e){
-					$("#titleImg").attr("src", e.target.result);
+				reader.onload = function(e) {
+					switch (num) {
+					case 1: $("#titleImg").attr("src", e.target.result); break;
 					}
 				};
-					
-			};
-			*/
-			
-			$(function(){
-				$("#fileArea").hide();
-				
-				$("#titleImg").click(function(){
-					$("#file1").click();
-				});
-			});
-
-			function loadImg(inputFile, num) {
-				// inputFile : 현재 변화가 생긴 input type="file" 요소
-				// num : 몇번째 input 요소인지 확인 후 해당 영역에 미리보기 하려고 받는 숫자값
-
-				// [참고] https://developer.mozilla.org/ko/docs/Web/API/FileReader
-
-				//file이 존재할 경우 --> inputFile요소의 files속성인 배열의 0번 인덱스에  파일이 담김
-				if (inputFile.files.length == 1) {
-					// 파일을 읽어들일 FileReader 객체생성
-					var reader = new FileReader();
-
-					//파일을 읽어주는 메소드 --> 해당 파일을 읽어들이는 순간 해당 파일만의 고유한 url부여
-					reader.readAsDataURL(inputFile.files[0]);
-
-					//파일 읽기가 완료 되었을때 실행할 메소드
-					// e : 현재 이벤트가 발생한 이벤트객체
-					reader.onload = function(e) {
-						switch (num) {
-						case 1: $("#titleImg").attr("src", e.target.result); break;
-
-						}
-					};
-
-				}
-
 			}
+		}
 	</script>
 </body>
 </html>

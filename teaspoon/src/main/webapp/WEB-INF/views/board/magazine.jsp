@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" %>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,33 +29,33 @@
         </div>
         <!-- //banner -->
           <div id="content">
-            <!-- magazine -->
+            <!-- contaniner -->
                 <div class="contaniner" >
-                <!-- magazine -->
-                    <div id="magazine">
+                <!-- magazine 내용 -->
+                    <div id="magazine" style="border:1px solid red">
                         <div id="line_one">
-                        	<%-- <%for(Board b : list) {%>
-                                <div class="first_mz">
+                        	<c:forEach items="${list }" var="r">
+                        		<div class="first_mz">
                                     <div class="effect-wrap">
                                         <figure class="effect7">
-                                            <img style="width:100%;height:100%;"src="<%=contextPath%>/resources/img/board/<%=b.getChangeName() %>" alt="" > 
+                                            <img style="width:100%;height:100%;"src="${ pageContext.servletContext.contextPath }/resources/img/board/${r.changeName}" alt="" > 
                                             <figcaption>
                                                 <h3>KNOW THAT EAT</h3>
-                                                <p>알고마시면 더 맛있는 커피이야기</p>
-                                                <p><%=b.getBoardTitle() %></p>
-                                                 <a href="<%=contextPath%>/magazineDetail.bo?bno=<%=b.getBoardNo() %>" class="read">매거진 보기+</a>
+                                                <p>${r.smallTitle}</p>
+                                                <p>${r.board_title }</p>
+                                                 <a href="${ pageContext.servletContext.contextPath }/magazineDetail.bo?bno=${r.boardNo}" class="read">매거진 보기+</a>
                                             </figcaption>
                                         </figure>
                                     </div>
                                 </div>
-                              <%} %> --%>
+                        	</c:forEach>
                         </div>
                     </div>
-                
-        
+            <!-- //매거진 -->
                 </div>
+                
+            <!-- //contaniner -->
           </div>
-            <!-- 매거진 -->
             <jsp:include page="../common/footer.jsp"/>
         <!-- //footer-->
     </div>

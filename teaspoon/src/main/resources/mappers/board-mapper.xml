@@ -2,5 +2,41 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="boardMapper">
+	<resultMap type="Board" id="boardResultSet">
+		<id column="BOARD_NO" property="boardNo"/>
+		<result column="BOARD_CATEGORY" property="boardCategory"/>
+		<result column="BOARD_TITLE" property="board_title"/>
+		<result column="BOARD_CONTENT" property="boardContent"/>
+		<result column="COUNT" property="boardCount"/>
+		<result column="CREATE_DATE" property="createDate"/>
+		<result column="MODIFY_DATE" property="modifyDate"/>
+		<result column="STATUS" property="status"/>
+		<result column="SMALL_TITLE" property="smallTitle"/>
+		<result column="END_DATE" property="endDate"/>
+		<result column="FILE_NO" property="fileNo"/>
+		<result column="REF_BNO" property="refBno"/>
+		<result column="ORIGIN_NAME" property="originName"/>
+		<result column="CHANGE_NAME" property="changeName"/>
+		<result column="FILE_PATH" property="filePath"/>
+		<result column="UPLOAD_DATE" property="uploadDate"/>
+		<result column="FILE_LEVEL" property="fileLevel"/>
+		<result column="FILE_STATUS" property="fileStatus"/>
+		<result column="BOARD_LEVEL" property="boardLevel"/>
+	</resultMap>
+
+<!-- 매거진 페이징바 카운트 -->
+	<select id="selectMagazineListCount" resultType="_int">
+		select count(*)
+		from board
+		where board_category = 20
+	</select>
+<!-- 매거진  -->
+	<select id="selectMagazineList" resultMap="boardResultSet">
+		select *
+		  from board
+		  join attachment on(board_no = ref_bno)
+		 where status = 'Y'
+	</select>
+
 
 </mapper>

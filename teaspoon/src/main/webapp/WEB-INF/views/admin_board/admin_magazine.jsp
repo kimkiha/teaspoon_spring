@@ -47,40 +47,56 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            
 								<tr>
 									<td colspan="8">조회된 리스트가 없습니다.</td>
 								</tr>
-								
-										<tr>
-											<td></td>
-											<td></td>
-											<td></td>
-											<td></td>
-											<td class="status"></td>
-		                                    <td>
-	                                        <button><a href="magazineUpdateForm.bo?bno=">수정</a></button>
-	                                        <button><a href="magazineDelete.bo?bno=">삭제</a></button>
-                                   			</td>
-										</tr>
-									
+								<tr>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td class="status"></td>
+                                    <td>
+                                       <button><a href="magazineUpdateForm.bo?bno=">수정</a></button>
+                                       <button><a href="magazineDelete.bo?bno=">삭제</a></button>
+                           			</td>
+								</tr>
+							</tbody>
                       </table>
                     </div>
                 </div>
-                <div id="c1_2">
-
-                </div>
-                <div id="c1_3">
-                       <a>&lt;</a>
-                   <button>1</button>
-                   <button>2</button>
-                   <button>3</button>
-                   <button>4</button>
-                   <button>5</button>
-                   <a>&gt;</a>
-                </div>
-               
-               
+                 <c:if test="${ !empty list }">
+	                    <div id="pagingArea" style="margin-top: 22px;">
+	                       <c:choose>
+			                	<c:when test="${ noReplyPi.currentPage eq 1 }">
+				                    <a href="#">&lt;</a>
+				                </c:when>
+				                <c:otherwise>
+			                    	<a href="reviewList.re?currentPage=${ noReplyPi.currentPage -1 }">&lt;</a>
+			                    </c:otherwise>
+		                    </c:choose>
+		                    
+					        <c:forEach var="p" begin="${ noReplyPi.startPage }" end="${ noReplyPi.endPage }">
+		                    	<c:choose>
+		                    		<c:when test="${ p eq noReplyPi.currentPage }">
+			                    		<a href="#">${p}</a>
+			                    	</c:when>
+			                    	<c:otherwise>
+			                    		<a class="page-link" href="reviewList.re?currentPage=${ p }">${p}</a>
+			                    	</c:otherwise>
+			                    </c:choose>
+		                    </c:forEach>
+		                    
+					        <c:choose>
+		                    	<c:when test="${ noReplyPi.currentPage eq noReplyPi.maxPage }">
+				                    <a>&gt;</a>
+				                </c:when>
+				                <c:otherwise>
+				                    <a href="reviewList.re?currentPage=${ noReplyPi.currentPage +1 }">&gt;</a>
+				                </c:otherwise>
+		                    </c:choose>
+	                    </div>
+                    </c:if>
             </div>
         </div>
         
