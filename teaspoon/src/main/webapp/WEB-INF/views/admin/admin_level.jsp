@@ -40,7 +40,7 @@
                                     <th>최소달성금액</th>
                                     <th>등급별할인률</th>
                                     <th>
-                                        <button id="btnInsertForm" type="button" style="width: 100px;" >상위등급추가</button>
+                                        <button id="btnInsertForm" type="button" style="width: 100px;" >등급추가</button>
                                     </th>
                                 </tr>
                             </tbody>
@@ -52,7 +52,7 @@
 						</tr>
 					</c:if>
 					<c:forEach var="g" items="${gList }" varStatus="status" >
-						<tr class="grade">
+						<tr class="gradeList">
 							<td>${g.gradeNo }</td>
 							<td>${g.gradeName }</td>
 							<td>${g.minAcount}</td>
@@ -66,7 +66,7 @@
 							<c:otherwise>
 								<td>
 								<button type="button" class="btnUpdateForm">수정</button>
-								<button type="button" class="deleteButtondeleteButtondeleteButton">삭제</button>
+								<button type="button" class="deleteButton">삭제</button>
 								</td>
 							</c:otherwise>
 							</c:choose>
@@ -87,25 +87,23 @@
                             <tr>
                                 <th>등급번호</th>
                                 <th>등급명</th>
-                                <th>최소달성금액</th>
+                                <th>등급달성금액</th>
                                 <th>등급별할인률</th>
                                 <th></th>
-                                
-                                </tr>
+                            </tr>
                         </tbody>
                        
                           <tfoot>
                               <tr>
                                   <td><input type="text" value="자동생성" disabled></td>
                                   <td><input type="text" id="gradeName" name="gradeName" placeholder="추가할등급명" required></td>
-                                  <td><input type="number" id="minMoney" name="minMoney" placeholder="최소달성금액" required></td>
-                                  <td><input type="number" id="discontRate" name="discontRate" placeholder="추가할할인률" required></td>
+                                  <td><input type="number" id="minMoney" name="minAcount" placeholder="최소달성금액" required></td>
+                                  <td><input type="number" id="discountRate" name="gradeRate" placeholder="추가할할인률" required></td>
                                   <td>
-                                   <button type="button"  style="width: 70px;" id="enroll" >등록</button>
+                                   <button type="submit"  style="width: 70px;" id="enroll" onclick="return enrollGrade();" >등록</button>
                                    <button type="reset"  style="width: 70px;">취소</button>
                                    </td>
-                                  </tr>
-
+                              </tr>
                           </tfoot>
                          
                   </table>
@@ -125,30 +123,25 @@
                        
                           <tfoot>
                               <tr>
-                             	     <input type="hidden" id="maxGradeCheck" name="maxGradeCheck">
-                             		 <input type="hidden" id="gno" name="gno">
                                   <td><input type="text" id="gNo" name="gNo" disabled="disabled"></td>
                                   <td><input type="text" id="updateGradeName" name="updateGradeName" placeholder="수정할등급명" required></td>
                                   <td><input type="number" id="updateMinMoney" name="updateMinMoney" placeholder="수정할최소금액" required></td>
                                   <td><input type="number" id="updateDiscountRate" name="updateDiscountRate" placeholder="수정할할인률" required></td>
                                   <td>
-                                  
                                       <button type="submit" id="btnUpdate" style="width: 70px;" onclick="return updateGrade();">수정</button>
                                       <button type="reset"  style="width: 70px;">취소</button>
                                    </td>
                                   </tr>
 
                           </tfoot>
-                         
-                  </table>
+                	 </table>
                    </form>
                  
                 </div>
-               
-               
+
             </div>
         </div>
-    </div>  
+     
     
     
     <form id="deleteGrade" action="deleteGrade.me" method="post">
@@ -186,45 +179,52 @@
     		})
     		
     	});
-    <%-- 	
-    	$(function(){
-    		$("#enroll").click(function(){
-    			var gradeCount = <%=gList.size()%>;
-    			var gradeName = $("#gradeName").val();
-    			var minMoney = $("#minMoney").val();
-    			var discountRate = $("#discontRate").val();
-				
-    			var maxGradeMinAcount = <%=gList.get(gList.size()-1).getMinAcount()%>;
-    			var maxGradeRate = <%=gList.get(gList.size()-1).getGradeRate()%>;
-    			
-    			
-				
-    			if(gradeName == ''){
-    				alert("등급명을 입력하세요.");
-    				
-    			}else if(minMoney == ''){
-    				alert("달성금액을 입력하세요.");
-    				
-    			}else if(discountRate == ''){
-    				alert("할인률을 입력하세요.");
-    				
-    			}else if(gradeCount>=10){
-    				alert("등급 10개 초과로 추가가 불가능합니다.");
-    			}else if(maxGradeMinAcount>=minMoney){
-    				alert("하위 등급보다 달성금액이 작거나 같을 수 없습니다.");
-    			}else if(maxGradeRate>=discountRate){
-    				alert("하쉬 등급보다 할인률이 작거나 같을 수 없습니다.");
-    			}else if($("#minMoney").val() > <%=gList.get(gList.size()-1).getMinAcount()%>){
-    				$("#maxGradeName").val(gradeName);
-    				$("#maxMinMoney").val(minMoney);
-    				$("#maxDiscountRate").val(discountRate);
-    				
-    				$("#maxGradeForm").submit();
-    			}else{
-    				$("#levelInsertForm").submit();
-    			}
-    		});
-    	});--%>
+    	
+    	function enrollGrade(){
+			var gradeCount = "${fn:length(gList)}";
+			
+			var addMinMoney = $("#minMoney").val();
+			var addDiscountRate = $("#discountRate").val();
+			var checked = true;
+			
+			$(".gradeList").each(function() { 
+					    var gListMinmoney = $(this).children().eq(2).text();
+					    var gListDiscountRate = $(this).children().eq(3).text();
+					    
+					    if(addMinMoney == gListMinmoney){
+					    	alert("같은 금액에 등급이 존재합니다.");
+					    	checked = false;
+					    	return;
+					    }else if(addDiscountRate == gListDiscountRate){
+					    	alert("같은 할인률에 등급이 존재합니다.");
+					    	checked = false;
+					    	return;
+					    }else if((addMinMoney > gListMinmoney) && (addDiscountRate < gListDiscountRate)){
+					    	alert("상위 등급에 할인률이 더 작을수 없습니다.");
+					    	checked = false;
+					    	return;
+					    }else if((addMinMoney < gListMinmoney) && (addDiscountRate > gListDiscountRate)){
+					    	alert("하위 등급에 할인률이 더 클수 없습니다.");
+					    	checked = false;
+					    	return;
+					    }
+					});
+		
+			
+			if(gradeCount == 10){
+				alert("10개  등급 이상은 추가가 불가능합니다.");
+				return false;
+			}
+			
+			if(checked == false){
+				return false;
+			}
+			
+			return true;
+    	}
+    	
+    		
+    
     </script>  
     
     <script>

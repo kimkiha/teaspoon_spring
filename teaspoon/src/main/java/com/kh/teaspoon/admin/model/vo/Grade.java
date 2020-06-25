@@ -16,5 +16,5 @@ public class Grade {
 	private int gradeNo;
 	private String gradeName;
 	private int minAcount;
-	private double gradeRate;
+	private int gradeRate;
 }
