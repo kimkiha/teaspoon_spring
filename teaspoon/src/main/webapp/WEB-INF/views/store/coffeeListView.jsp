@@ -43,10 +43,10 @@
 							<!-- listArea -->
 							<c:choose>
 								<c:when test="${ !empty list }">
-									<c:forEach items="${ list }" var="p">
+									<c:forEach items="${ list }" var="p" varStatus="status" >
 										<div class="product" style="margin-top: 50px; margin-right: 30px;">
-											<div class="product_img" id="ppp" >
-												<input type="hidden" name="productNo" value=${ p.productNo }> 
+											<div class="product_img">
+												<input type="hidden" class="productNo${status.index}" name="productNo" value=${ p.productNo }> 
 												<img src="${pageContext.servletContext.contextPath}/resources/uploadFiles/${ p.productChange }"
 													style="float: left; width: 300px; height: inherit">
 											</div>
@@ -112,35 +112,38 @@
 <script>
 // 개별 상품의 상세 페이지로 이동
 $(function() {
-	$("#ppp").click(function() {
+	$(".product_img").click(function() {
 		var productNo = $(this).children().eq(0).val();
 		location.href = "coffeeDetail.st?productNo=" + productNo;
 	});
 });
 
-/*
+
 // 페이지로딩시 로그인한 유저의 위시리스트 목록조회
 $(function() {
 	selectWishList();
+	
 });
 
 function selectWishList() {
 
 	var icon = $('.like_icon');
 	var loginUser = '${loginUser}';
+	
 	if(loginUser != null) {
 		$.ajax({
-			url : "selectWish.st",
+			url : "selectWish.st",	
 			type : "post",
-			success : function(list) {
-				for (var i = 0; i < 12; i++) {
-					var p = '.pcode' + i;
+			success : function(list) {	// list == 로그인한 유저의 위시리스트 목록
+				//console.log(list);
+				for (var i = 0; i < 12; i++) {	// 페이지에 있는 최대12개의 상품번호와 위시리스트에 있는 상품번호를 비교
+					var p = '.productNo' + i;
 					for (var j = 0; j < list.length; j++) {
-						if ($(p).val() == list[j].productNo) {
+						if ($(p).val()==list[j].productNo) {
 							var heart = $(p).parent().siblings().eq(1).children();
 							heart.removeClass("empty");
 							heart.addClass("full");
-							heart.attr("src","resources/images/store/heart_full.png");
+							heart.attr("src","${pageContext.servletContext.contextPath}/resources/images/store/heart_full.png");
 						}
 					}
 				}
@@ -151,11 +154,12 @@ function selectWishList() {
 	}
 }
 
+
 // 위시리스트 등록 ajax
 $(function() {
 	$('.like_icon').click(function() {
 		var productNo = $(this).parent().siblings([ ".product_img" ]).children().eq(0).val();
-		//console.log(pcode1);
+		//console.log(productNo);
 		var icon = $(this);
 		if (icon.attr("class") == "like_icon empty") { // 빈 하트일 경우 --> 위시리스트 등록
 			$.ajax({
@@ -165,19 +169,19 @@ $(function() {
 					if (result > 0) {
 						icon.removeClass("empty");
 						icon.addClass("full");
-						icon.attr("src","resources/images/store/heart_full.png");
+						icon.attr("src","${pageContext.servletContext.contextPath}/resources/images/store/heart_full.png");
 						var bool = window.confirm("위시리스로 등록되었습니다. 위시리스트로 이동하시겠습니까?");
 						if (bool) {
-							location.href = "wishList.me";
+							//location.href = "wishList.me";
 						}
 					} else if (result < 0) {
-						$("#dPcode").val(productNo);
-						$("#duplicateDeletePcode").submit();
+						//$("#dPcode").val(productNo);
+						//$("#duplicateDeletePcode").submit();
 					} else if (result == 0) {
 						window.alert("로그인이 필요한 서비스입니다.");
 					}
 				},error : function() {
-						console.log("통신에러1");
+					console.log("통신에러1");
 				}
 			});
 		} else { // 채워진 하트일 경우 --> 위시리스트 삭제
@@ -199,7 +203,7 @@ $(function() {
 			});
 		}
 	});
-});*/
+});
 </script>
 
     <jsp:include page="../common/footer.jsp"/>

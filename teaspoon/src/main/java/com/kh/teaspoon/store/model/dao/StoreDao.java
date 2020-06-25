@@ -89,6 +89,22 @@ public class StoreDao {
 		return sqlSession.selectOne("storeMapper.selectItem", productNo);
 	}
 
+	public ArrayList<Product> selectWish(SqlSessionTemplate sqlSession, int userNo) {
+		return (ArrayList)sqlSession.selectList("storeMapper.selectWish", userNo);
+	}
+
+	public int insertWish(SqlSessionTemplate sqlSession, Product p) {
+		return sqlSession.selectOne("storeMapper.insertWish", p);
+	}
+
+	public int selectOneWishList(SqlSessionTemplate sqlSession, Product p) {
+		return sqlSession.selectOne("storeMapper.selectOneWishList", p);
+	}
+
+	public int deleteWish(SqlSessionTemplate sqlSession, Product p) {
+		return sqlSession.selectOne("storeMapper.deleteWish", p);
+	}
+
 	
 	
 }

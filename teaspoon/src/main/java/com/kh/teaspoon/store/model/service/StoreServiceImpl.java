@@ -104,6 +104,27 @@ public class StoreServiceImpl implements StoreService{
 	public Product selectItem(int productNo) {
 		return stDao.selectItem(productNo, sqlSession);
 	}
+
+	@Override
+	public ArrayList<Product> selectWish(int userNo) {
+		return stDao.selectWish(sqlSession, userNo);
+	}
+
+	@Override
+	public int selectOneWishList(Product p) {
+		return stDao.selectOneWishList(sqlSession, p);
+	}
+
+	@Override
+	public int insertWish(Product p) {
+		return stDao.insertWish(sqlSession, p);
+	}
+
+	@Override
+	public int deleteWish(Product p) {
+		return stDao.deleteWish(sqlSession, p);
+	}
+
 	
 	
 

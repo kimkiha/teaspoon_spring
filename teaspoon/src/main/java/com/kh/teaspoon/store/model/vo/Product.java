@@ -45,7 +45,8 @@ public class Product {
 	private int cartNo;				// 장바구니번호
 	private Date madeDate;			// 생성일자
 	
-	
+	/* 위시리스트 테이블 */
+	private int userNo;				// 회원번호
 	
 	
 	

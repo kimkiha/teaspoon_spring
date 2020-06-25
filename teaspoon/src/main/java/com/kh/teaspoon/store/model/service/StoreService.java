@@ -62,6 +62,19 @@ public interface StoreService {
 
 	// 7. 아이템 상세조회용 서비스
 	Product selectItem(int productNo);
+
+	// 8. 로그인한 사용자의 위시리스트 목록 조회용 서비스
+	ArrayList<Product> selectWish(int userNo);
+
+	// 9. 위시리스트의 상품과 등록하려고 하는 상품이 일치하는지 확인하는 서비스
+	int selectOneWishList(Product p);
+
+	// 10. 위시리스트에 등록하는 서비스
+	int insertWish(Product p);
+
+	// 11. 위시리스트에서 삭제하는 서비스
+	int deleteWish(Product p);
+	
 	
 
 }
