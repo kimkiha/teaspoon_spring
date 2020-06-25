@@ -34,11 +34,20 @@
             <div id="c1">
                 <div class="outer">
                     <p>매거진 등록</p>
-                    <form id="magazineInsertForm" action="magazineInsert.bo" method="post" enctype="multipart/form-data">
+                    <form id="magazineInsertForm" action="insertMagazine.bo" method="post" enctype="multipart/form-data">
                 		<table>
                  		   	<tr>
 	                  		   	<td width="120" class="tb_title">제목</td>
 	                  		   	<td class="tb_content"><input type="text" style="width:100%" name="boardTitle" required></td>
+                 		   	</tr>
+                 		   	<tr>
+	                  		   	<td width="120" class="tb_title">소제목</td>
+	                  		   	<td class="tb_content">
+	                  		   	<select name="smallTitle" required>
+	                  		   		<option>커피의 탄생</option>
+	                  		   		<option>역사로 보는 커피</option>
+	                  		   	</select>
+	                  		   	</td>
                  		   	</tr>
                  		   	<tr>
                  		   		<td class="tb_title">대표이미지</td>
@@ -46,7 +55,7 @@
                  		   	</tr>
                		    </table>
               		    <div class="c_div_cont">
-                         		<textarea id="summernote" name="Content"></textarea>
+                         		<textarea id="summernote" name="boardContent"></textarea>
                          </div>
 	                         
 						<div id="fileArea">
@@ -76,7 +85,9 @@
 		 h2,
 		.h2,
 		 h3,
-		.h3 {
+		.h3, 
+		h4,
+		.h4{
 		  margin-top: 0;
 		  margin-bottom: 0;
 		 }
