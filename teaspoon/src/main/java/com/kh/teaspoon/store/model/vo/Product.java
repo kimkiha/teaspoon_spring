@@ -13,7 +13,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Store {
+public class Product {
 	
 	/* 상품 테이블 */
 	private int productNo;			// 상품번호
@@ -27,6 +27,7 @@ public class Store {
 	private String productChange;	// 썸네일 수정명
 	private String productFilepath;	// 썸네일 파일경로
 	private String productContents;	// 상품설명(summerNote)
+	private String kind;			// 상품종류
 	
 	/* 상품상세 테이블 */
 	private int detailNo;			// 상품상세번호 +상품번호,옵션코드
@@ -44,14 +45,7 @@ public class Store {
 	private int cartNo;				// 장바구니번호
 	private Date madeDate;			// 생성일자
 	
-	/* 리뷰테이블 */
-	private int reviewNo;			// 리뷰번호 +상품번호
-	private int userNo;				// 회원번호
-	private String content;			// 내용
-	private Date createDate;		// 작성일
-	private String reviewOrigin;	// 리뷰사진 원본명
-	private String reviewChange;	// 리뷰사진 수정명
-	private String reviewFilepath;	// 리뷰사진 파일경로
+	
 	
 	
 	

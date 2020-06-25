@@ -24,10 +24,9 @@ String randomKey = (String)request.getAttribute("randomKey");
 	
         <!-- //header -->
        
-       <!-- 	<form id="enrollForm" action="<%= contextPath %>/insert.me" method="post"> -->
+       <!-- <form id="enrollForm" action="insert.me" method="post"> -->
        		<div id="content" style="margin:0 auto">
         
-
             <!-- product -->
 
                 <!-- 1. 약관동의 페이지-->

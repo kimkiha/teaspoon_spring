@@ -19,7 +19,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap" rel="stylesheet">
    <link href="${pageContext.servletContext.contextPath}/resources/css/admin/admin_common.css" rel="stylesheet">
    
-<c:if test="${ !empty msg}" >
+	<c:if test="${ !empty msg}" >
 		<script>
 		alert('알림', '${msg}');
 		</script>
@@ -97,7 +97,7 @@
             <li class="c-li"><p class="click" style="margin: 0 0;" >상품관리</p>
             <ul class="deep">
             <li><a href="list.st?currentPage=1">상품수정/삭제/등록</a></li>
-            <li><a href="review.st?currentPage=1">상품리뷰</a></li>
+            <li><a href="list.re?currentPage=1">상품리뷰</a></li>
             </ul>
             </li>
             <br>

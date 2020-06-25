@@ -15,7 +15,7 @@
         <!-- //header -->
 
             <!-- product -->
-            <form id="modify" action="${ pageContext.servletContext.contextPath }/update.me" method="post">
+            <form id="modify" action="modify.me" method="post"> <!-- ${ pageContext.servletContext.contextPath }/update.me -->
             <div id="content" class="contaniner">
             
             <center style="padding:35px;">
@@ -31,14 +31,16 @@
                         <ul class=im1>
                         <tr>
                             <td style="font-size:20px; width: 250px; height:55px;" ><li>성 명</li></td>
-                            <td style= "text-align:left;" colspan="1"><input type="text" id="userName" name="username" placeholder="${ loginUser.UserName }" disabled></td>
+                            <td style= "text-align:left;" colspan="1"><input type="text" value="${ loginUser.userName }" disabled></td>
+                            <input hidden name="userName" value="${loginUser.userName}">
+                            <input hidden name="userId" value="${loginUser.userId}">
                              <td></td>       
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td style= "font-size:20px;"><li>생 년 월 일</li></td>
-                            <td style= "text-align:left;" colspan="1"><input type="number" id="birthday" type="birthday" placeholder="${ loginUser.UserName }" disabled>
+                            <td style= "text-align:left;" colspan="1"><input type="number" id="birthday" type="birthday" value="${ loginUser.birthday }" disabled>
                             <td></td>
                         </tr>
                         <tr>
@@ -61,12 +63,12 @@
 
                         <tr>
                             <td style= "font-size:20px;"><li>아 이 디</li></td>
-                            <td style= "text-align:left;"><input type="text" id="userId" name="UserId" placeholder="${ loginUser.UserName }" disabled></td>
+                            <td style= "text-align:left;"><input type="text" value="${ loginUser.userId }" disabled></td>
                             <td style= "font-size:15px; color:rgb(131, 2, 2); text-align:left; width:280px;"> </td>
                         </tr>
                         <tr>
                             <td style= "font-size:20px;"><li>비 밀 번 호</li></td>
-                            <td style= "text-align:left;"><input type="password" id="userPwd1" name="UserPwd1" placeholder=" 비밀번호는 6~16자 영문 대소문자, 숫자, 특수문자 중 최..."></td>
+                            <td style= "text-align:left;"><input type="password" id="userPwd1" name="UserPwd" placeholder=" 비밀번호는 6~16자 영문 대소문자, 숫자, 특수문자 중 최..."></td>
                             <td style= "font-size:15px; color:rgb(131, 2, 2); text-align:left;"> </td>
                         </tr>
                         <tr>
@@ -76,7 +78,7 @@
                         </tr>
                         <tr>
                             <td style= "font-size:20px;"><li>이 메 일</li></td>
-                            <td style= "text-align:left;"><input type="text" id="email" name="Email" placeholder="이메일"></td>
+                            <td style= "text-align:left;"><input type="text" id="email" name="Email" placeholder="이메일" value="${ loginUser.email }"></td>
                             <td></td>
                         </tr>
                     </ul>          
@@ -84,11 +86,12 @@
                 </table>
               </center>
               </div>
+              <button type="submit" class="btnenroll3" id="Modify_1" onclick="return check();">수정완료</button>
               </form>
             <!-- 2_1. (정보입력)본인인증 및 회원가입 버튼-->
             
            
-            <button type="submit" class="btnenroll3" id="Modify_1" onclick="check();">수정완료</button>
+            
             </div>
     	
     	
@@ -138,16 +141,17 @@
              // 3) 이메일 유효성검사
              //mail이 입력되었는지 확인하기
              emailRegExp = /^[A-Za-z0-9_]+[A-Za-z0-9]*[@]{1}[A-Za-z0-9]+[A-Za-z0-9]*[.]{1}[A-Za-z]{1,3}$/;
-                if (!emailRegExp.test(email.value)) {
-                    alert("이메일 형식이 올바르지 않습니다!");
-                    form.email.value = "";
-                    form.email.focus();
-                    return false;
-                 }
+             if (!emailRegExp.test(email.value)) {
+                 alert("이메일 형식이 올바르지 않습니다!");
+                 form.email.value = "";
+                 form.email.focus();
+                 return false;
+             }
     				
-    			$("#Modify_final").submit();
-    				
-              	}
+            return true;
+   			/* $("#Modify_final").submit(); */
+   				
+       	}
        	 	
     	</script>
  
