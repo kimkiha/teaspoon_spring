@@ -171,5 +171,14 @@
 		values(#{userNo}, #{productNo}, sysdate)
 	</insert>
 	
+	<delete id="deleteWish" parameterType="Product">
+		delete from wish_list
+		 where user_no=#{userNo} and product_no=#{productNo}
+	</delete>
 	
+	<select id="selectOneWishList" resultType="_int" >
+		select count(*)
+		  from wish_list
+		 where user_no=#{userNo} and product_no=#{productNo}
+	</select>
 </mapper>

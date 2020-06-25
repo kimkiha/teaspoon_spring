@@ -273,7 +273,7 @@ public class StoreController {
 	}
 	
 	@RequestMapping("insertWish.me")
-	public void insertWish(int productNo, HttpSession session, HttpServletResponse response) throws JsonIOException, IOException {
+	public void insertWish(int productNo, HttpSession session, HttpServletResponse response) throws JsonIOException, IOException, NullPointerException {
 		Member loginUser  = (Member)session.getAttribute("loginUser");
 		Gson gson = new Gson();
 		response.setContentType("aplication/json; charset=utf-8");
@@ -289,7 +289,11 @@ public class StoreController {
 			p.setUserNo(userNo);
 			p.setProductNo(productNo);
 			
+			//System.out.println(productNo);
+			
 			int count = stService.selectOneWishList(p);
+			
+			//System.out.println(count);
 			if(count >0) {
 				result=-1;
 				gson.toJson(result, response.getWriter());
@@ -301,7 +305,7 @@ public class StoreController {
 	}
 	
 	@RequestMapping("deleteWish.me")
-	public void deleteWish(int productNo, HttpSession session, HttpServletResponse response) throws JsonIOException, IOException {
+	public void deleteWish(int productNo, HttpSession session, HttpServletResponse response) throws JsonIOException, IOException, NullPointerException {
 		Member loginUser  = (Member)session.getAttribute("loginUser");
 		int userNo = loginUser.getUserNo();
 		
@@ -309,7 +313,11 @@ public class StoreController {
 		p.setUserNo(userNo);
 		p.setProductNo(productNo);
 		
-		int result=stService.deleteWish(p);
+		//System.out.println(productNo);
+		
+		int result = stService.deleteWish(p);
+		
+		//System.out.println(result);
 				
 		Gson gson = new Gson();
 		response.setContentType("aplication/json; charset=utf-8");
