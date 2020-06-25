@@ -39,6 +39,29 @@ public interface StoreService {
 
 	// 10. 리뷰 삭제용 서비스
 	int deleteReview(int reviewNo);
+
+	/* -------------------- 사용자 ----------------------- */
+	
+	// 1. 커피상품 갯수 조회용 서비스 
+	int selectCoffeeListCount();
+	
+	// 2. 커피상품 목록 조회용 서비스 
+	ArrayList<Product> selectCoffeeList(PageInfo pi);
+
+	// 3. 커피상품 상세조회용 서비스
+	Product selectCoffee(int productNo);
+
+	// 4. 베스트 상품 조회용 서비스
+	ArrayList<Product> selectBest();
+
+	// 5. 아이템 갯수 조회용 서비스
+	int selectItemListCount();
+
+	// 6. 해당페이지의 아이템 조회용 서비스
+	ArrayList<Product> selectItemList(PageInfo pi);
+
+	// 7. 아이템 상세조회용 서비스
+	Product selectItem(int productNo);
 	
 
 }

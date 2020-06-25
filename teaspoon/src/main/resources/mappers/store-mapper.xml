@@ -109,4 +109,53 @@
 	</select>
 	
 	
+	<!--                        사용자 페이지                                           -->
+	
+	<select id="selectCoffeeListCount" resultType="_int">
+		select count(*)
+		  from product
+		 where status='Y' and kind='c'
+	</select>
+	
+	<select id="selectCoffeeList" resultMap="ProductResultSet">
+		select * 
+		  from product
+		 where status='Y' and kind='c'
+		 order by product_no desc
+	</select>
+	
+	<select id="selectCoffee" resultMap="ProductResultSet" parameterType="_int">
+		select *
+		  from product
+		 where status='Y' and kind='c' and product_no=#{productNo}
+	</select>
+	
+	<select id="selectBest" resultMap="ProductResultSet">
+		select * 
+		  from (select *
+		  		from product
+	 	 		order by total_count desc)
+	 	 <![CDATA[where rownum <= 16]]>
+	</select>
+	
+	<select id="selectItemListCount" resultType="_int">
+		select count(*)
+		  from product
+		 where status='Y' and kind='i'
+	</select>
+	
+	<select id="selectItemList" resultMap="ProductResultSet">
+		select * 
+		  from product
+		 where status='Y' and kind='i'
+		 order by product_no desc
+	</select>
+	
+	<select id="selectItem" resultMap="ProductResultSet" parameterType="_int">
+		select *
+		  from product
+		 where status='Y' and kind='i' and product_no=#{productNo}
+	</select>
+	
+	
 </mapper>

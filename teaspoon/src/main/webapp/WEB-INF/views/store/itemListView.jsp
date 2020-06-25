@@ -41,31 +41,68 @@
                         <div id="productList">
                         
                         	<!-- listArea -->
-                            <div class="product" style="margin-top:50px; margin-right:30px;">
-                                <div class="product_img">
-                            		<input type="hidden" class="pcode" name="pcode" value=${ p.productNo }>
-                                    <img src="${pageContext.servletContext.contextPath}/resources/thumbnail_upfiles/${ p.productChange }" style="float:left; width:300px; height:inherit">
-                                </div>
-                                <div class="product_detail" style="width:300px; height:60px; padding:0px">
-                                    <p style="padding-top:20px;padding-left:12px;">${ p.productName }</p>
-                                </div>
-                                <div class="like">
-                                    <img class="like_icon empty" src="${pageContext.servletContext.contextPath}/resources/images/store/heart_emtpy.png" onclick="wishList();">
-                                </div>
-                                <div class="basket">
-                                    <img id="open" class="basket_icon" src="${pageContext.servletContext.contextPath}/resources/images/store/cart.png">
-                                </div>
-                                <div class="modal">
-                                        <div class="modal_content">
-                                            <p>장바구니로 이동하시겠습니까?</p>
-                                            <button class="gobasket">장바구니보기</button>
-                                            <button class="close">계속쇼핑</button>
-                                        </div>
-                                </div>
-                            </div>
+							<c:choose>
+								<c:when test="${ !empty list }">
+									<c:forEach items="${ list }" var="p">
+										<div class="product" style="margin-top: 50px; margin-right: 30px;">
+											<div class="product_img" id="ppp" >
+												<input type="hidden" name="productNo" value=${ p.productNo }> 
+												<img src="${pageContext.servletContext.contextPath}/resources/uploadFiles/${ p.productChange }"
+													style="float: left; width: 300px; height: inherit">
+											</div>
+											<div class="product_detail" style="width: 300px; height: 60px; padding: 0px">
+												<p style="padding-top: 20px; padding-left: 15px;">${ p.productName }</p>
+											</div>
+											<div class="like">
+												<img class="like_icon empty" src="${pageContext.servletContext.contextPath}/resources/images/store/heart_emtpy.png">
+											</div>
+											<div class="basket">
+												<img id="open" class="basket_icon" src="${pageContext.servletContext.contextPath}/resources/images/store/cart.png">
+											</div>
+										</div>
+									</c:forEach>
+								</c:when>
+								<c:otherwise>
+									<br><br>
+									<p style="height:500px;">등록된 상품이 없습니다</p>
+									<br><br>
+								</c:otherwise>
+							</c:choose>
+							<!-- //listArea -->
+							
                         </div>
                         <div id="paging" class="pagination">
-                            
+                            <c:if test="${ !empty list }">
+								<c:choose>
+									<c:when test="${ pi.currentPage eq 1 }">
+										<a href="#">&lt;</a>
+									</c:when>
+									<c:otherwise>
+										<a href="item.st?currentPage=${ pi.currentPage -1 }">&lt;</a>
+									</c:otherwise>
+								</c:choose>
+
+								<c:forEach var="a" begin="${ pi.startPage }"
+									end="${ pi.endPage }">
+									<c:choose>
+										<c:when test="${ a eq pi.currentPage }">
+											<a href="#">${a}</a>
+										</c:when>
+										<c:otherwise>
+											<a class="page-link" href="item.st?currentPage=${ a }">${a}</a>
+										</c:otherwise>
+									</c:choose>
+								</c:forEach>
+
+								<c:choose>
+									<c:when test="${ pi.currentPage eq pi.maxPage }">
+										<a>&gt;</a>
+									</c:when>
+									<c:otherwise>
+										<a href="item.st?currentPage=${ pi.currentPage +1 }">&gt;</a>
+									</c:otherwise>
+								</c:choose>
+							</c:if>
                             
                             
                             

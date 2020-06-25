@@ -57,6 +57,38 @@ public class StoreDao {
 		return sqlSession.update("storeMapper.deleteReview", reviewNo);
 	}
 
+	public int selectCoffeeListCount(SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("storeMapper.selectCoffeeListCount");
+	}
+
+	public ArrayList<Product> selectCoffeeList(PageInfo pi, SqlSessionTemplate sqlSession) {
+		int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		return (ArrayList)sqlSession.selectList("storeMapper.selectCoffeeList", null, rowBounds);
+	}
+
+	public Product selectCoffee(SqlSessionTemplate sqlSession, int productNo) {
+		return sqlSession.selectOne("storeMapper.selectCoffee", productNo);
+	}
+
+	public ArrayList<Product> selectBest(SqlSessionTemplate sqlSession) {
+		return (ArrayList)sqlSession.selectList("storeMapper.selectBest");
+	}
+
+	public int selectItemListCount(SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("storeMapper.selectItemListCount");
+	}
+
+	public ArrayList<Product> selectItemList(PageInfo pi, SqlSessionTemplate sqlSession) {
+		int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		return (ArrayList)sqlSession.selectList("storeMapper.selectItemList", null, rowBounds);
+	}
+
+	public Product selectItem(int productNo, SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("storeMapper.selectItem", productNo);
+	}
+
 	
 	
 }

@@ -28,7 +28,7 @@ public class StoreController {
 	private StoreService stService;
 	
 	/* 전달받은 파일을 서버에 업로드시킨 후 수정명을 리턴하는 메소드 */
-public String saveFile(MultipartFile file, HttpServletRequest request) {
+	public String saveFile(MultipartFile file, HttpServletRequest request) {
 		
 		// 파일을 업로드 시킬 폴더 경로(String savePath)
 		String resources = request.getSession().getServletContext().getRealPath("resources");
@@ -72,11 +72,6 @@ public String saveFile(MultipartFile file, HttpServletRequest request) {
 		
 
 	//-----------------------------------------------------------------------------------------------------
-	
-	
-	
-	
-	
 	
 	/* -------------------- 관리자 ----------------------- */
 	
@@ -193,6 +188,72 @@ public String saveFile(MultipartFile file, HttpServletRequest request) {
 			return "common/errorPage_admin";
 		}
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/* -------------------- 사용자 ----------------------- */
+	
+	@RequestMapping("coffee.st")
+	public String selectCoffeeList(int currentPage, Model model) {
+		int listCount = stService.selectCoffeeListCount();
+		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 5, 5);
+		
+		ArrayList<Product> list = stService.selectCoffeeList(pi);
+		model.addAttribute("pi", pi);
+		model.addAttribute("list", list);
+		
+		return "store/coffeeListView";
+	}
+	
+	@RequestMapping("coffeeDetail.st")
+	public String selectCoffee(int productNo, Model model) {
+		Product p = stService.selectCoffee(productNo);
+		model.addAttribute("p", p);
+		return "store/coffeeDetailView";
+	}
+	
+	@RequestMapping("best.st")
+	public String selectBest(Model model) {
+		ArrayList<Product> list = stService.selectBest();
+		model.addAttribute("list", list);
+		return "store/storeBestListView";
+	}
+	
+	@RequestMapping("item.st")
+	public String selectItemList(int currentPage, Model model) {
+		int listCount = stService.selectItemListCount();
+		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 5, 5);
+		
+		ArrayList<Product> list = stService.selectItemList(pi);
+		model.addAttribute("pi", pi);
+		model.addAttribute("list", list);
+		
+		return "store/itemListView";
+	}
+	
+	@RequestMapping("itemDetail.st")
+	public String selectItem(int productNo, Model model) {
+		Product p = stService.selectItem(productNo);
+		model.addAttribute("p", p);
+		return "store/itemDetailView";
+	}
+	
+	
+	
 	
 	
 	
