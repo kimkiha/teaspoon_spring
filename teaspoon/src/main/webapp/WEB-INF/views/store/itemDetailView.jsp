@@ -234,7 +234,7 @@
 				$.ajax({
 					url:"insert.re",
 					type:"post",
-					data:{content:content, productName:${ p.productName }},
+					data:{content:content, productName:'${ p.productName }'},
 					success:function(result){
 						if(result>0){	// 리뷰작성 성공시 
 							selectReplyList();	// 갱신된데이터를 불러오도록 리뷰작성 메소드 호출
@@ -245,14 +245,14 @@
 					}
 				})
 			});
-		});
+		});. 
 
 		//ajax이용 : 게시글에 딸려있는 댓글 리스트 조회용 함수
 		function selectReplyList() {
 			$.ajax({
 				url : "list.re",
 				//현재 페이지의 제품코드 보내서 해당 제품을 참조하고있는 댓글들 조회
-				data : {productName:${ p.productName }},
+				data : {productName:'${ p.productName }'},
 				type : "get",
 				success : function(list) {
 					//console.log(list);
@@ -281,7 +281,7 @@
 				$.ajax({
 					url : "listAdd.re",
 					//현재 페이지의 제품코드 보내서 해당 제품을 참조하고있는 댓글들 조회					
-					data : {productName:${ p.productName },
+					data : {productName:'${ p.productName }',
 							addReview : addReview},
 					type : "get",
 					success : function(list) {
