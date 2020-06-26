@@ -20,4 +20,6 @@ public interface BoardService {
 	Board selectMagazine(int boardNo);
 	
 	int updateMagazine(Board b);
+	
+	int updateAttachment(Attachment at);
 }

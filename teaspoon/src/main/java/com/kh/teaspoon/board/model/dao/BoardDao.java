@@ -37,6 +37,10 @@ public class BoardDao {
 	}
 
 	public int updateMagazine(SqlSessionTemplate sqlSession, Board b) {
-		return sqlSession.insert("boardMapper.updateMagazine", b);
+		return sqlSession.update("boardMapper.updateMagazine", b);
+	}
+
+	public int updateAttachment(SqlSessionTemplate sqlSession, Attachment at) {
+		return sqlSession.update("boardMapper.updateAttachment", at);
 	}
 }

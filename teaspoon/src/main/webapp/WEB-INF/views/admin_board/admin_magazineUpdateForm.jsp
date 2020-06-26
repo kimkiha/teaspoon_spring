@@ -30,13 +30,13 @@
             <div id="c1" >
                 <div class="outer">
                     <p>매거진 수정</p>
-                    <form id="insertForm" action="updateMagazine.bo" method="post" enctype="multipart/form-data">
+                    <form id="updateForm" action="updateMagazine.bo" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="boardNo" value="${b.boardNo }">
                     	<table>
                  		   	<tr>
 	                  		   	<td width="120" class="tb_title">제목</td>
 	                  		   	<td colspan="3" class="tb_content">
-	                  		   		<input type="text" style="width:100%" name="title" required value="${b.boardTitle }">
+	                  		   		<input type="text" style="width:100%" name="boardTitle" required value="${b.boardTitle }">
 	                  		   	</td>
                  		   	</tr>
                  		   	<tr>
@@ -55,16 +55,24 @@
 									<input type="hidden" name="originFileNo" value="${b.fileNo }">
 									<input type="hidden" name="originFileName" value="${b.originName }"> <%-- 실제서버에 올라간 파일명 --%>
 							
-								<img id="titleImg" name="upfile" width="150" height="120" required src="${pageContext.servletContext.contextPath}/resources/uploadFiles/${b.changeName}"></td>
+								<img id="titleImg" name="thumb" width="150" height="120" required src="${pageContext.servletContext.contextPath}/resources/uploadFiles/${b.changeName}"></td>
 	                 		   		<td width="150" class="tb_title">게시상태</td>
                  		   		<td class="tb_content">
-                 		   			<input type="radio" name="status" required value='Y' > Y
-                                    <input type="radio"  name="status" required value='N' > N
+                 		   		<c:choose>
+                 		   			<c:when test="${b.status eq 'Y' }">
+                 		   				<input type="radio" name="status" required value='Y' checked> Y
+                                    	<input type="radio"  name="status" required value='N' > N
+                                    </c:when>
+                                    <c:otherwise>
+                                    	<input type="radio" name="status" required value='Y'> Y
+                                    	<input type="radio"  name="status" required value='N' checked> N
+                                    </c:otherwise>
+                                </c:choose>
                  		   		</td>
                  		   	</tr>
                		    </table>
               		    <div class="c_div_cont">
-                         		<textarea id="summernote" name="Content">${b.boardContent }</textarea>
+                         		<textarea id="summernote" name="boardContent">${b.boardContent }</textarea>
                          </div>
 	                         
 						<div id="fileArea">

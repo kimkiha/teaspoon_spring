@@ -38,13 +38,13 @@
 		 where status = 'Y'
 	</select>
 <!-- 매거진 등록 -->
-	<insert id="insertMagazine">
+	<insert id="insertMagazine" parameterType="Board">
 		insert into board values(board_no.nextval, 20, #{boardTitle}, #{boardContent}, 0,
 								 sysdate, null, default, #{smallTitle}, null)
       
 	</insert>
 <!-- 매거진 등록 사진 -->
-	<insert id="insertAttachment">
+	<insert id="insertAttachment" parameterType="Attachment">
 		insert into attachment values(file_no.nextval, board_no.currval, #{originName},#{changeName},
 									  #{filePath}, sysdate, 1, default, 2)
 	</insert>
@@ -56,4 +56,21 @@
 		 where status = 'Y'
 	       and board_no = #{boardNo}
 	</select>
+<!-- 매거진 수정  -->
+	<update id="updateMagazine" parameterType="Board">
+		update board
+		   set board_title = #{boardTitle},
+		       board_content = #{boardContent},
+		       modify_date = sysdate,
+		       status = #{status},
+		       small_title = #{smallTitle}
+		 where board_no = #{boardNo}
+	</update>
+<!-- 매거진 사진 수정  -->
+	<update id="updateAttachment" parameterType="Attachment">
+		update attachment
+		   set origin_name = #{originName},
+		       change_name = #{changeName},
+		       upload_date = sysdate
+	</update>
 </mapper>

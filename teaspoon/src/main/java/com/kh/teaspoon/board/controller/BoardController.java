@@ -80,7 +80,8 @@ public class BoardController {
 		
 		return "board/about_teaspoon";
 	}
-	
+//---------------------- 매거진 시작 -------------------------
+//사용자 매거진 리스트 조회
 	@RequestMapping("magazineList.bo")
 	public String magazineView(Model model, int currentPage) {
 		
@@ -94,7 +95,7 @@ public class BoardController {
 		
 		return "board/magazine";
 	}
-	
+//관리자 매거진 리스트 조회	
 	@RequestMapping("magazineAdminList.bo")
 	public String magazineAdminList(Model model, int currentPage) {
 		
@@ -108,13 +109,12 @@ public class BoardController {
 		
 		return "admin_board/admin_magazine";
 	}
-	
+//관리자 매거진 등록 폼	이동
 	@RequestMapping("magazineInsertForm.bo")
 	public String magazineInsertForm() {
 		return "admin_board/admin_magazineEnrollForm";
 	}
-	
-	
+//관리자 매거진 등록
 	@RequestMapping("insertMagazine.bo")
 	public String insertMagazine(Board b, @RequestParam(name="file1", required=false) MultipartFile file,
 								 HttpServletRequest request, Attachment at, Model model) {
@@ -139,7 +139,7 @@ public class BoardController {
 		int result2 = result * result1;
 		
 		if (result2 > 0) { //등록 성공
-			 return "redirect:magazineList.bo?currentPage=1";
+			 return "redirect:magazineAdminList.bo?currentPage=1";
 			
 		}else { //등록 실패
 			model.addAttribute("msg", "게시글 등록 실패!!");
@@ -147,7 +147,7 @@ public class BoardController {
 		}
 		
 	}
-	
+//관리자 매거진 업데이트 폼 이동	
 	@RequestMapping("magazineUpdateForm.bo")
 	public String updateMagazineForm(int boardNo, Model model) {
 		
@@ -158,19 +158,35 @@ public class BoardController {
 		return "admin_board/admin_magazineUpdateForm";
 			
 	}
-	
+//관리자 매거진 업데이트	
 	@RequestMapping("updateMagazine.bo")
-	public String updateMagazine(Board b, Model model) {
-		
+	public String updateMagazine(Board b, @RequestParam(name="file1", required=false) MultipartFile file,
+			 HttpServletRequest request, Attachment at, Model model) {
+		System.out.println(b);
 		int result = bService.updateMagazine(b);
 		
-		if(result>0) {
-			 return "redirect:magazineList.bo?currentPage=1";
+		if(!file.getOriginalFilename().equals("")) {
+			if(at.getChangeName() != null) {
+				deleteFile(at.getChangeName(), request);
+			}
+			String changeName = saveFile(file, request);
+			at.setOriginName(file.getOriginalFilename());
+			at.setChangeName(changeName);
+			at.setFilePath(request.getSession().getServletContext().getRealPath("resources") + "\\uploadFiles\\" + changeName);
+		}
+		
+		int result1;
+		
+		result1 = bService.updateAttachment(at);		
+		
+		int result2 = result * result1;
+		
+		if(result2>0) {
+			 return "redirect:magazineAdminList.bo?currentPage=1";
 		}else {
 			model.addAttribute("msg", "게시글 등록 실패!!");
             return "common/errorPage";
 		}
-		return "admin_board/admin_magazineUpdateForm";
 			
 	}
 }
