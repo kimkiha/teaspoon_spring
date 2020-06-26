@@ -1,6 +1,10 @@
 package com.kh.teaspoon.member.model.service;
 
+import java.util.ArrayList;
+
+import com.kh.teaspoon.member.model.vo.MemCoupon;
 import com.kh.teaspoon.member.model.vo.Member;
+import com.kh.teaspoon.member.model.vo.MemberDTO;
 
 public interface MemberService {
 	
@@ -12,4 +16,9 @@ public interface MemberService {
 	
 	// 3. 회원정보변경
 	int updateMember(Member m);
+	
+	// 4. 마이페이지 메인화면용 조회
+	MemberDTO selectMyPage(int userNo);
+
+	ArrayList<MemCoupon> selectListCoupon(int userNo);
 }

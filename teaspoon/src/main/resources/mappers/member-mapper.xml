@@ -21,6 +21,27 @@
   	  		<result column="ADDRESS" property="address"/>
   	  </resultMap>
   	  
+  	  <resultMap id="myPageResultSet" type="com.kh.teaspoon.member.model.vo.MemberDTO">
+  	  		<id column="USER_NO" property="userNo"/>
+  	  		<result column="USER_NAME" property="userName"/>
+  	  		<result column="GRADE_name" property="gradeName"/>
+  	  		<result column="point_sum" property="pointSum"/>
+  	  		<result column="couponcount" property="couponCount"/>
+  	  		<result column="wishlistCount" property="wishlistCount"/>
+  	  </resultMap>
+  	  
+  	   <resultMap id="selectListCoupon" type="com.kh.teaspoon.member.model.vo.MemCoupon">
+  	  		<id column="USER_NO" property="userNo"/>
+  	  		<result column="coupon_no" property="couponNo"/>
+  	  		<result column="use" property="use"/>
+  	  		<result column="order_no" property="order_no"/>
+  	  		<result column="start_date" property="startDate"/>
+  	  		<result column="end_date" property="endDate"/>
+  	  </resultMap>
+  	  
+  	  
+  	  
+  	  
   	  <select id="loginMember" resultMap="memberResultSet" parameterType="Member">
 			<!-- 암호화전 -->
 			<!-- select *
@@ -41,5 +62,24 @@
 	  		   set PHONE=#{phone}, USER_PWD=#{userPwd}, EMAIL=#{email}
 	  		 where USER_ID=#{userId}
 	  </update>
+	  
+	  <select id="selectMyPage" parameterType="Member" resultMap="myPageResultSet">
+	  	select user_No,
+		  	   user_Name, 
+		  	   point_sum,
+		  	   GRADE_NAME,
+			   (select count(*) from mem_coupon WHERE USER_NO=#{userNo})AS COUPONCOUNT,
+			   (select count(product_no) fROm WISH_LIST WHERE USER_NO=#{userNo})AS WISHLISTCOUNT
+		  FROM MEMBER M
+		  LEFT JOIN WISH_LIST W USING (USER_NO)
+	      LEFT JOIN mem_coupon C USING (USER_NO)
+	      LEFT JOIN MEM_GRADE G USING (GRADE_NO)
+		 WHERE USER_NO =#{userNo}
+	  
+	  </select> 
+	  
+	  <select id="selectListCoupon"  resultMap="myPageResultSet">
+	  	
+	  </select> 
   	  
 </mapper>

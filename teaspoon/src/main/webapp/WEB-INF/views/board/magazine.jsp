@@ -42,7 +42,7 @@
                                             <figcaption>
                                                 <h3>KNOW THAT EAT</h3>
                                                 <p>${r.smallTitle}</p>
-                                                <p>${r.board_title }</p>
+                                                <p>${r.boardTitle }</p>
                                                  <a href="${ pageContext.servletContext.contextPath }/magazineDetail.bo?bno=${r.boardNo}" class="read">매거진 보기+</a>
                                             </figcaption>
                                         </figure>

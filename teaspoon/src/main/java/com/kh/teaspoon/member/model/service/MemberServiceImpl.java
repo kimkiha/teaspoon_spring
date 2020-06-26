@@ -1,11 +1,15 @@
 package com.kh.teaspoon.member.model.service;
 
+import java.util.ArrayList;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.teaspoon.member.model.dao.MemberDao;
+import com.kh.teaspoon.member.model.vo.MemCoupon;
 import com.kh.teaspoon.member.model.vo.Member;
+import com.kh.teaspoon.member.model.vo.MemberDTO;
 
 @Service("mService")
 public class MemberServiceImpl implements MemberService {
@@ -32,6 +36,18 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public int updateMember(Member m) {
 		return mDao.updateMember(sqlSession, m);
+	}
+
+	@Override
+	public MemberDTO selectMyPage(int userNo) {
+	
+		return mDao.selectMyPage(sqlSession, userNo);
+	}
+
+	@Override
+	public ArrayList<MemCoupon> selectListCoupon(int userNo) {
+		
+		return mDao.selectListCoupon(sqlSession, userNo);
 	}
 
 }

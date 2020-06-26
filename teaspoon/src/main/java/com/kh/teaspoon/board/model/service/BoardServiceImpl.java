@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.teaspoon.board.model.dao.BoardDao;
 import com.kh.teaspoon.board.model.vo.Board;
+import com.kh.teaspoon.common.model.vo.Attachment;
 import com.kh.teaspoon.common.model.vo.PageInfo;
 
 @Service("bService")
@@ -27,6 +28,14 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public ArrayList<Board> selectMagazineList(PageInfo pi) {
 		return bDao.selectMagazineList(sqlSession, pi);
+	}
+	@Override
+	public int insertMagazine(Board b) {
+		return bDao.insertMagazine(sqlSession, b);
+	}
+	@Override
+	public int insertAttachment(Attachment at) {
+		return bDao.insertAttachment(sqlSession, at);
 	}
 	
 	
