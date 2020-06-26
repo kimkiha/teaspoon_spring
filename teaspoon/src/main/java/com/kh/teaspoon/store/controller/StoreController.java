@@ -15,7 +15,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.Gson;
@@ -313,17 +312,61 @@ public class StoreController {
 		p.setUserNo(userNo);
 		p.setProductNo(productNo);
 		
-		//System.out.println(productNo);
+		System.out.println(userNo);
+		System.out.println(productNo);
 		
 		int result = stService.deleteWish(p);
 		
-		//System.out.println(result);
+		System.out.println(result);
 				
 		Gson gson = new Gson();
 		response.setContentType("aplication/json; charset=utf-8");
 		gson.toJson(result, response.getWriter());
 	}
 	
+	@RequestMapping("insertCart.st")
+	public void insertCart(int productNo, int amount, HttpSession session, HttpServletResponse response) throws JsonIOException, IOException {
+		Member loginUser  = (Member)session.getAttribute("loginUser");
+		Gson gson = new Gson();
+		response.setContentType("aplication/json; charset=utf-8");
+		
+		int result;
+		if(loginUser == null) {
+			result = 0;
+			gson.toJson(result, response.getWriter());
+			
+		}else if(loginUser != null) {
+			int cartNo = loginUser.getUserNo();
+			
+			Product p = new Product();
+			p.setUserNo(cartNo);
+			p.setProductNo(productNo);
+			p.setAmount(amount);
+			
+			int count = stService.selectOneCartList(p);
+			
+			System.out.println(count);
+
+			if(count >0) {	// 이미 존재하는 상품
+				result = -1;
+				gson.toJson(result, response.getWriter());
+				
+			}else {			// 카트에 없는 상품
+				result = 1;
+				
+				int result2 = stService.insertOrderProduct(p);
+				int result3 = stService.insertProductDetail(p);
+				
+				System.out.println(result2);
+				System.out.println(result3);
+				
+				result = result2 * result3;
+				
+				gson.toJson(result, response.getWriter());
+			}
+		}
+		
+	}
 	
 	
 	
