@@ -19,5 +19,7 @@ public class MemCoupon {
 	private int order_no;
 	private String startDate;
 	private String endDate;
+	private String couponName;
+	private int discountM;
 	
 }

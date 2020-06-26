@@ -149,24 +149,7 @@
 									<a style="float: right; font-size: 17px; margin-bottom: 30p;">더보기></a>
 								</div>
 								<div class="cp2">
-									<div class="cp">
-										<div align="center">
-											<img src="#" width="150" height="110">
-										</div>
-										<span>멤버십 3천원할인쿠폰</span>
-									</div>
-									<div class="cp">
-										<div align="center">
-											<img src="#" width="150" height="110">
-										</div>
-										<span>멤버십 3천원할인쿠폰</span>
-									</div>
-									<div class="cp">
-										<div align="center">
-											<img src="#" width="150" height="110">
-										</div>
-										<span>멤버십 3천원할인쿠폰</span>
-									</div>
+									
 								</div>
 							</div>
 							<!-- 마이쿠폰 끝-->
@@ -243,9 +226,21 @@
 			$(function(){
 				$.ajax({
 					url:"clist.me",
-					data:{userNo:${loginUser.userNo}},
+					data:{userNo:"${loginUser.userNo}"},
 					success:function(list){
-						console(list);
+						console.log(list);
+						var value= "";
+						
+						for(var i in list){
+							value += "<div class='cp'>";
+							value += "<div align='center'>";
+							value += "<img src='#' width='150' height='110'>";
+							value +=		"</div>";
+							value +="<span>"+list[i].couponName+"</span>";
+							value +=		"</div>" ;
+						}
+						console.log(value);
+						$(".cp-outer .cp2").html(value);
 						
 					},errorPage:function(){
 						

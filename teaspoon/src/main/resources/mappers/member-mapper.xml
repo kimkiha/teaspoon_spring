@@ -37,6 +37,8 @@
   	  		<result column="order_no" property="order_no"/>
   	  		<result column="start_date" property="startDate"/>
   	  		<result column="end_date" property="endDate"/>
+  	  		<result column="coupon_name" property="couponName"/>
+  	  		<result column="discount_m" property="discountM"/>
   	  </resultMap>
   	  
   	  
@@ -78,8 +80,15 @@
 	  
 	  </select> 
 	  
-	  <select id="selectListCoupon"  resultMap="myPageResultSet">
-	  	
+	  <select id="selectListCoupon" parameterType="com.kh.teaspoon.member.model.vo.MemCoupon"  resultMap="selectListCoupon">
+	  	<![CDATA[
+	  	select *
+		  from mem_coupon
+	      join coupon using (coupon_no)
+	     where user_no=#{userNo} and use='N'
+		   and ROWNUM < 3
+		 order by start_date desc
+		  ]]>
 	  </select> 
   	  
 </mapper>
