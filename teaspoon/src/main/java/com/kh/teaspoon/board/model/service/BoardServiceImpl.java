@@ -45,6 +45,10 @@ public class BoardServiceImpl implements BoardService{
 	public int updateMagazine(Board b) {
 		return bDao.updateMagazine(sqlSession, b);
 	}
+	@Override
+	public int updateAttachment(Attachment at) {
+		return bDao.updateAttachment(sqlSession, at);
+	}
 	
 	
 }
