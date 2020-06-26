@@ -1,5 +1,7 @@
 package com.kh.teaspoon.member.controller;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,10 +9,13 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.teaspoon.member.model.service.MemberService;
+import com.kh.teaspoon.member.model.vo.MemCoupon;
 import com.kh.teaspoon.member.model.vo.Member;
+import com.kh.teaspoon.member.model.vo.MemberDTO;
 
 @Controller
 public class MemberController {
@@ -66,11 +71,6 @@ public class MemberController {
 		return "mypage/mypageEnroll";
 	}
 	
-	// 마이페이지
-	@RequestMapping("mymain.me")
-	public String myPage() {
-		return "mypage/mypageMain";
-	}
 	
 	// 회원정보변경페이지(완료)
 	@RequestMapping("modifyPage.me")
@@ -131,4 +131,39 @@ public class MemberController {
 		return "member/login";
 	}
 	
+	//@ResponseBody
+	//@RequestMapping("Mymain.me")
+	//public ModelAndView selectMyPage(int userNo, ModelAndView mv) {
+	//	System.out.println(userNo);
+	//	MemberDTO m  = mService.selectMyPage(userNo);
+	//	System.out.println(m);
+	//	mv.addObject("m", m);
+	//	mv.setViewName("mypage/mypageMain");
+	//	return mv;
+	//}
+	
+		//마이페이지용 조회 바
+		@RequestMapping("mymain.me")
+		public String selectMyPage(HttpSession session, Model model) {
+		
+		    Member loginUser = (Member) session.getAttribute("loginUser");
+		    System.out.println(loginUser);
+			MemberDTO m  = mService.selectMyPage(loginUser.getUserNo());
+			
+			model.addAttribute("m", m);
+			
+			
+			return "mypage/mypageMain";
+		}
+		// 마이페이지 메인용 쿠폰조회용 
+		@ResponseBody
+		@RequestMapping("clist.me")
+		public ModelAndView selectMyPage(int userNo, ModelAndView mv) {
+			System.out.println(userNo);
+			ArrayList<MemCoupon> list  = mService.selectListCoupon(userNo);
+			System.out.println(list);
+			mv.addObject("list", list);
+			mv.setViewName("mypage/mypageMain");
+			return mv;
+		}
 }

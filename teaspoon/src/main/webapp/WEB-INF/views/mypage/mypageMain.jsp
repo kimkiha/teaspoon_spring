@@ -25,7 +25,7 @@
 </head>
 <body>
 	<div id="wrap">
-		<%@ include file="../common/menubar.jsp"%>
+		<jsp:include page="../common/menubar.jsp"/>
 
 		<!-- //header -->
 		<div id="banner">
@@ -47,8 +47,8 @@
 						<div class="user_info" style="width: 450px;">
 							<table class="detail_tb" cellpadding="0" cellspacing="0">
 								<tr class="d1">
-									<td width="60" name="username"></td>
-									<td style="color: #d6ae71; font-size: 15px;" name="usergrade"></td>
+									<td width="60" name="username">${m.userName }</td>
+									<td style="color: #d6ae71; font-size: 15px;" name="usergrade">${m.gradeName }</td>
 								</tr>
 								<tr class="d2">
 									<td colspan="2"><a
@@ -59,15 +59,15 @@
 						<div class="detail_info2"
 							style="border-left: 1px solid #bebbb6; height: inherit;">
 							<p class="info_th">적립포인트</p>
-							<a href="#">Point</a>
+							<a href="#">${m.pointSum } Point</a>
 						</div>
 						<div class="detail_info2">
-							<p class="info_th">할인쿠폰</p>
-							<a href="#">장</a>
+							<p class="info_th"> 할인쿠폰</p>
+							<a href="#">${m.couponCount}장</a>
 						</div>
 						<div class="detail_info2">
 							<p class="info_th">위시리스트</p>
-							<a href="#">개</a>
+							<a href="#">${m.wishlistCount} 개</a>
 						</div>
 					</div>
 					<div id="mypage_menu_tab">
@@ -239,6 +239,20 @@
 				</div>
 			</div>
 		</div>
+		<script type="text/javascript">
+			$(function(){
+				$.ajax({
+					url:"clist.me",
+					data:{userNo:${loginUser.userNo}},
+					success:function(list){
+						console(list);
+						
+					},errorPage:function(){
+						
+					}
+				});
+			});
+		</script>
 		<!-- //content-->
 		<jsp:include page="../common/footer.jsp"/>
 		<!-- //footer-->
