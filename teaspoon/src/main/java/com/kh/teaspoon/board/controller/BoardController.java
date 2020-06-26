@@ -147,4 +147,30 @@ public class BoardController {
 		}
 		
 	}
+	
+	@RequestMapping("magazineUpdateForm.bo")
+	public String updateMagazineForm(int boardNo, Model model) {
+		
+		Board b = bService.selectMagazine(boardNo);
+		
+		model.addAttribute("b", b);
+		
+		return "admin_board/admin_magazineUpdateForm";
+			
+	}
+	
+	@RequestMapping("updateMagazine.bo")
+	public String updateMagazine(Board b, Model model) {
+		
+		int result = bService.updateMagazine(b);
+		
+		if(result>0) {
+			 return "redirect:magazineList.bo?currentPage=1";
+		}else {
+			model.addAttribute("msg", "게시글 등록 실패!!");
+            return "common/errorPage";
+		}
+		return "admin_board/admin_magazineUpdateForm";
+			
+	}
 }

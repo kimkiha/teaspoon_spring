@@ -31,4 +31,12 @@ public class BoardDao {
 	public int insertAttachment(SqlSessionTemplate sqlSession, Attachment at) {
 		return sqlSession.insert("boardMapper.insertAttachment", at);
 	}
+
+	public Board selectMagazine(SqlSessionTemplate sqlSession, int boardNo) {
+		return sqlSession.selectOne("boardMapper.selectMagazine", boardNo);
+	}
+
+	public int updateMagazine(SqlSessionTemplate sqlSession, Board b) {
+		return sqlSession.insert("boardMapper.updateMagazine", b);
+	}
 }
