@@ -30,25 +30,32 @@
             <div id="c1" >
                 <div class="outer">
                     <p>매거진 수정</p>
-                    <form id="insertForm" action="magazineUpdate.bo" method="post" enctype="multipart/form-data">
-                    <input type="hidden" name="bno" value="">
+                    <form id="insertForm" action="updateMagazine.bo" method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="boardNo" value="${b.boardNo }">
                     	<table>
                  		   	<tr>
 	                  		   	<td width="120" class="tb_title">제목</td>
 	                  		   	<td colspan="3" class="tb_content">
-	                  		   		<input type="text" style="width:100%" name="title" required value="">
+	                  		   		<input type="text" style="width:100%" name="title" required value="${b.boardTitle }">
+	                  		   	</td>
+                 		   	</tr>
+                 		   	<tr>
+	                  		   	<td width="120" class="tb_title">소제목</td>
+	                  		   	<td colspan="3" class="tb_content">
+	                  		   		<select name="smallTitle" id="smallTitle" style="width:20%">
+		                                <option>소제목을 선택하세요.</option>
+		                                <option value="커피의 탄생" id="1">커피의탄생</option>
+		                                <option value="커피로 보는 역사" id="2">커피로 보는 역사</option>
+		                            </select>
 	                  		   	</td>
                  		   	</tr>
                  		   	<tr>
                  		   		<td class="tb_title">대표이미지</td>
                  		   		<td width="270" class="tb_content">
-                 		   		
-	                 		   	
-									
-									<input type="hidden" name="originFileNo" value="">
-									<input type="hidden" name="originFileName" value=""> <%-- 실제서버에 올라간 파일명 --%>
+									<input type="hidden" name="originFileNo" value="${b.fileNo }">
+									<input type="hidden" name="originFileName" value="${b.originName }"> <%-- 실제서버에 올라간 파일명 --%>
 							
-								<img id="titleImg" name="upfile" width="150" height="120" required src="${pageContext.servletContext.contextPath}/resources/images/board/"></td>
+								<img id="titleImg" name="upfile" width="150" height="120" required src="${pageContext.servletContext.contextPath}/resources/uploadFiles/${b.changeName}"></td>
 	                 		   		<td width="150" class="tb_title">게시상태</td>
                  		   		<td class="tb_content">
                  		   			<input type="radio" name="status" required value='Y' > Y
@@ -57,7 +64,7 @@
                  		   	</tr>
                		    </table>
               		    <div class="c_div_cont">
-                         		<textarea id="summernote" name="Content"></textarea>
+                         		<textarea id="summernote" name="Content">${b.boardContent }</textarea>
                          </div>
 	                         
 						<div id="fileArea">
@@ -66,8 +73,8 @@
                		    
                		    
                         <div class="btns">
-                            <button type="button" style="width: 100px;"  onclick="location.href='magazineAdminList.bo?currentPage=1'">목록으로</button>
-                            <button type="submit" style="width: 100px;" >수정하기</button>
+                            <button type="button" style="width: 100px;"  onclick="javascript:history.go(-1);">목록으로</button>
+                            <button type="submit" style="width: 100px;">수정하기</button>
                         </div>
                     </form>
                 </div>
@@ -118,29 +125,11 @@
         $('#summernote').summernote({
            //placeholder:" ",
            //tabsize: 2,
-            height: 150,
-            width:800/* ,
-            toolbar: [
-                // [groupName, [list of button]]
-                ['Font Style', ['fontname']],
-                ['style', ['bold', 'italic', 'underline']],
-                ['font', ['strikethrough']],
-                ['fontsize', ['fontsize']],
-                ['color', ['color']],
-                ['para', ['paragraph']],
-                ['height', ['height']],
-                ['Insert', ['picture']]
-             ] */
+            height: 300,
+            width:800
             
         });
      });
-	
-    /*
-    $('#sb_btn').on('click', function(){
-        $('#summernote').append('<input type="hidden" name="Content", id="Content" />');
-        $('#Content').val($('.summernote').code());
-        $('#magazineInsertForm').submit();
-    })*/
     $(function(){
 		$("#fileArea").hide();
 		
@@ -175,6 +164,16 @@
 		}
 
 	}
+	
+	// 소제목 가져오기
+	 $(function(){
+		 var smallTitle = "${b.smallTitle}";
+		 
+		 switch(smallTitle){
+		 case "커피의 탄생": $("#1").prop("selected", true); break;
+		 case "커피로 보는 역사": $("#2").prop("selected", true); break;
+		 }
+	 });
 	</script>
 </body>
 </html>

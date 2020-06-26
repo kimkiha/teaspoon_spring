@@ -17,6 +17,14 @@
 		<result column="kind" property="kind"/>
 		
 		<result column="user_no" property="userNo"/>
+		<result column="detail_no" property="detailNo"/>
+		<result column="option_no" property="optionNo"/>
+		<result column="add_price" property="addPrice"/>
+		<result column="option_type1" property="optionType1"/>
+		<result column="option_type2" property="optionType2"/>
+		<result column="amount" property="amount"/>
+		<result column="cart_no" property="cartNo"/>
+		<result column="madedate" property="madeDate"/>
 	</resultMap>
 	
 	<resultMap type="Review" id="ReviewResultSet">
@@ -181,4 +189,28 @@
 		  from wish_list
 		 where user_no=#{userNo} and product_no=#{productNo}
 	</select>
+	
+	<select id="selectOneCartList" resultType="_int">
+		select count(*)
+		  from cart
+		  join order_product using (cart_no)
+		  join product_detail using (detail_no)
+		  join product using (product_no)
+	 left join option_code using (option_no)
+		 where cart_no=#{cartNo} and product_no=#{productNo}
+	</select>
+	
+	<insert id="insertProductDetail" parameterType="Product">
+		insert into product_detail 
+		values(detail_no.nextval, #{productNo}, null)
+	</insert>
+	
+	<insert id="insertOrderProduct" parameterType="Product">
+		insert into order_product
+		values(#{cartNo}, detail_no.currval, #{amount})
+	</insert>
+	
+	
+	
+	
 </mapper>

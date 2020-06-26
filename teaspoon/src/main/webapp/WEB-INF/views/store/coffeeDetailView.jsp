@@ -304,14 +304,14 @@
 				$.ajax({
 					url:"insert.re",
 					type:"post",
-					data:{content:content, productNo:${p.productNo}},
+					data:{content:content, productNo:productNo},
 					success:function(result){
 						if(result>0){	// 리뷰작성 성공시 
 							selectReplyList();	// 갱신된데이터를 불러오도록 리뷰작성 메소드 호출
 							$('#reviewContent').val("");
 						}
 					},error:function(){
-						//console.log("댓글작성용 ajax 통신 실패!")
+						console.log("댓글작성용 ajax 통신 실패!");
 					}
 				})
 			});
@@ -322,7 +322,7 @@
 			$.ajax({
 				url : "list.re",
 				//현재 페이지의 제품코드 보내서 해당 제품을 참조하고있는 댓글들 조회
-				data : {productNo:${p.productNo}},
+				data : {productNo:productNo},
 				type : "get",
 				success : function(list) {
 					//console.log(list);
@@ -338,7 +338,7 @@
 					}
 					$("#data").html(value);
 				},error:function() {
-					//console.log("댓글리스트조회용 ajax 통신 실패!")
+					console.log("댓글리스트조회용 ajax 통신 실패!");
 				}
 
 			});
@@ -350,7 +350,7 @@
 				$.ajax({
 					url : "listAdd.re",
 					//현재 페이지의 제품코드 보내서 해당 제품을 참조하고있는 댓글들 조회
-					data : {productNo:${p.productNo},
+					data : {productNo:productNo,
 							addReview : addReview},
 					type : "get",
 					success : function(list) {
@@ -366,7 +366,7 @@
 						}
 						$("#data").html(value);
 					},error:function() {
-						//console.log("댓글리스트조회용 ajax 통신 실패!")
+						console.log("댓글리스트조회용 ajax 통신 실패!");
 					}
 				});
 				addReview = addReview + 3;

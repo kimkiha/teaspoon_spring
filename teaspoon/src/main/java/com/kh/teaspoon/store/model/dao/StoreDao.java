@@ -94,7 +94,7 @@ public class StoreDao {
 	}
 
 	public int insertWish(SqlSessionTemplate sqlSession, Product p) {
-		return sqlSession.selectOne("storeMapper.insertWish", p);
+		return sqlSession.insert("storeMapper.insertWish", p);
 	}
 
 	public int selectOneWishList(SqlSessionTemplate sqlSession, Product p) {
@@ -102,7 +102,19 @@ public class StoreDao {
 	}
 
 	public int deleteWish(SqlSessionTemplate sqlSession, Product p) {
-		return sqlSession.selectOne("storeMapper.deleteWish", p);
+		return sqlSession.delete("storeMapper.deleteWish", p);
+	}
+
+	public int selectOneCartList(SqlSessionTemplate sqlSession, Product p) {
+		return sqlSession.selectOne("storeMapper.selectOneCartList", p);
+	}
+
+	public int insertOrderProduct(SqlSessionTemplate sqlSession, Product p) {
+		return sqlSession.insert("storeMapper.insertOrderProduct", p);
+	}
+
+	public int insertProductDetail(SqlSessionTemplate sqlSession, Product p) {
+		return sqlSession.insert("storeMapper.insertProductDetail", p);
 	}
 
 	

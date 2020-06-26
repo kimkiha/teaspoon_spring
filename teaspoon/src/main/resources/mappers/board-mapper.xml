@@ -48,4 +48,12 @@
 		insert into attachment values(file_no.nextval, board_no.currval, #{originName},#{changeName},
 									  #{filePath}, sysdate, 1, default, 2)
 	</insert>
+<!-- 매거진 조회  -->
+	<select id="selectMagazine" resultMap="boardResultSet">
+		select *
+		  from board
+		  join attachment on(board_no = ref_bno)
+		 where status = 'Y'
+	       and board_no = #{boardNo}
+	</select>
 </mapper>

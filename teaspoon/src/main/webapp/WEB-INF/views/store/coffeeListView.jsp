@@ -153,7 +153,7 @@ function selectWishList() {
 					}
 				}
 			},error:function() {
-				console.log("사용자 위시리스트 조회용 ajax실패")
+				console.log("사용자 위시리스트 조회용 ajax실패");
 			}
 		});
 	}
@@ -198,7 +198,7 @@ $(function() {
 						icon.removeClass("full");
 						icon.addClass("empty");
 						icon.attr("src","${pageContext.servletContext.contextPath}/resources/images/store/heart_emtpy.png");
-						window.alert("위시리스트에서 삭제되었습니다.")
+						window.alert("위시리스트에서 삭제되었습니다.");
 					} else {
 						
 					}

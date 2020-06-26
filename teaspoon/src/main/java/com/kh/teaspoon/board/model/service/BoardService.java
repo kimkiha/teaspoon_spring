@@ -16,4 +16,8 @@ public interface BoardService {
 	int insertMagazine(Board b);
 	
 	int insertAttachment(Attachment at);
+	
+	Board selectMagazine(int boardNo);
+	
+	int updateMagazine(Board b);
 }

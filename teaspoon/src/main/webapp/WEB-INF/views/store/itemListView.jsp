@@ -43,7 +43,7 @@
                         	<!-- listArea -->
 							<c:choose>
 								<c:when test="${ !empty list }">
-									<c:forEach items="${ list }" var="p">
+									<c:forEach items="${ list }" var="p" varStatus="status" >
 										<div class="product" style="margin-top: 50px; margin-right: 30px;">
 											<div class="product_img">
 												<input type="hidden" class="productNo${status.index}" name="productNo" value=${ p.productNo }> 
@@ -147,7 +147,7 @@ function selectWishList() {
 					}
 				}
 			},error:function() {
-				console.log("사용자 위시리스트 조회용 ajax실패")
+				console.log("사용자 위시리스트 조회용 ajax실패");
 			}
 		});
 	}
@@ -177,7 +177,7 @@ $(function() {
 						$("#deleteProductNo").val(productNo1);
 						$("#duplicateDeletePcode").submit();
 					} else if (result == 0) {
-						window.alert("로그인이 필요한 서비스입니다.");
+						window.alert("로그인이 필요한 서비스입니다. 로그인 후 이용해 주세요");
 					}
 				},error : function() {
 					console.log("통신에러1");
@@ -192,7 +192,7 @@ $(function() {
 						icon.removeClass("full");
 						icon.addClass("empty");
 						icon.attr("src","${pageContext.servletContext.contextPath}/resources/images/store/heart_emtpy.png");
-						window.alert("위시리스트에서 삭제되었습니다.")
+						window.alert("위시리스트에서 삭제되었습니다.");
 					} else {
 						
 					}
@@ -203,6 +203,35 @@ $(function() {
 		}
 	});
 });
+
+$(function(){
+	$(".basket_icon").click(function(){
+		var productNo = $(this).parent().siblings([ ".product_img" ]).children().eq(0).val();
+		var amount = 1;
+		
+		$.ajax({
+			url : "insertCart.st",
+			data : {productNo : productNo, amount:amount},
+			success : function(result) {
+				if (result > 0) {
+					var bool = window.confirm("장바구니에 담겼습니다. 장바구니로 이동하시겠습니까?");
+					if (bool) {
+						//location.href = "wishList.me";
+					}
+				} else if (result < 0) {
+					window.alert("상품이 장바구니에 이미 존재합니다. 옵션 및 수량변경은 상품페이지에서 가능합니다.");
+				} else if (result == 0) {
+					window.alert("로그인이 필요한 서비스입니다. 로그인 후 이용해 주세요.");
+				}
+			},error : function() {
+				console.log("통신에러3");
+			}
+		});
+	});
+});
+
+
+
 </script>
 <!-- //content-->
 
