@@ -190,27 +190,6 @@
 		 where user_no=#{userNo} and product_no=#{productNo}
 	</select>
 	
-	<select id="selectOneCartList" resultType="_int">
-		select count(*)
-		  from cart
-		  join order_product using (cart_no)
-		  join product_detail using (detail_no)
-		  join product using (product_no)
-	 left join option_code using (option_no)
-		 where cart_no=#{cartNo} and product_no=#{productNo}
-	</select>
-	
-	<insert id="insertProductDetail" parameterType="Product">
-		insert into product_detail 
-		values(detail_no.nextval, #{productNo}, null)
-	</insert>
-	
-	<insert id="insertOrderProduct" parameterType="Product">
-		insert into order_product
-		values(#{cartNo}, detail_no.currval, #{amount})
-	</insert>
-	
-	
 	
 	
 </mapper>

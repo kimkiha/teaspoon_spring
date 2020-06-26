@@ -75,15 +75,6 @@ public interface StoreService {
 	// 11. 위시리스트에서 삭제하는 서비스
 	int deleteWish(Product p);
 
-	// 12. 장바구니에 있는지 확인하는 서비스
-	int selectOneCartList(Product p);
-
-	// 13. 장바구니에 등록하는 서비스 --> cart테이블, order_product테이블, product_detail테이블에 등록
-	int insertOrderProduct(Product p);
-	int insertProductDetail(Product p);
-	
-	
-	
 	
 
 }

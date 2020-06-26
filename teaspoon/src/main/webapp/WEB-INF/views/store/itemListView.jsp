@@ -204,6 +204,7 @@ $(function() {
 	});
 });
 
+/*
 $(function(){
 	$(".basket_icon").click(function(){
 		var productNo = $(this).parent().siblings([ ".product_img" ]).children().eq(0).val();
@@ -229,7 +230,7 @@ $(function(){
 		});
 	});
 });
-
+*/
 
 
 </script>
