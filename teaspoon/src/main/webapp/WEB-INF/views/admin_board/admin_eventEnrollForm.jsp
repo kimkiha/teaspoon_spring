@@ -142,7 +142,7 @@
         $('#summernote').summernote({
            //placeholder:" ",
            //tabsize: 2,
-            height: 150,
+            height: 300,
             width:800/* ,
             toolbar: [
                 // [groupName, [list of button]]

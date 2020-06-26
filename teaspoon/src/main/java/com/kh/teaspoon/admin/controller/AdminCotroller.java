@@ -18,8 +18,24 @@ public class AdminCotroller {
 	@RequestMapping("level.me")
 	public String level(Model model) {
 		ArrayList<Grade> gList = adService.selectGradeList();
-		System.out.println(gList);
+		//System.out.println(gList);
 		model.addAttribute("gList", gList);
 		return "admin/admin_level";
+	}
+	
+	@RequestMapping("insertGrade.me")
+	public String insertGrade(Grade grade) {
+		System.out.println(grade);
+		int result = 0;
+		adService.insertGrade(grade);
+		
+		if(result > 0) {
+
+			return "redirect:level.me";
+			
+		}else {
+			
+			return "";
+		}
 	}
 }

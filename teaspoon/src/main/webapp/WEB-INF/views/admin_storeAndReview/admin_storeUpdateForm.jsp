@@ -47,8 +47,8 @@ table .inputR{margin-left:20px;}
 								<p class="a">판매가  <input class="inputBox" type="number" name="price" value="${ p.price }" required></p>
 								<p class="a">재고    <input class="inputBox" type="number" name="stock" value="${ p.stock }" required></p>
 								<p class="a">상품종류
-									<label style="padding-right:20px; padding-left:5px;"><input class="inputR" type="radio" name="kind" id="coffee" value="c" style="margin:0px 10px;">커피 </label>
-									<label style="padding-right:145px;"><input class="inputR" type="radio" name="kind" id="item" value="i" style="margin:0px 10px;">아이템</label>
+									<label style="padding-right:20px; padding-left:5px;"><input class="inputR" type="radio" name="kind" id="coffee" value="C" style="margin:0px 10px;">커피 </label>
+									<label style="padding-right:145px;"><input class="inputR" type="radio" name="kind" id="item" value="I" style="margin:0px 10px;">아이템</label>
 								</p>
 							</td>
 						</tr>
@@ -102,7 +102,7 @@ table .inputR{margin-left:20px;}
 		}
 		
 		$(function(){
-			if('${p.kind}'=='c'){
+			if('${p.kind}'=='C'){
 				$("#coffee").prop("checked", true);
 			}else{
 				$("#item").prop("checked",true);

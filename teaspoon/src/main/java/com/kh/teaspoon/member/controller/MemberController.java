@@ -45,7 +45,7 @@ public class MemberController {
 			session.setAttribute("loginUser", loginUser);
 
 			if(loginUser.getUserId().equals("admin")) { // 관리자 아이디
-				mv.setViewName("redirect:"); // 관리자 페이지 적는곳
+				mv.setViewName("admin/admin_main"); // 관리자 페이지 적는곳
 			}else {
 				mv.setViewName("redirect:/");
 			}

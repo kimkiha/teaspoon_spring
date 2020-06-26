@@ -15,6 +15,8 @@
 		<result column="product_filepath" property="productFilepath"/>
 		<result column="product_contents" property="productContents"/>
 		<result column="kind" property="kind"/>
+		
+		<result column="user_no" property="userNo"/>
 	</resultMap>
 	
 	<resultMap type="Review" id="ReviewResultSet">
@@ -109,4 +111,74 @@
 	</select>
 	
 	
+	<!--                        사용자 페이지                                           -->
+	
+	<select id="selectCoffeeListCount" resultType="_int">
+		select count(*)
+		  from product
+		 where status='Y' and kind='C'
+	</select>
+	
+	<select id="selectCoffeeList" resultMap="ProductResultSet">
+		select * 
+		  from product
+		 where status='Y' and kind='C'
+		 order by product_no desc
+	</select>
+	
+	<select id="selectCoffee" resultMap="ProductResultSet" parameterType="_int">
+		select *
+		  from product
+		 where status='Y' and kind='C' and product_no=#{productNo}
+	</select>
+	
+	<select id="selectBest" resultMap="ProductResultSet">
+		select * 
+		  from (select *
+		  		from product
+	 	 		order by total_count desc)
+	 	 <![CDATA[where rownum <= 16]]>
+	</select>
+	
+	<select id="selectItemListCount" resultType="_int">
+		select count(*)
+		  from product
+		 where status='Y' and kind='I'
+	</select>
+	
+	<select id="selectItemList" resultMap="ProductResultSet">
+		select * 
+		  from product
+		 where status='Y' and kind='I'
+		 order by product_no desc
+	</select>
+	
+	<select id="selectItem" resultMap="ProductResultSet" parameterType="_int">
+		select *
+		  from product
+		 where status='Y' and kind='I' and product_no=#{productNo}
+	</select>
+	
+	<select id="selectWish" resultMap="ProductResultSet" parameterType="_int">
+		select product_no, product_name, price, product_origin, product_change, product_contents 
+		  from product
+		  join wish_list using (product_no)
+		 where user_no=#{userNo}
+	</select>
+	
+	<insert id="insertWish" parameterType="Product">
+		insert into wish_list
+		values(#{userNo}, #{productNo}, sysdate)
+	</insert>
+	
+	<delete id="deleteWish" parameterType="Product">
+		delete from wish_list
+		 where user_no=#{userNo} and product_no=#{productNo}
+	</delete>
+	
+	<select id="selectOneWishList" resultType="_int" >
+		select count(*)
+		  from wish_list
+		 where user_no=#{userNo} and product_no=#{productNo}
+	</select>
 </mapper>
