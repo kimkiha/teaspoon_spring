@@ -1,7 +1,9 @@
 package com.kh.teaspoon.member.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonIOException;
 import com.kh.teaspoon.member.model.service.MemberService;
 import com.kh.teaspoon.member.model.vo.MemCoupon;
 import com.kh.teaspoon.member.model.vo.Member;
@@ -131,23 +136,13 @@ public class MemberController {
 		return "member/login";
 	}
 	
-	//@ResponseBody
-	//@RequestMapping("Mymain.me")
-	//public ModelAndView selectMyPage(int userNo, ModelAndView mv) {
-	//	System.out.println(userNo);
-	//	MemberDTO m  = mService.selectMyPage(userNo);
-	//	System.out.println(m);
-	//	mv.addObject("m", m);
-	//	mv.setViewName("mypage/mypageMain");
-	//	return mv;
-	//}
 	
 		//마이페이지용 조회 바
 		@RequestMapping("mymain.me")
 		public String selectMyPage(HttpSession session, Model model) {
 		
 		    Member loginUser = (Member) session.getAttribute("loginUser");
-		    System.out.println(loginUser);
+		    //System.out.println(loginUser);
 			MemberDTO m  = mService.selectMyPage(loginUser.getUserNo());
 			
 			model.addAttribute("m", m);
@@ -156,14 +151,16 @@ public class MemberController {
 			return "mypage/mypageMain";
 		}
 		// 마이페이지 메인용 쿠폰조회용 
-		@ResponseBody
-		@RequestMapping("clist.me")
-		public ModelAndView selectMyPage(int userNo, ModelAndView mv) {
-			System.out.println(userNo);
+		//@ResponseBody
+		@RequestMapping(value="clist.me")
+		public void selectListCoupon(int userNo, ModelAndView mv, HttpServletResponse response) throws JsonIOException, IOException {
+			//System.out.println(userNo);
 			ArrayList<MemCoupon> list  = mService.selectListCoupon(userNo);
-			System.out.println(list);
-			mv.addObject("list", list);
-			mv.setViewName("mypage/mypageMain");
-			return mv;
+			//System.out.println(list);
+			//return new GsonBuilder().setDateFormat("yyyy년MM월dd일").create().toJson(list);
+			Gson gson = new Gson();
+			response.setContentType("aplication/json; charset=utf-8");
+			
+			gson.toJson(list, response.getWriter());
 		}
 }

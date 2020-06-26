@@ -46,7 +46,7 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public ArrayList<MemCoupon> selectListCoupon(int userNo) {
-		
+		//System.out.println(userNo);
 		return mDao.selectListCoupon(sqlSession, userNo);
 	}
 

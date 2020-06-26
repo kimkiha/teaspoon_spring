@@ -28,8 +28,10 @@ public class MemberDao {
 	}
 
 	public ArrayList<MemCoupon> selectListCoupon(SqlSessionTemplate sqlSession, int userNo) {
+		//System.out.println(userNo);
 		
 		return (ArrayList)sqlSession.selectList("memberMapper.selectListCoupon", userNo);
+		
 	}
 }
 	
