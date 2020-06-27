@@ -49,5 +49,10 @@ public class MemberDao {
 		return  (ArrayList)sqlSession.selectList("memberMapper.selectMtmList",userNo,rowBounds);
 		
 	}
+
+	public MenToMen selectMenToMen(SqlSessionTemplate sqlSession, int mno) {
+		
+		return sqlSession.selectOne("memberMapper.selectMenToMen",mno);
+	}
 }
 	

@@ -114,7 +114,7 @@
 								</div>
 								<div class="mp-qna-title3">
 									<button
-										onclick="location.href='#';">상담신청</button>
+										onclick="location.href='qnaEnroll.me'">상담신청</button>
 								</div>
 							</div>
 						</div>
@@ -122,7 +122,7 @@
 					<table id="mypage_table" cellspacing="0">
 						<thead>
 							<tr>
-								
+								<th style="dispaly: none">게시판번호</th>
 								<th id="category">상담유형</th>
 								<th colspan="2" id="title">제목</th>
 								<th id="qna-date">상담신청일</th>
@@ -140,10 +140,29 @@
 								<c:otherwise>
 									<c:forEach var="mtm" items="${ list }">
 										<tr>
-											<td style="dispaly: none">${mtm.mtmType }</td>
-											<td colspan="2">${mtm.mtmTitle }</td>
+											<td >${mtm.mtmNo }</td>
+											<c:if test="${mtm.mtmType==10}">
+										    <td>주문/결제</td>
+										    </c:if>
+										    <c:if test="${mtm.mtmNo==20}">
+										    <td>배송</td>
+										    </c:if>
+										    <c:if test="${mtm.mtmNo==30}">
+										    <td>이벤트/쿠폰</td>
+										    </c:if>
+										    <c:if test="${mtm.mtmNo==40}">
+										    <td>환불/반품/교환</td>
+										    </c:if>
+										    <c:if test="${mtm.mtmNo==50}">
+										    <td>회원/포인트</td>
+										    </c:if>
+										    <c:if test="${mtm.mtmNo==60}">
+										    <td>사이트이용/기타</td>
+										    </c:if>
+
+											<td colspan="2" class="qna-t">${mtm.mtmTitle }</td>
 											<td>${mtm.createDate }</td>
-											<td  class="qna-t">${mtm.answer }</td>
+											<td  >${mtm.answer }</td>
 										
 											<td><input type="checkbox" name="mno"
 												value="">
@@ -211,7 +230,7 @@
     		$(".qna-t").click(function(){
     			var mno= $(this).siblings().eq(0).text();
     			
-    			location.href="/myqnadetail.me?mno=" + mno;
+    			location.href="myqnadetail.me?mno=" + mno;
     			
     		});
     	});

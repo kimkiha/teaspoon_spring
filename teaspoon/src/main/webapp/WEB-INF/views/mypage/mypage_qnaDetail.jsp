@@ -51,8 +51,8 @@
 						<div class="user_info" style="width: 450px;">
 							<table class="detail_tb" cellpadding="0" cellspacing="0">
 								<tr class="d1">
-									<td width="60" name="username">${ loginUser.userName }</td>
-									<td style="color: #d6ae71; font-size: 15px;" name="usergrade">${ loginUser.gradeName }</td>
+									<td width="60" name="username"></td>
+									<td style="color: #d6ae71; font-size: 15px;" name="usergrade"></td>
 								</tr>
 								<tr class="d2">
 									<td colspan="2"><a href="#">회원정보수정</a></td>
@@ -62,15 +62,15 @@
 						<div class="detail_info2"
 							style="border-left: 1px solid #bebbb6; height: inherit;">
 							<p class="info_th">적립포인트</p>
-							<a href="${pageContext.servletContext.contextPath}/mypoint.me?currentPage=1">${ loginUser.point }Point</a>
+							<a href="${pageContext.servletContext.contextPath}/mypoint.me?currentPage=1">${m.pointSum }Point</a>
 						</div>
 						<div class="detail_info2">
 							<p class="info_th">할인쿠폰</p>
-							<a href="#">${ loginUser.couponCount }장</a>
+							<a href="#">${m.couponCount }장</a>
 						</div>
 						<div class="detail_info2">
 							<p class="info_th">위시리스트</p>
-							<a href="wishList.me">${ loginUser.wishCount }개</a>
+							<a href="wishList.me">${m.wishlistCount }개</a>
 						</div>
 					</div>
 					<div id="mypage_menu_tab">
@@ -118,12 +118,15 @@
 									</table>
 									<div class="mp-qna-body">
 										<div id="textarea">
-											
+											${mtm.content }
 										</div>
-
+										<c:if test="${!empty mtm.reComment }"> 	
+														 
 										<div id="textarea">
-											
+										안녕하세요. 관리자 입니다.
+											${mtm.reComment }
 										</div>
+										</c:if>	
 									</div>
 									<div></div>
 									<a href="${pageContext.servletContext.contextPath}/resources/thumbnail_upfiles/${at.changeName}">${ at.originName }</a>	

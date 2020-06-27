@@ -121,4 +121,10 @@
 		 order by mtm_no desc
 	  </select>
   	  
+  	  <select id="selectMenToMen"  parameterType="com.kh.teaspoon.member.model.vo.MenToMen" resultMap="selectMtm">
+  	 	select *
+		  from Men_To_Men
+		 where mtm_no=#{mno}
+  	  </select>
+  	  
 </mapper>

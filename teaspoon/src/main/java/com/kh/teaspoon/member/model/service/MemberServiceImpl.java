@@ -65,5 +65,11 @@ public class MemberServiceImpl implements MemberService {
 		return mDao.selectMtmList(sqlSession,pi, userNo);
 	}
 
+	@Override
+	public MenToMen selectMenToMen(int mno) {
+		
+		return mDao.selectMenToMen(sqlSession,mno);
+	}
+
 
 }

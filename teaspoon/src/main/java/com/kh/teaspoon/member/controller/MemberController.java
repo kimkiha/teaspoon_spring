@@ -170,11 +170,11 @@ public class MemberController {
 				
 		@RequestMapping("myqna.me")
 		public String selectMyQna(HttpSession session, Model model , int currentPage) {
-			System.out.println(currentPage);
+//			System.out.println(currentPage);
 		    Member loginUser = (Member) session.getAttribute("loginUser");
-		    System.out.println(loginUser);
+//		    System.out.println(loginUser);
 		    int listCount = mService.selectListCount(loginUser.getUserNo());
-		    System.out.println(listCount);
+//		    System.out.println(listCount);
 		    PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 5, 5);
 			ArrayList<MenToMen> list = mService.selectMtmList(pi, loginUser.getUserNo());
 			
@@ -182,9 +182,30 @@ public class MemberController {
 			model.addAttribute("pi", pi);
 			model.addAttribute("list",list);
 			model.addAttribute("m", m);
-			System.out.println(m);
-			System.out.println(list);
-			System.out.println(pi);
+//			System.out.println(m);
+//			System.out.println(list);
+//			System.out.println(pi);
 			return "mypage/mypage_myqna";
+		}
+		
+		@RequestMapping("myqnadetail.me")
+		public String selectQnaDetail(HttpSession session, Model model,int mno) {
+			System.out.println(mno);
+			Member loginUser = (Member)session.getAttribute("loginUser");
+			MemberDTO m  = mService.selectMyPage(loginUser.getUserNo());
+		    //System.out.println(loginUser);
+			MenToMen mtm  = mService.selectMenToMen(mno);
+			
+			System.out.println(mtm);
+			model.addAttribute("mtm", mtm);
+			model.addAttribute("m",m);
+			
+			return "mypage/mypage_qnaDetail";
+		}
+		
+		
+		@RequestMapping("qnaEnroll.me")
+		public String goQnaEnroll() {
+			return "mypage/mypage_qnaEnrollForm";
 		}
 }

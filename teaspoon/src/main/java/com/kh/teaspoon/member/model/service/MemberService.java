@@ -27,4 +27,6 @@ public interface MemberService {
 	int selectListCount(int userNo);
 
 	ArrayList<MenToMen> selectMtmList(PageInfo pi, int userNo);
+
+	MenToMen selectMenToMen(int mno);
 }
