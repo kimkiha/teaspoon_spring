@@ -74,7 +74,7 @@
 						<a href="#" class=" float"> 주문내역확인</a>
 						<a href="#" class=" float">공간대여확인</a>
 						<a href="#" class=" float">나의배송지</a>
-						<a href="#" class="float">1:1문의</a>
+						<a href="myqna.me?currentPage=1" class="float">1:1문의</a>
 						<a href="#" class="float">장바구니</a>
 					</div>
 					<div class="pagename"></div>

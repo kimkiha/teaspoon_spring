@@ -2,9 +2,11 @@ package com.kh.teaspoon.member.model.service;
 
 import java.util.ArrayList;
 
+import com.kh.teaspoon.common.model.vo.PageInfo;
 import com.kh.teaspoon.member.model.vo.MemCoupon;
 import com.kh.teaspoon.member.model.vo.Member;
 import com.kh.teaspoon.member.model.vo.MemberDTO;
+import com.kh.teaspoon.member.model.vo.MenToMen;
 
 public interface MemberService {
 	
@@ -21,4 +23,8 @@ public interface MemberService {
 	MemberDTO selectMyPage(int userNo);
 
 	ArrayList<MemCoupon> selectListCoupon(int userNo);
+
+	int selectListCount(int userNo);
+
+	ArrayList<MenToMen> selectMtmList(PageInfo pi, int userNo);
 }

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"
 	%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html>
@@ -71,8 +72,8 @@
 						<div class="user_info" style="width: 450px;">
 							<table class="detail_tb" cellpadding="0" cellspacing="0">
 								<tr class="d1">
-									<td width="60" name="username"></td>
-									<td style="color: #d6ae71; font-size: 15px;" name="usergrade"></td>
+									<td width="60" name="username">${m.userName }</td>
+									<td style="color: #d6ae71; font-size: 15px;" name="usergrade">${m.gradeName }</td>
 								</tr>
 								<tr class="d2">
 									<td colspan="2"><a
@@ -83,15 +84,15 @@
 						<div class="detail_info2"
 							style="border-left: 1px solid #bebbb6; height: inherit;">
 							<p class="info_th">적립포인트</p>
-							<a href="#">Point</a>
+							<a href="#">${m.pointSum }Point</a>
 						</div>
 						<div class="detail_info2">
 							<p class="info_th">할인쿠폰</p>
-							<a href="#">장</a>
+							<a href="#">${m.couponCount }장</a>
 						</div>
 						<div class="detail_info2">
 							<p class="info_th">위시리스트</p>
-							<a href="#">개</a>
+							<a href="#">${m.wishlistCount }개</a>
 						</div>
 					</div>
 					<div id="mypage_menu_tab">
@@ -121,8 +122,7 @@
 					<table id="mypage_table" cellspacing="0">
 						<thead>
 							<tr>
-								<th>
-								<th>
+								
 								<th id="category">상담유형</th>
 								<th colspan="2" id="title">제목</th>
 								<th id="qna-date">상담신청일</th>
@@ -131,31 +131,28 @@
 							</tr>
 						</thead>
 						<tbody>
-							
-							<tr>
-								<td colspan="8">1:1 상담내역이 없습니다.</td>
-							</tr>
-							
-								<tr>
-									<td style="dispaly: none">
-									<td>
-									<td></td>
-									<td colspan="2" class="qna-t"></td>
-									<td></td>
-	
-									
-									<td>답변대기중</td>
-									
-									<td>답변완료</td>
-									
-									<td><input type="checkbox" name="mno"
-										value="">
-									</th>
-								</tr>
+							<c:choose>
+								<c:when test="${empty  list }">
+									<tr>
+										<td colspan="8">1:1 상담내역이 없습니다.</td>
+									</tr>
+								</c:when>
+								<c:otherwise>
+									<c:forEach var="mtm" items="${ list }">
+										<tr>
+											<td style="dispaly: none">${mtm.mtmType }</td>
+											<td colspan="2">${mtm.mtmTitle }</td>
+											<td>${mtm.createDate }</td>
+											<td  class="qna-t">${mtm.answer }</td>
+										
+											<td><input type="checkbox" name="mno"
+												value="">
+											</td>
+										</tr>
+									</c:forEach>
 								
-							
-							
-						
+								</c:otherwise>
+							</c:choose>
 						</tbody>
 
 					</table>
@@ -167,7 +164,38 @@
 				
 					
 					</div>
-				
+					<c:if test="${ !empty list }">
+	                    <div id="pagingArea">
+	                       <c:choose>
+			                	<c:when test="${ pi.currentPage eq 1 }">
+				                    <a href="#">&lt;</a>
+				                </c:when>
+				                <c:otherwise>
+			                    	<a href="myqna.me?currentPage=${ pi.currentPage -1 }">&lt;</a>
+			                    </c:otherwise>
+		                    </c:choose>
+		                    
+					        <c:forEach var="a" begin="${ pi.startPage }" end="${ pi.endPage }">
+		                    	<c:choose>
+		                    		<c:when test="${ a eq pi.currentPage }">
+			                    		<a href="#">${a}</a>
+			                    	</c:when>
+			                    	<c:otherwise>
+			                    		<a class="page-link" href="myqna.me?currentPage=${ a }">${a}</a>
+			                    	</c:otherwise>
+			                    </c:choose>
+		                    </c:forEach>
+		                    
+					        <c:choose>
+		                    	<c:when test="${ pi.currentPage eq pi.maxPage }">
+				                    <a>&gt;</a>
+				                </c:when>
+				                <c:otherwise>
+				                    <a href="myqna.me?currentPage=${ pi.currentPage +1 }">&gt;</a>
+				                </c:otherwise>
+		                    </c:choose>
+	                    </div>
+                    </c:if>
 					
 				</div>
 			</div>

@@ -11,16 +11,17 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;
+import com.kh.teaspoon.common.model.vo.PageInfo;
+import com.kh.teaspoon.common.template.Pagination;
 import com.kh.teaspoon.member.model.service.MemberService;
 import com.kh.teaspoon.member.model.vo.MemCoupon;
 import com.kh.teaspoon.member.model.vo.Member;
 import com.kh.teaspoon.member.model.vo.MemberDTO;
+import com.kh.teaspoon.member.model.vo.MenToMen;
 
 @Controller
 public class MemberController {
@@ -151,6 +152,7 @@ public class MemberController {
 			return "mypage/mypageMain";
 		}
 		// 마이페이지 메인용 쿠폰조회용 
+		
 		//@ResponseBody
 		@RequestMapping(value="clist.me")
 		public void selectListCoupon(int userNo, ModelAndView mv, HttpServletResponse response) throws JsonIOException, IOException {
@@ -160,7 +162,29 @@ public class MemberController {
 			//return new GsonBuilder().setDateFormat("yyyy년MM월dd일").create().toJson(list);
 			Gson gson = new Gson();
 			response.setContentType("aplication/json; charset=utf-8");
-			
+			//406에러는 안쪽에 써주자
 			gson.toJson(list, response.getWriter());
+		}
+		
+		
+				
+		@RequestMapping("myqna.me")
+		public String selectMyQna(HttpSession session, Model model , int currentPage) {
+			System.out.println(currentPage);
+		    Member loginUser = (Member) session.getAttribute("loginUser");
+		    System.out.println(loginUser);
+		    int listCount = mService.selectListCount(loginUser.getUserNo());
+		    System.out.println(listCount);
+		    PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 5, 5);
+			ArrayList<MenToMen> list = mService.selectMtmList(pi, loginUser.getUserNo());
+			
+			MemberDTO m  = mService.selectMyPage(loginUser.getUserNo());
+			model.addAttribute("pi", pi);
+			model.addAttribute("list",list);
+			model.addAttribute("m", m);
+			System.out.println(m);
+			System.out.println(list);
+			System.out.println(pi);
+			return "mypage/mypage_myqna";
 		}
 }

@@ -15,10 +15,10 @@ import lombok.ToString;
 @ToString
 public class MenToMen {
 	
-	private int mtmNo;
+	private int mtmNo;          
 	private int userNo;
 	private int mtmType;
-	private String mtmtitle;
+	private String mtmTitle;
 	private String content;
 	private String createDate;
 	private String reComment;

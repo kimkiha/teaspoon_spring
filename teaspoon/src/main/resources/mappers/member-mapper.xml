@@ -40,6 +40,20 @@
   	  		<result column="coupon_name" property="couponName"/>
   	  		<result column="discount_m" property="discountM"/>
   	  </resultMap>
+  	  <resultMap id="selectMtm" type="com.kh.teaspoon.member.model.vo.MenToMen">
+  	  		<id column="MTM_NO" property="mtmNo"/>
+  	  		<result column="USER_NO" property="userNo"/>
+  	  		<result column="MTM_TYPE" property="mtmType"/>
+  	  		<result column="MTM_TITLE" property="mtmTitle"/>
+  	  		<result column="MTM_CONTENT" property="content"/>
+  	  		<result column="CREATE_DATE" property="createDate"/>
+  	  		<result column="RE_COMMENT" property="reComment"/>
+  	  		<result column="COMMENT_DATE" property="commentDate"/>
+  	  		<result column="SEND_EMAIL" property="sendEmail"/>
+  	  		<result column="ANSWER" property="answer"/>
+  	  		<result column="STATUS" property="status"/>
+  	  	
+  	  </resultMap>
   	  
   	  
   	  
@@ -66,7 +80,8 @@
 	  </update>
 	  
 	  <select id="selectMyPage" parameterType="Member" resultMap="myPageResultSet">
-	  	select user_No,
+	  	select DISTINCT  
+	  	       user_No,
 		  	   user_Name, 
 		  	   point_sum,
 		  	   GRADE_NAME,
@@ -90,5 +105,20 @@
 		 order by start_date desc
 		  ]]>
 	  </select> 
+	  
+	  <select id="selectListCount" parameterType="_int" resultType="_int">
+	  	SELECT COUNT(*)
+		  FROM MEN_TO_MEN
+		 WHERE USER_NO = #{userNo}
+		   and status='N'
+	  </select>
+	  
+	  <select id="selectMtmList" parameterType="com.kh.teaspoon.member.model.vo.MenToMen" resultMap="selectMtm">
+	  	SELECT *
+		  FROM MEN_TO_MEN
+		 WHERE USER_NO =#{userNo}
+		   and status='N'
+		 order by mtm_no desc
+	  </select>
   	  
 </mapper>
