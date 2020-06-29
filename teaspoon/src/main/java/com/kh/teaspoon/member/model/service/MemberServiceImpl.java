@@ -1,5 +1,7 @@
 package com.kh.teaspoon.member.model.service;
 
+import java.util.ArrayList;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,12 +28,33 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public int insertMember(Member m) {
-		return 0;
+		return mDao.insertMember(sqlSession, m);
 	}
 	
 	@Override
 	public int updateMember(Member m) {
 		return mDao.updateMember(sqlSession, m);
+	}
+
+	@Override
+	public int idCheck(String userId) {
+		return mDao.idCheck(sqlSession, userId);
+	}
+
+	// 아이디찾기
+	@Override
+	public ArrayList<String> idCheckList(String email) {
+		return mDao.idCheckList(sqlSession, email);
+	}
+
+	@Override
+	public Member idCheck1(Member m) {
+		return mDao.idCheck1(sqlSession, m);
+	}
+
+	@Override
+	public int temporary(Member userIdCheck) {
+		return mDao.temporary(sqlSession, userIdCheck);
 	}
 
 }

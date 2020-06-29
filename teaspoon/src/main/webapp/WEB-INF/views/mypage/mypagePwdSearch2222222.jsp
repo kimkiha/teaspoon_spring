@@ -40,7 +40,7 @@
                             <td style=width:130px;></td>
                             <td style= "font-size:20px; width:160px; text-align:left;"><li>아 이 디</li></td>
                             <td style= "width:500px; text-align:left"><input type="text" id="userId" name="userId" placeholder="아이디(4 ~ 12자 영문 대,소문자"></td>
-                            <td ><button type="button" class="btn1" id="idCheck" style="margin-left:15px;">비밀번호발급</button></td>
+                            <td ><button type="button" class="btn1" id="idCheck" style="margin-left:15px;">아이디확인</button></td>
                             
                          </tr>
                     </thead>
@@ -48,8 +48,8 @@
                         <tr>
                             <td></td>
                             <td style= "font-size:20px; text-align:left;" colspan="1"></td>
-                            <td style= "text-align:left; font-size:15px;">* 검색하신 아이디 가입시 작성한 이메일로 임시비밀번호 전송</td>
-                            <!-- <td><input type="submit" class="btn1" id="email_send" value="비밀번호발송" style="margin-left:15px;" disabled></td> -->
+                            <td style= "text-align:left; font-size:15px;">* 검색하신 아이디 가입시 작성한 이메일로 비밀번호 전송</td>
+                            <td><input type="submit" class="btn1" id="email_send" value="비밀번호발송" style="margin-left:15px;" disabled></td>
                         </tr>  
                     </ul>             
                     </tbody>
@@ -76,22 +76,17 @@
 				// 아이디 입력하는 input요소
 				var userId = $("#userId").val();
 				
-				console.log(userId);
-				
 				$.ajax({
-					url:"idCheck1.me",
+					url:"idCheck.me",
 					data:{userId:userId},
 					type:"post", 
 					success:function(result){	// 1 또는 0
 						
-						if(result != "fail"){		// 사용가능한 아이디
+						
+						if(result != 0){		// 사용가능한 아이디
 							
-						/* confirm("회원아이디가 조회되었습니다.")
-						$("#email_send").removeAttr("disabled");	 */
-						
-						alert("임시비밀번호발송");
-						
-						
+						confirm("회원아이디가 조회되었습니다.")
+						$("#email_send").removeAttr("disabled");	
 						}else {					// 사용불가능한 아이디
 							
 							alert("회원정보가 없는 아이디입니다.");
@@ -101,7 +96,6 @@
 						
 					},error:function(){
 						console.log("ajax 실패!!");
-						alert("회원정보가 없는 아이디입니다.");
 					}
 					
 				

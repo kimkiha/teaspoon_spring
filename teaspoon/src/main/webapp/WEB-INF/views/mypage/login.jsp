@@ -34,11 +34,11 @@
                              <li><button type="submit">로그인</button></li>
                             </ul> 
                             <div id="enroll">
-                                <a href="enroll.me">회원가입</a>
+                                <a href="enrollForm.me">회원가입</a>
                                 <span>|</span>
-                                <a href="#" >아이디 찾기</a>
+                                <a href="mypageIdSearch.me" >아이디 찾기</a>
                                 <span>|</span>
-                                <a href="#">비밀번호 찾기</a>
+                                <a href="mypagePwdSearch.me">비밀번호 찾기</a>
                       
                             </div>
                             </fieldset>

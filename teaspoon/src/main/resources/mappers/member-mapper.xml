@@ -41,5 +41,38 @@
 	  		   set PHONE=#{phone}, USER_PWD=#{userPwd}, EMAIL=#{email}
 	  		 where USER_ID=#{userId}
 	  </update>
+	  
+	  <select id="idCheck" parameterType="string" resultType="_int">
+	  		select count(*)
+	  		  from member
+	  		 where USER_ID=#{userId}
+	  </select>
+	  
+	  <insert id="insertMember" parameterType="Member">
+	  		insert into member
+	  		values(USER_NO.NEXTVAL, 1, #{userId}, #{userPwd}, #{userName}, #{gender}, #{birthday}, #{phone}, #{email}, default, 0, 0, default, 'N', default, default)
+	  </insert>
+	  
+	  <select id="idCheckList" resultType="string" parameterType="string">
+			select user_id
+			  from member  
+			 where email=#{email}
+			   and status='Y'
+	  </select>
+	  
+	  <select id="idCheck1" resultType="Member" parameterType="Member">
+			select user_id, email
+			  from member  
+			 where user_id=#{userId}
+			   and status='Y'
+	  </select>
+	  
+	  <update id="temporary" parameterType="Member">
+	  		update member
+	  		   set USER_PWD=#{userPwd}, MODIFY_DATE=#{modifyDate}
+	  		 where USER_ID=#{userId}
+	  </update>
+	  
+	  
   	  
 </mapper>

@@ -1,12 +1,15 @@
 package com.kh.teaspoon.member.controller;
 
+import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.teaspoon.member.model.service.MemberService;
@@ -20,7 +23,11 @@ public class MemberController {
 	
 	@Autowired
 	private BCryptPasswordEncoder bcryptPasswordEncoder;
-
+	
+	@Inject    //서비스를 호출하기 위해서 의존성을 주입
+	JavaMailSender mailSender;     //메일 서비스를 사용하기 위해 의존성을 주입함.
+	MemberService memberservice;
+	
 	// 로그인페이지(완료)
 	@RequestMapping("loginPage.me")
 	public String loginPage() {
@@ -32,6 +39,7 @@ public class MemberController {
 	public ModelAndView login(Member m, HttpSession session, ModelAndView mv) {
 		
 		Member loginUser = mService.loginMember(m);
+		
 		
 		System.out.println("객체 확인 : " + m);
 		System.out.println("결과 확인 : "  + loginUser);
@@ -59,14 +67,71 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
-	
-	// 회원가입
-	@RequestMapping("enroll.me")
+	// 회원가입페이지(완료)
+	@RequestMapping("enrollForm.me")
 	public String enroll() {
 		return "mypage/mypageEnroll";
 	}
 	
-	// 마이페이지
+	// 회원가입(완료)
+	@RequestMapping("memberEnrollForm.me")
+	public String insertMember(Member m, String firstnumber, String phonenum, String userPwd1, Model model, HttpSession session) {
+		
+		System.out.println("화악인 : " + m);
+		
+		String email = (String)session.getAttribute("insertEmail");
+		System.out.println("email : " + email);
+		
+		m.setEmail(email);
+		
+		String phone = firstnumber + phonenum;
+		m.setPhone(phone);
+		
+		System.out.println("화악인2 : " + m);
+		
+		String encPwd = bcryptPasswordEncoder.encode(userPwd1);
+		m.setUserPwd(encPwd); // 암호문으로 받아서 insert 요청
+		
+		System.out.println("화악인3 : " + m);
+		
+		int result = mService.insertMember(m);
+		
+		if(result > 0) { // 회원가입성공
+			
+			session.setAttribute("msg", "회원가입 성공!");
+			return "redirect:/";
+			
+		}else {	// 회원가입실패
+			
+			model.addAttribute("msg", "회원가입 실패");
+			return "common/errorPage";
+		}
+	
+	}
+	
+	// 아이디 중복체크
+	@ResponseBody
+	@RequestMapping(value="idCheck.me")
+	public String idCheck(String userId) {
+		
+		System.out.println("ajax 아이디 : " + userId);
+		
+		int count = mService.idCheck(userId);
+		
+		System.out.println(count);
+		
+		if(count > 0) { // 중복된 아이디있음!! => 사용불가능!!
+			System.out.println("fail");
+			return "fail";
+		}else { // 중복된 아이디가 없음!! => 사용가능!!
+			System.out.println("success");
+			return "success";
+		}
+		
+	}
+	
+
+	// 마이페이지(완료)
 	@RequestMapping("mymain.me")
 	public String myPage() {
 		return "mypage/mypageMain";
@@ -112,23 +177,33 @@ public class MemberController {
 		}
 		
 	}
-
-	// 아디찾기
-	@RequestMapping("loginPage3.me")
-	public String login3() {
-		return "member/login";
+	
+	// 아디찾기페이지(완료)
+	@RequestMapping("mypageIdSearch.me")
+	public String mypageIdSearch() {
+		return "mypage/mypageIdSearch";
 	}
 
+	// 비밀번호찾기페이지(완료)
+	@RequestMapping("mypagePwdSearch.me")
+	public String mypagePwdSearch() {
+		return "mypage/mypagePwdSearch";
+	}
+	
 	// 비밀번호찾기
-	@RequestMapping("loginPage4.me")
-	public String login4() {
-		return "member/login";
+	@RequestMapping("PwdSearch.me")
+	public String PwdSearch() {
+		return "mypage/mypagePwdSearch";
 	}
+	
+	
 	
 	// 배송지등록
 	@RequestMapping("loginPage5.me")
 	public String login5() {
-		return "member/login";
+		return "mypage/login";
 	}
+	
+	// 소셜로그인
 	
 }

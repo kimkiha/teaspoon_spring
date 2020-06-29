@@ -1,5 +1,7 @@
 package com.kh.teaspoon.member.model.service;
 
+import java.util.ArrayList;
+
 import com.kh.teaspoon.member.model.vo.Member;
 
 public interface MemberService {
@@ -12,4 +14,13 @@ public interface MemberService {
 	
 	// 3. 회원정보변경
 	int updateMember(Member m);
+
+	// 4. 아이디 중복체크용 서비스 (AJAX)
+	int idCheck(String userId);
+
+	ArrayList<String> idCheckList(String email);
+
+	Member idCheck1(Member m);
+
+	int temporary(Member userIdCheck);
 }

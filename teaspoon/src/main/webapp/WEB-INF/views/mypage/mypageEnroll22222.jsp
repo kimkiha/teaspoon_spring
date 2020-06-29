@@ -374,12 +374,12 @@ String randomKey = (String)request.getAttribute("randomKey");
                         <div class="contaniner">
                           <div id="정보입력" class="tabcontent" >
                           	
-                          	<form id ="informationForm" action="memberEnrollForm.me" method="get">
+                          	<form id ="informationForm" method="get">  
                             
                             <table id="table1" style="align:center; ">
                                     <tr>
                                         <td style="font-size:20px; width: 300px;"><li>성 명</li></td>
-                                        <td style= "text-align:left;"><input type="text" id="userName" name="userName" placeholder="이름(실명으로 입력해주세요)."></td>
+                                        <td style= "text-align:left;"><input type="text" id="userName" name="username" placeholder="이름(실명으로 입력해주세요)."></td>
                                         <td style= "font-size:16px; width: 150px;"></td>           
                                     </tr>
                                     <tr>
@@ -400,7 +400,7 @@ String randomKey = (String)request.getAttribute("randomKey");
                                             <option value="016">016</option>
                                             <option value="019">019</option>
                                             </select>
-                                            <input type="text" id="phonenum" name="phonenum" placeholder="전화번호">
+                                            <input type="text" id="verification" name="phonenum" type="verification" placeholder="전화번호">
                                         <td></td>
                                        
                                     </tr>
@@ -419,26 +419,23 @@ String randomKey = (String)request.getAttribute("randomKey");
                                     </tr>
                                     <tr>
                                         <td style= "font-size:20px;"><li>비 밀 번 호</li></td>
-                                        <td style= "text-align:left;"><input type="password" id="userPwd1" name="userPwd1" placeholder="영문자 또는 숫자 포함 총 8자~15자"></td>
+                                        <td style= "text-align:left;"><input type="password" id="userPwd1" name="UserPwd1" placeholder="영문자 또는 숫자 포함 총 8자~15자"></td>
                                         <td></td>
                                     </tr>
                                     <tr>
                                         <td style= "font-size:20px;"><li>비밀번호확인</li></td>
-                                        <td style= "text-align:left;"><input type="password" id="userPwd2" name="userPwd2" placeholder="비밀번호 확인"></td>
+                                        <td style= "text-align:left;"><input type="password" id="userPwd2" name="UserPwd2" placeholder="비밀번호 확인"></td>
                                         <td></td>
                                     </tr>
                             	</table>
                             
                                  <!-- 2_1. (정보입력)본인인증 및 회원가입 버튼-->
-                                <input type="button" class="btnenroll2 active" value="본인인증 및 회원가입" id="seconde_agree_btn" disabled="">
-                                <!-- seconde_agree_btn -->
-                                
-                                <input hidden type="text" name="email" value="${insertEmail}">
-                            </form>
+                                <button type="button" id="enrollBtn3" class="btnenroll2" id="seconde_agree_btn">본인인증 및 회원가입!!</button>
+                            </div> 
                             
-                           </div>
-                           
-                           <!-- 아이디 중복체크 스크립트 -->
+                            </form>	<!--  -->
+                            
+                            <!-- 아이디 중복체크 스크립트 -->
                             
                             <script>
                             
@@ -480,29 +477,23 @@ String randomKey = (String)request.getAttribute("randomKey");
         			    		if(num == 1){	// 아이디 중복체크를 아직 안하는 경우 : 메세지 보여지지 않음 버튼 비활성화
         			    			
         			    			$("#checkResult1").hide();
-        			    			$(".btnenroll2").attr("disabled", true);
-        			    			console.log("1");
+        			    			$("#enrollBtn3").attr("disabled", true);
         			    			
         			    		}else if(num == 2){
         			    			
         			    			$("#checkResult1").css("color", "red").text("중복된 아이디가 존재합니다. 사용이 불가능합니다.");
         			    			$("#checkResult1").show();
-        			    			$(".btnenroll2").attr("disabled", true);
-        			    			console.log("2");
+        			    			$("#enrollBtn3").attr("disabled", true);
         			    			
         			    		}else{ // 아이디 중복체크 후 사용가능한 아이디일 경우 : "사용 가능하나 아이디임" 메세지 보여짐, 버튼 활성화
         			    			
         			    			$("#checkResult1").css("color", "green").text("사용가능한 아이디입니다.");
         			    			$("#checkResult1").show();
-        			    			$(".btnenroll2").removeAttr("disabled");
-        			    			$(".btnenroll2").attr("disabled", false);
-        			    			console.log("3");
+        			    			$("#enrollBtn3").removeAttr("disabled");
+        			    			$("#enrollBtn3").attr("disabled", false);
         			    			
         			    		}
         			    	};
-        			    	
-        			    	
-        			    	
 	        			   	
 	        			   	
                             </script>
@@ -543,7 +534,7 @@ String randomKey = (String)request.getAttribute("randomKey");
 		                           </div>
 		                           <!-- </form> -->
 		                           
-      <script> // ajax로 이메일발송과 인증함수!!
+		                           <script> // ajax로 이메일발송과 인증함수!!
     
       $(function(){
     	/* 이메일 인증 버튼 클릭시 발생하는 이벤트  */
@@ -585,15 +576,7 @@ String randomKey = (String)request.getAttribute("randomKey");
     			
     			type:"post",
     			url:"emailAuth.do",
-    			data:{certified:$("#certified").val(),
-    				  email:$("#email").val(),
-    				  userName:$("#userName").val(),
-    				  birthday:$("#birthday").val(),
-    				  gender:$("#gender").val(),
-    				  phone1:$("#firstnumber").val(),
-    				  phone2:$("#verification").val(),
-    				  userId:$("#userId").val(),
-    				  userPwd:$("#userPwd1").val()},
+    			data:{certified:$("#certified").val(),email:$("#email").val()},
     			success:function(data){
     				
     				console.log(data);
@@ -601,10 +584,7 @@ String randomKey = (String)request.getAttribute("randomKey");
 	    			if(data=="complete"){
 	    				alert("인증이 완료되었습니다.");
 	    				
-	    				/* location.href = "memberEnrollForm.me" */
-	    				
-	    				$("#informationForm").submit();
-	    				
+	    				location.href = "memberEnrollForm.me"
 	    			}else{
 	    				alert("인증번호를 잘못 입력하셨습니다.")
 	    			}
@@ -619,6 +599,12 @@ String randomKey = (String)request.getAttribute("randomKey");
     
    </script>
 		                           
+		                           
+		                           
+		                           
+		                           
+		                           
+                                     
                         <!-- 4. 회원가입완료 페이지-->
                          <div id="가입완료" class="tabcontent">
                             <form >
@@ -660,7 +646,7 @@ String randomKey = (String)request.getAttribute("randomKey");
                 </script>
 
     <script>
-    /* 
+    /*
         $(function(){
 						$("#first_agree_btn").click(function(){
 							$("#defaultOpen2").click();
@@ -673,8 +659,7 @@ String randomKey = (String)request.getAttribute("randomKey");
                         $("#ModifyandEnroll2").click(function(){
 							$("#defaultOpen4").click();
 						});
-        });
-         */
+        });*/
     </script>
       
     <script> /*본인인증 및 회원가입버튼 클릭시*/
@@ -700,7 +685,7 @@ String randomKey = (String)request.getAttribute("randomKey");
             var pwd2 = document.getElementById("userPwd2");
             var name = document.getElementById("userName");
             var birth = document.getElementById("birthday"); 			// 생년월일
-            var veri  = document.getElementById("phonenum"); 		// 전화번호
+            var veri  = document.getElementById("verification"); 		// 전화번호
 
             // 1) 이름 검사
             //    한글로만 2글자 이상
@@ -817,9 +802,9 @@ String randomKey = (String)request.getAttribute("randomKey");
     			var Birthday = $("#birthday").val();
     		
     			var firstnumber = $("#firstnumber").val();
-    			var phonenum = $("#phonenum").val();
-    			var userId = $("#userId").val();
-    			var userPwd = $("#userPwd1").val();
+    			var phonenum = $("#verification").val();
+    			var UserId = $("#userId").val();
+    			var UserPwd = $("#userPwd1").val();
     			var email = $("#email").val();
     			
     			console.log(username);
@@ -843,8 +828,8 @@ String randomKey = (String)request.getAttribute("randomKey");
     				$("#birthday2").val(Birthday);
     				$("#firstnumber2").val(firstnumber);
     				$("#verification2").val(phonenum);
-    				$("#userId2").val(userId);
-    				$("#userPwd12").val(userPwd);
+    				$("#userId2").val(UserId);
+    				$("#userPwd12").val(UserPwd);
     				$("#email2").val(email);
     				
     				$("#enroll_final").submit();
@@ -852,6 +837,7 @@ String randomKey = (String)request.getAttribute("randomKey");
               	
               	}
        	 	}
+    	
     	
     	</script>
     	 
