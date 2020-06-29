@@ -16,6 +16,8 @@
         table tr{border-bottom: 1px solid lightgray;}
         table tr:first-child{border-top: 1px solid lightgray;}
         table th{background-color: #dbdbdb; text-align:center}
+        .reviewEllipsis1{display: inline-block; width: 150px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}
+        .reviewEllipsis2{display: inline-block; width: 250px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}
     </style>
 </head>
 <body>
@@ -65,8 +67,8 @@
 											<tr>
 												<td><input type="checkbox" class="" value="${ r.reviewNo }"></td>
 												<td>${ r.reviewNo }</td>
-												<td>${ r.productName }</td>
-												<td>${ r.content }</td>
+												<td class="reviewEllipsis1">${ r.productName }</td>
+												<td class="reviewEllipsis2">${ r.content }</td>
 												<td>${ r.rating }</td>
 												<td>${ r.userName }(${ r.userId })</td>
 												<td>${ r.createDate }</td>

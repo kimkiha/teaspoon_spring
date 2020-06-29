@@ -53,7 +53,7 @@
     </div>
 </div>
 <script>
-	$(function(){
+/*	$(function(){
 		$.ajax({
 			url:"noticeMain.bo",
 			type:"post",
@@ -68,7 +68,7 @@
 				console.log("ajax 통신실패!");
 			}
 		})
-	});
+	});*/
 	
 </script>
     <!-- //footer-->

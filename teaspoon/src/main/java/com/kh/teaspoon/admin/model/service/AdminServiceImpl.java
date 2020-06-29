@@ -21,4 +21,9 @@ public class AdminServiceImpl implements AdminService  {
 		return adDao.selectGradeList(sqlSession);
 	}
 
+	@Override
+	public int insertGrade(Grade grade) {
+		return adDao.insertGrade(sqlSession,grade);
+	}
+
 }

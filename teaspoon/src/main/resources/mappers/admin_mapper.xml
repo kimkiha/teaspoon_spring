@@ -11,9 +11,13 @@
   	</resultMap>
  
  	<select id="selectGradeList" resultMap="GradeResultSet">
- 	select grade_no,grade_name,min_acount,grade_rate
-	from mem_grade 
-	order by min_acount
+	 	select grade_no,grade_name,min_acount,grade_rate
+		from mem_grade 
+		order by min_acount
  	</select>
+ 	
+ 	<insert id="insertGrade" parameterType="Grade">
+ 		insert into mem_grade values(GRADE_NO.nextval,#{gradeName}, #{minAcount}, #{gradeRate})
+ 	</insert>
  
 </mapper>

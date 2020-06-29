@@ -31,7 +31,7 @@
                         <li><a class="list store" href="coffee.st?currentPage=1">스토어</a>
                             <ul class="ul">
                                 <li><a href="coffee.st?currentPage=1">커피</a></li>
-                                <li><a href="storeBest.st">금주의 베스트</a></li>
+                                <li><a href="best.st">금주의 베스트</a></li>
                                 <li><a href="item.st?currentPage=1">컵 & 아이템</a></li>
                             </ul>
                         </li>

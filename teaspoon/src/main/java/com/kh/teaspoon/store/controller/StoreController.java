@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,8 +17,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonIOException;
 import com.kh.teaspoon.common.model.vo.PageInfo;
 import com.kh.teaspoon.common.template.Pagination;
+import com.kh.teaspoon.member.model.vo.Member;
 import com.kh.teaspoon.store.model.service.StoreService;
 import com.kh.teaspoon.store.model.vo.Product;
 import com.kh.teaspoon.store.model.vo.Review;
@@ -28,7 +33,7 @@ public class StoreController {
 	private StoreService stService;
 	
 	/* 전달받은 파일을 서버에 업로드시킨 후 수정명을 리턴하는 메소드 */
-public String saveFile(MultipartFile file, HttpServletRequest request) {
+	public String saveFile(MultipartFile file, HttpServletRequest request) {
 		
 		// 파일을 업로드 시킬 폴더 경로(String savePath)
 		String resources = request.getSession().getServletContext().getRealPath("resources");
@@ -72,11 +77,6 @@ public String saveFile(MultipartFile file, HttpServletRequest request) {
 		
 
 	//-----------------------------------------------------------------------------------------------------
-	
-	
-	
-	
-	
 	
 	/* -------------------- 관리자 ----------------------- */
 	
@@ -192,6 +192,136 @@ public String saveFile(MultipartFile file, HttpServletRequest request) {
 		} else {
 			return "common/errorPage_admin";
 		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/* -------------------- 사용자 ----------------------- */
+	
+	@RequestMapping("coffee.st")
+	public String selectCoffeeList(int currentPage, Model model) {
+		int listCount = stService.selectCoffeeListCount();
+		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 5, 12);
+		
+		ArrayList<Product> list = stService.selectCoffeeList(pi);
+		model.addAttribute("pi", pi);
+		model.addAttribute("list", list);
+		
+		return "store/coffeeListView";
+	}
+	
+	@RequestMapping("coffeeDetail.st")
+	public String selectCoffee(int productNo, Model model) {
+		Product p = stService.selectCoffee(productNo);
+		model.addAttribute("p", p);
+		return "store/coffeeDetailView";
+	}
+	
+	@RequestMapping("best.st")
+	public String selectBest(Model model) {
+		ArrayList<Product> list = stService.selectBest();
+		model.addAttribute("list", list);
+		return "store/storeBestListView";
+	}
+	
+	@RequestMapping("item.st")
+	public String selectItemList(int currentPage, Model model) {
+		int listCount = stService.selectItemListCount();
+		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, 5, 12);
+		
+		ArrayList<Product> list = stService.selectItemList(pi);
+		model.addAttribute("pi", pi);
+		model.addAttribute("list", list);
+		
+		return "store/itemListView";
+	}
+	
+	@RequestMapping("itemDetail.st")
+	public String selectItem(int productNo, Model model) {
+		Product p = stService.selectItem(productNo);
+		model.addAttribute("p", p);
+		return "store/itemDetailView";
+	}
+	
+	//@ResponseBody
+	@RequestMapping(value="selectWish.st")
+	public void selectWish(HttpSession session, HttpServletResponse response) throws IOException {
+		
+		Member loginUser  = (Member)session.getAttribute("loginUser");
+		int userNo = loginUser.getUserNo();
+
+		ArrayList<Product> list = stService.selectWish(userNo);
+		
+		Gson gson = new Gson();
+		response.setContentType("aplication/json; charset=utf-8");
+	    gson.toJson(list, response.getWriter());
+	}
+	
+	@RequestMapping("insertWish.me")
+	public void insertWish(int productNo, HttpSession session, HttpServletResponse response) throws JsonIOException, IOException, NullPointerException {
+		Member loginUser  = (Member)session.getAttribute("loginUser");
+		Gson gson = new Gson();
+		response.setContentType("aplication/json; charset=utf-8");
+		
+		int result;
+		if(loginUser == null) {
+			result=0;
+			gson.toJson(result, response.getWriter());
+		}else if(loginUser != null) {
+			int userNo = loginUser.getUserNo();
+			
+			Product p = new Product();
+			p.setUserNo(userNo);
+			p.setProductNo(productNo);
+			
+			//System.out.println(productNo);
+			
+			int count = stService.selectOneWishList(p);
+			
+			//System.out.println(count);
+			if(count >0) {
+				result=-1;
+				gson.toJson(result, response.getWriter());
+			}else {
+				result = stService.insertWish(p);
+				gson.toJson(result, response.getWriter());
+			}
+		}
+	}
+	
+	@RequestMapping("deleteWish.me")
+	public void deleteWish(int productNo, HttpSession session, HttpServletResponse response) throws JsonIOException, IOException, NullPointerException {
+		Member loginUser  = (Member)session.getAttribute("loginUser");
+		int userNo = loginUser.getUserNo();
+		
+		Product p = new Product();
+		p.setUserNo(userNo);
+		p.setProductNo(productNo);
+		
+		System.out.println(userNo);
+		System.out.println(productNo);
+		
+		int result = stService.deleteWish(p);
+		
+		System.out.println(result);
+				
+		Gson gson = new Gson();
+		response.setContentType("aplication/json; charset=utf-8");
+		gson.toJson(result, response.getWriter());
 	}
 	
 	

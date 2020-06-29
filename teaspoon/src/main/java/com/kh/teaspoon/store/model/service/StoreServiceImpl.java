@@ -69,7 +69,62 @@ public class StoreServiceImpl implements StoreService{
 	public int deleteReview(int reviewNo) {
 		return stDao.deleteReview(sqlSession, reviewNo);
 	}
-	
+
+	@Override
+	public int selectCoffeeListCount() {
+		return stDao.selectCoffeeListCount(sqlSession);
+	}
+
+	@Override
+	public ArrayList<Product> selectCoffeeList(PageInfo pi) {
+		return stDao.selectCoffeeList(pi, sqlSession);
+	}
+
+	@Override
+	public Product selectCoffee(int productNo) {
+		return stDao.selectCoffee(sqlSession, productNo);
+	}
+
+	@Override
+	public ArrayList<Product> selectBest() {
+		return stDao.selectBest(sqlSession);
+	}
+
+	@Override
+	public int selectItemListCount() {
+		return stDao.selectItemListCount(sqlSession);
+	}
+
+	@Override
+	public ArrayList<Product> selectItemList(PageInfo pi) {
+		return stDao.selectItemList(pi, sqlSession);
+	}
+
+	@Override
+	public Product selectItem(int productNo) {
+		return stDao.selectItem(productNo, sqlSession);
+	}
+
+	@Override
+	public ArrayList<Product> selectWish(int userNo) {
+		return stDao.selectWish(sqlSession, userNo);
+	}
+
+	@Override
+	public int selectOneWishList(Product p) {
+		return stDao.selectOneWishList(sqlSession, p);
+	}
+
+	@Override
+	public int insertWish(Product p) {
+		return stDao.insertWish(sqlSession, p);
+	}
+
+	@Override
+	public int deleteWish(Product p) {
+		return stDao.deleteWish(sqlSession, p);
+	}
+
 	
 
 }

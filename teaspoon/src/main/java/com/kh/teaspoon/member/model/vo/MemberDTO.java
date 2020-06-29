@@ -13,18 +13,13 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class MenToMen {
+public class MemberDTO {
 	
-	private int mtmNo;          
 	private int userNo;
-	private int mtmType;
-	private String mtmTitle;
-	private String content;
-	private String createDate;
-	private String reComment;
-	private String commentDate;
-	private String sendEmail;
-	private String answer;
-	private String status;
-	
+	private String userName;
+	private int pointSum;
+	private String gradeName;
+	private int couponCount;
+	private int wishlistCount;
+
 }

@@ -147,7 +147,7 @@
 	    	location.href='noticeMain.bo';
 	    } --%>
 	    
-	    $(function(){
+	   /* $(function(){
 	    	$.ajax({
 	    		url:"mainProductList.st",
 	    		type:"post",
@@ -195,7 +195,7 @@
 	    			console.log("ajax 통신실패!");
 	    		}
 	    	})
-	    });
+	    }); */
     	
     </script>
 

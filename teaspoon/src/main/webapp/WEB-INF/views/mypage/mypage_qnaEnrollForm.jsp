@@ -7,13 +7,13 @@
 <title>1:1문의 | TeaSpoon</title>
 <link rel="stylesheet" href="reset.css">
 <link rel="stylesheet" type="text/css"
-	href="/resources/css/mypage/mypage_qnaEnrollForm.css">
+	href="${ pageContext.servletContext.contextPath }/resources/css/mypage/mypage_qnaEnrollForm.css">
 <link rel="styleSheet"
-	href="/resources/css/common/reset1.css">
+	href="${ pageContext.servletContext.contextPath }/resources/css/common/reset1.css">
 <link rel="styleSheet"
-	href="/resources/css/common/menubar.css">
+	href="${ pageContext.servletContext.contextPath }/resources/css/common/menubar.css">
 <link rel="styleSheet"
-	href="/resources/css/common/footer.css">
+	href="${ pageContext.servletContext.contextPath }/resources/css/common/footer.css">
 <link
 	href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap"
 	rel="stylesheet">
@@ -91,25 +91,31 @@
 							<div class="outer" align="center">
 								<form action="myQnaInsert.me" method="post"
 									enctype="multipart/form-data">
-									<input type="hidden" name="userNo"
-										value="">
+									<input type="hidden" name="userNo" value="">
+									
 									<table align="center" id="mypage_table">
 										<tr>
 											<th width="170">상담구분</th>
-											<td width="900" id="opt" name="mtmType"><span> <input
-													type="radio" id="opt1" name="mtmType" value="10" checked>주문/결제
-													<label for="opt1"></label>
-											</span> <span> <input type="radio" id="opt2" name="mtmType"
-													value="20">배송 <label for="opt2"></label>
-											</span> <span> <input type="radio" id="opt3" name="mtmType"
-													value="30">이벤트/쿠폰 <label for="opt3"></label>
-											</span> <span> <input type="radio" id="opt4" name="mtmType"
-													value="40">환불/반품/교환 <label for="opt4"></label>
-											</span> <span> <input type="radio" id="opt5" name="mtmType"
-													value="50">회원/포인트 <label for="opt5"></label>
-											</span> <span> <input type="radio" id="opt6" name="mtmType"
-													value="60">사이트이용/기타 <label for="opt6"></label>
-											</span></td>
+											<td width="900" id="opt" name="mtmType">
+												<span> <input type="radio" id="opt1" name="mtmType" value="10" checked>주문/결제
+														<label for="opt1"></label>
+												</span>
+												<span> <input type="radio" id="opt2" name="mtmType"
+														value="20">배송 <label for="opt2"></label>
+												</span> 
+												<span> <input type="radio" id="opt3" name="mtmType"
+														value="30">이벤트/쿠폰 <label for="opt3"></label>
+												</span> 
+												<span> <input type="radio" id="opt4" name="mtmType"
+														value="40">환불/반품/교환 <label for="opt4"></label>
+												</span> 
+												<span> <input type="radio" id="opt5" name="mtmType"
+														value="50">회원/포인트 <label for="opt5"></label>
+												</span> 
+												<span> <input type="radio" id="opt6" name="mtmType"
+														value="60">사이트이용/기타 <label for="opt6"></label>
+												</span>
+											</td>
 										</tr>
 										<tr>
 											<th>제목</th>

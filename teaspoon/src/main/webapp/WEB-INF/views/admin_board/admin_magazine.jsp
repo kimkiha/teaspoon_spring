@@ -38,8 +38,8 @@
                                 <tr>
                                     <th width="100">글번호</th>
                                     <th width="300">제목</th>
+                                    <th width="100">소제목</th>
                                     <th width="100">작성일</th>
-                                    <th width="100">수정일</th>
                                     <th width="50">상태</th>
                                     <th >
                                         <button><a href="magazineInsertForm.bo">추가</a></button>
@@ -47,40 +47,64 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            
-								<tr>
-									<td colspan="8">조회된 리스트가 없습니다.</td>
-								</tr>
-								
+                            <c:choose>
+                            	<c:when test="${empty list }">
+									<tr>
+										<td colspan="8">조회된 리스트가 없습니다.</td>
+									</tr>
+								</c:when>
+								<c:when test="${!empty list }">
+									<c:forEach var="r" items="${list }">
 										<tr>
-											<td></td>
-											<td></td>
-											<td></td>
-											<td></td>
-											<td class="status"></td>
+											<td>${r.boardNo }</td>
+											<td>${r.boardTitle }</td>
+											<td>${r.smallTitle }</td>
+											<td>${r.createDate }</td>
+											<td class="status">${r.status }</td>
 		                                    <td>
-	                                        <button><a href="magazineUpdateForm.bo?bno=">수정</a></button>
-	                                        <button><a href="magazineDelete.bo?bno=">삭제</a></button>
-                                   			</td>
+		                                       <button><a href="magazineUpdateForm.bo?boardNo=${r.boardNo }">수정</a></button>
+		                                       <button><a href="magazineDelete.bo?boardNo=">삭제</a></button>
+		                           			</td>
 										</tr>
-									
+									</c:forEach>
+								</c:when>
+							</c:choose>	
+							</tbody>
                       </table>
                     </div>
                 </div>
-                <div id="c1_2">
-
-                </div>
-                <div id="c1_3">
-                       <a>&lt;</a>
-                   <button>1</button>
-                   <button>2</button>
-                   <button>3</button>
-                   <button>4</button>
-                   <button>5</button>
-                   <a>&gt;</a>
-                </div>
-               
-               
+                 <c:if test="${ !empty pi }">
+	                    <div id="pagingArea" style="margin-top: 22px;">
+	                       <c:choose>
+			                	<c:when test="${ pi.currentPage eq 1 }">
+				                    <a href="#">&lt;</a>
+				                </c:when>
+				                <c:otherwise>
+			                    	<a href="reviewList.re?currentPage=${ pi.currentPage -1 }">&lt;</a>
+			                    </c:otherwise>
+		                    </c:choose>
+		                    
+					        <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+		                    	<c:choose>
+		                    		<c:when test="${ p eq pi.currentPage }">
+			                    		<a href="#">${p}</a>
+			                    	</c:when>
+			                    	<c:otherwise>
+			                    		<a class="page-link" href="reviewList.re?currentPage=${ p }">${p}</a>
+			                    	</c:otherwise>
+			                    </c:choose>
+		                    </c:forEach>
+		                    
+					        <c:choose>
+		                    	<c:when test="${ pi.currentPage eq pi.maxPage }">
+				                    <a>&gt;</a>
+				                </c:when>
+				                <c:otherwise>
+				                    <a href="reviewList.re?currentPage=${ pi.currentPage +1 }">&gt;</a>
+				                </c:otherwise>
+		                    </c:choose>
+	                    </div>
+                    </c:if>
             </div>
         </div>
         

@@ -21,6 +21,43 @@
   	  		<result column="ADDRESS" property="address"/>
   	  </resultMap>
   	  
+  	  <resultMap id="myPageResultSet" type="com.kh.teaspoon.member.model.vo.MemberDTO">
+  	  		<id column="USER_NO" property="userNo"/>
+  	  		<result column="USER_NAME" property="userName"/>
+  	  		<result column="GRADE_name" property="gradeName"/>
+  	  		<result column="point_sum" property="pointSum"/>
+  	  		<result column="couponcount" property="couponCount"/>
+  	  		<result column="wishlistCount" property="wishlistCount"/>
+  	  </resultMap>
+  	  
+  	   <resultMap id="selectListCoupon" type="com.kh.teaspoon.member.model.vo.MemCoupon">
+  	  		<id column="USER_NO" property="userNo"/>
+  	  		<result column="coupon_no" property="couponNo"/>
+  	  		<result column="use" property="use"/>
+  	  		<result column="order_no" property="order_no"/>
+  	  		<result column="start_date" property="startDate"/>
+  	  		<result column="end_date" property="endDate"/>
+  	  		<result column="coupon_name" property="couponName"/>
+  	  		<result column="discount_m" property="discountM"/>
+  	  </resultMap>
+  	  <resultMap id="selectMtm" type="com.kh.teaspoon.member.model.vo.MenToMen">
+  	  		<id column="MTM_NO" property="mtmNo"/>
+  	  		<result column="USER_NO" property="userNo"/>
+  	  		<result column="MTM_TYPE" property="mtmType"/>
+  	  		<result column="MTM_TITLE" property="mtmTitle"/>
+  	  		<result column="MTM_CONTENT" property="content"/>
+  	  		<result column="CREATE_DATE" property="createDate"/>
+  	  		<result column="RE_COMMENT" property="reComment"/>
+  	  		<result column="COMMENT_DATE" property="commentDate"/>
+  	  		<result column="SEND_EMAIL" property="sendEmail"/>
+  	  		<result column="ANSWER" property="answer"/>
+  	  		<result column="STATUS" property="status"/>
+  	  	
+  	  </resultMap>
+  	  
+  	  
+  	  
+  	  
   	  <select id="loginMember" resultMap="memberResultSet" parameterType="Member">
 			<!-- 암호화전 -->
 			<!-- select *
@@ -74,5 +111,52 @@
 	  </update>
 	  
 	  
+	  <select id="selectMyPage" parameterType="Member" resultMap="myPageResultSet">
+	  	select DISTINCT  
+	  	       user_No,
+		  	   user_Name, 
+		  	   point_sum,
+		  	   GRADE_NAME,
+			   (select count(*) from mem_coupon WHERE USER_NO=#{userNo})AS COUPONCOUNT,
+			   (select count(product_no) fROm WISH_LIST WHERE USER_NO=#{userNo})AS WISHLISTCOUNT
+		  FROM MEMBER M
+		  LEFT JOIN WISH_LIST W USING (USER_NO)
+	      LEFT JOIN mem_coupon C USING (USER_NO)
+	      LEFT JOIN MEM_GRADE G USING (GRADE_NO)
+		 WHERE USER_NO =#{userNo}
+	  
+	  </select> 
+	  
+	  <select id="selectListCoupon" parameterType="com.kh.teaspoon.member.model.vo.MemCoupon"  resultMap="selectListCoupon">
+	  	<![CDATA[
+	  	select *
+		  from mem_coupon
+	      join coupon using (coupon_no)
+	     where user_no=#{userNo} and use='N'
+		   and ROWNUM < 3
+		 order by start_date desc
+		  ]]>
+	  </select> 
+	  
+	  <select id="selectListCount" parameterType="_int" resultType="_int">
+	  	SELECT COUNT(*)
+		  FROM MEN_TO_MEN
+		 WHERE USER_NO = #{userNo}
+		   and status='N'
+	  </select>
+	  
+	  <select id="selectMtmList" parameterType="com.kh.teaspoon.member.model.vo.MenToMen" resultMap="selectMtm">
+	  	SELECT *
+		  FROM MEN_TO_MEN
+		 WHERE USER_NO =#{userNo}
+		   and status='N'
+		 order by mtm_no desc
+	  </select>
+  	  
+  	  <select id="selectMenToMen"  parameterType="com.kh.teaspoon.member.model.vo.MenToMen" resultMap="selectMtm">
+  	 	select *
+		  from Men_To_Men
+		 where mtm_no=#{mno}
+  	  </select>
   	  
 </mapper>
