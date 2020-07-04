@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>1:1문의 | TeaSpoon</title>
-<link rel="stylesheet" href="reset.css">
+
 <link rel="stylesheet" type="text/css"
 	href="${ pageContext.servletContext.contextPath }/resources/css/mypage/mypage_qnaEnrollForm.css">
 <link rel="styleSheet"
@@ -17,7 +17,19 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR&display=swap"
 	rel="stylesheet">
-	<script type="text/javascript"src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript"src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <!-- 아이콘 -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+    <!-- include summernote css/js -->
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 <style>
 #banner {
 	margin-top: 115px;
@@ -27,7 +39,48 @@
 		url("resources/img/mypage/pattern.jpg")
 		center top repeat-x;
 }
+.inner{width: 900px;}
+        #dragAndDrop{
+            background-color: rgb(242, 242, 242);
+            width: 100%; height: 150px;
+            text-align: center;
+            line-height: 150px;
+            vertical-align: middle;
+            color: gray;
+            position: relative;
+        }
+        #fileList{position: absolute; top:10px; width: 100%;}
+        .list{background-color:rgb(230, 230, 230); height: 25px; text-align: left; padding: 0;line-height: 25px; border-bottom: 1px solid lightgray;}
+        #filenames{display: inline-block; width: 90%;padding-left: 10px;}
+        #close{ display: inline-block; width: 10%; color: red;}
+        #close i:hover{cursor: pointer;}
+        #dragFoot{
+            background-color:rgb(230, 230, 230);
+            width: 100%; height: 40px;
+            padding: 5px;
+        }
+        #myfile{opacity: 0;}
+        .visually-hidden {
+            position: absolute !important;
+            height: 1px;
+            width: 1px;
+            overflow: hidden;
+            clip: rect(1px, 1px, 1px, 1px);
+        }
+
+        input.visually-hidden:focus + label {
+            outline: thin dotted;
+        }
+        #fileLabel{
+            border: 1px solid gray;
+            border-radius: 3px;
+            padding: 3px;
+            margin-left: 10px;
+            color: rgb(59, 64, 68);
+            background-color: whitesmoke;
+        }
 </style>
+
 </head>
 <body>
 	<div id="wrap">
@@ -46,7 +99,7 @@
 							style="width: 95px; border-left: 1px solid #bebbb6">
 							<div class="user_photo"
 								style="margin-top: 30px; padding-left: 10px; float: left;">
-								<img src="/resources/img/admin/user.png">
+								<img src="#">
 							</div>
 						</div>
 						<div class="user_info" style="width: 450px;">
@@ -89,11 +142,10 @@
 								<P>1:1문의 내역</P>
 							</div>
 							<div class="outer" align="center">
-								<form action="myQnaInsert.me" method="post"
-									enctype="multipart/form-data">
-									<input type="hidden" name="userNo" value="">
+								<form action=""id="QnaEnrollForm" onSubmit="return false" enctype="multipart/form-data">
+									<input type="hidden" name="userNo" value="${loginUser.userNo }">
 									
-									<table align="center" id="mypage_table">
+									<table align="center" id="mypage_table" class="table">
 										<tr>
 											<th width="170">상담구분</th>
 											<td width="900" id="opt" name="mtmType">
@@ -117,28 +169,198 @@
 												</span>
 											</td>
 										</tr>
-										<tr>
-											<th>제목</th>
-											<td><input type="text" id="t" name="mtmTitle"
-												placeholder="제목을 입력해 주세요"></td>
-										</tr>
+									    <tr>
+                       						 <th>제목</th>
+                       					     <td colspan="5"><input type="text" id="title" name="mtmTitle" class="form-control" required></td>
+               						    </tr>
+										
+                                        <tr>
+                                            <td colspan="5">
+                                                <textarea class="summernote" id="content" name="content" required></textarea>
+                                              
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="5">
+                                                <div id="drageader" align="left">
+                                                    <i class="fas fa-paperclip"></i> <span>파일 업로드</span>
+                                                </div>
+                                                <div id="dragAndDrop">
+                                                    이곳에 파일을 드래그하세요.
+                                                    <div id="fileList">
+                    
+                                                    </div>
+                                                </div>
+                                                <div id="dragFoot" align="left">
+                                                    <input type="file" id="fileElem" multiple class="visually-hidden">
+                                                    <label for="fileElem" id="fileLabel">파일 첨부</label>
+                                                    <!-- <button class="btn btn-default btn-sm" id="fileSelect">파일첨부</button>
+                                                    <input type="file" name="file" id="myfile" multiple/>   -->
+                                                </div>
+                                            </td>
+                                        </tr>
+
 									</table>
-									<div class="mp-qna-body">
-										<div id="textarea">
-											<textarea name="mtmContent" id="" cols="112" rows="19"
-												required placeholder="상담내용을 입력해주세요" style="resize: none;"></textarea>
-										</div>
-										<div id="uploadfile">
-											<input type="file" accept="image/*" name="thumbnail_upfiles">
-										</div>
+                                    <div style="float: right;" class="func">
+                                        <button type="button"  id="btn-upload-file" class="btn btn-info" style="margin-right: 50px;">등록</button>
+                                        <button type="button" onclick="history.back();" class="btn">취소</button>
+                                    </div>
 
-
-									</div>
-									<div class="func">
-										<button class="btn btn-cancel" type="reset">취소</button>
-										<button class="btn btn-submit" type="submit">등록</button>
-									</div>
-								</form>
+								
+                                </form>
+                                <script>
+         
+                                    var uploadFiles = [];
+                                    var $drop = $("#dragAndDrop");
+                                    $drop.on("dragenter", function(e) { 
+                                        $(this).addClass('drag-over');
+                                    }).on("dragleave", function(e) {
+                                        $(this).removeClass('drag-over');
+                                    }).on("dragover", function(e) {
+                                        e.stopPropagation();
+                                        e.preventDefault();
+                                    }).on('drop', function(e) { 
+                                        e.preventDefault();
+                                        $(this).removeClass('drag-over');
+                                   
+                                        var files = e.originalEvent.dataTransfer.files;
+                                        //console.log(files.length);
+                                        //console.log(uploadFiles.length);
+                                        
+                                             if(files.length<6){
+                                                 if(uploadFiles.length<5){ 
+                                                     if((uploadFiles.length+files.length)<6){
+                                                         for(var i = 0; i < files.length; i++) {
+                                                              var file = files[i];
+                                                              // console.log(file);
+                                                              var size = uploadFiles.push(file); 
+                                                              preview(file, size - 1); 
+                                                          }
+                                                     }else{
+                                                         alert("최대 5개까지만 첨부가능합니다.");
+                                                     }
+                                                     
+                                                  }else{
+                                                     alert("최대 5개까지만 첨부가능합니다.");
+                                                  }
+                                            
+                                             }else{
+                                                 alert("최대 5개까지만 첨부가능합니다.");
+                                             }
+                                        
+                                       
+                                      
+                                        // console.log(uploadFiles);
+                                   
+                                    });
+                        
+                                
+                                    
+                                    $(function(){
+                                      
+                                        $('input[type="file"]').on('change', function(e){
+                                            var files = this.files;
+                                            //console.log(files);
+                                            
+                                              if(files.length<6){
+                                                  if(uploadFiles.length<5){ 
+                                                          if((uploadFiles.length+files.length)<6){
+                                                              
+                                                              for(var i = 0; i < files.length; i++) {
+                                                                  var file = files[i];
+                                                                  // console.log(file);
+                                                                  var size = uploadFiles.push(file); 
+                                                                  preview(file, size - 1); 
+                                                              }
+                                                              
+                                                          }else{
+                                                              alert("한번에 최대 5개까지만 첨부가능합니다.");
+                                                          }
+                                                   
+                                                  }else{
+                                                      alert("최대 5개까지만 첨부가능합니다.");
+                                              }
+                                              }else{
+                                                  alert("최대 5개까지만 첨부가능합니다.");
+                                              }
+                                              //console.log(uploadFiles);     
+                                          
+                                        });
+                                    });
+                        
+                                  
+                                    function preview(file, idx){
+                                        var reader  = new FileReader();
+                                        reader.onload = (function(f, idx){
+                                            return function(e){
+                                                var div = '<div class="list"> \
+                                                <span id="filenames">'+ f.name +'</span><span id="close" align="center"><i data-idx="'+idx+'" class="far fa-minus-square minus"></i></span></div>'
+                        
+                                                $("#fileList").append(div);
+                        
+                                            };  
+                                        })(file, idx);
+                                        reader.readAsDataURL(file);
+                                        
+                                    }
+                        
+                                   $("#fileList").on("click", ".minus", function(e){
+                                       var $target = $(e.target);
+                                       var idx = $target.attr('data-idx');
+                                       //console.log(idx);
+                                       //uploadFiles[idx].upload = 'disable';
+                                       uploadFiles.splice(idx,1);
+                        
+                                       $target.parents(".list").remove();
+                                   });
+                        
+                                   $("#btn-upload-file").on("click", function(){
+                                        var form = $("#QnaEnrollForm");
+                                        var formData = new FormData(form[0]);
+                                        $.each(uploadFiles, function(i, file){
+                                          
+                                            formData.append('uploadFile', file, file.name);
+                                            
+                                        });
+                                        if($('#title').val()== "" && $('#content').val()== ""){
+                                            alert("제목과 내용을 입력해주세요.");
+                                        }else{
+                                              $.ajax({
+                                                  url:"insertQNA.me",
+                                                  data:formData,
+                                                  type:"post",
+                                                  contentType:false,
+                                                  processData: false,
+                                                  success:function(result){
+                                                	  console.log(result);
+                                                      if(result == "success"){
+                                                          alert("게시글 등록 완료");
+                                                          location.href="myqna.me?currentPage=1" ;
+                                                      }else if(result == "insertFail"){
+                                                          alert("게시판 등록에 실패하셨습니다.");
+                                                      }else{
+                                                          alert("첨부파일 업로드에 실패하셨습니다.");
+                                                      }
+                                                  },
+                                                  error:function(){
+                                                      console.log("mtm ajax통신 실패");
+                                                  }
+                                              });
+                                               
+                                        }
+                                        
+                                     
+                                        // for (var key of formData.keys()) {
+                                        //     console.log(key);
+                                        // }
+                                        // for (var value of formData.values()) {
+                                        //     console.log(value);
+                                        // }
+                                        //form.submit();
+                                   });
+                                
+                        
+                                </script>
 								<br>
 								<br>
 								<div class="ppp">
@@ -169,15 +391,26 @@
 					</div>
 				</div>
 			</div>
-		</div>
+        </div>
+        <script>
+          //  $(document).ready(function() {
+            //여기 아래 부분
+        //    $('.summernote').summernote({
+         //     height: 300,                 // 에디터 높이
+         //     minHeight: null,             // 최소 높이
+         //     maxHeight: null,             // 최대 높이
+        //      focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
+        //      lang: "ko-KR",					// 한글 설정
+       //       placeholder: '최대 2048자까지 쓸 수 있습니다'	//placeholder 설정
+        //    });
+      //  });
+        </script>
 
 		<!-- //content-->
 		<jsp:include page="../common/footer.jsp"/>
 		<!-- //footer-->
 	</div>
-	<script>
-     
-
-    </script>
+	
+   
 </body>
 </html>

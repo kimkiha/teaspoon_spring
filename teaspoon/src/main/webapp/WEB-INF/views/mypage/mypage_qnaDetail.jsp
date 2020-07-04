@@ -9,7 +9,7 @@
 <head>
 <meta charset="UTF-8">
 <title>1:1문의 | TeaSpoon</title>
-<link rel="stylesheet" href="reset.css">
+
 <link rel="stylesheet" type="text/css"	href="${pageContext.servletContext.contextPath}/resources/css/mypage/mypage_qnaDetail.css">
 <link rel="styleSheet"	href="${pageContext.servletContext.contextPath}/resources/css/common/reset1.css">
 <link rel="styleSheet"	href="${pageContext.servletContext.contextPath}/resources/css/common/menubar.css">

@@ -6,11 +6,13 @@ import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.kh.teaspoon.common.model.vo.Attachment;
 import com.kh.teaspoon.common.model.vo.PageInfo;
 import com.kh.teaspoon.member.model.vo.MemCoupon;
 import com.kh.teaspoon.member.model.vo.Member;
 import com.kh.teaspoon.member.model.vo.MemberDTO;
 import com.kh.teaspoon.member.model.vo.MenToMen;
+import com.kh.teaspoon.member.model.vo.MenToMenDTO;
 
 
 @Repository("mDao")
@@ -70,9 +72,17 @@ public class MemberDao {
 		
 	}
 
-	public MenToMen selectMenToMen(SqlSessionTemplate sqlSession, int mno) {
+	public ArrayList<MenToMenDTO> selectMenToMen(SqlSessionTemplate sqlSession, int mno) {
 		
-		return sqlSession.selectOne("memberMapper.selectMenToMen",mno);
+		return (ArrayList)sqlSession.selectList("memberMapper.selectMenToMen",mno);
+	}
+
+	public int insertMtm(SqlSessionTemplate sqlSession, MenToMen mtm) {
+		
+		return sqlSession.insert("memberMapper.insertMtm", mtm);
+	}
+	public int insertAttachment(SqlSessionTemplate sqlSession, Attachment at) {
+		return sqlSession.insert("memberMapper.insertAttachment", at);
 	}
 }
 	

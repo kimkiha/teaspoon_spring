@@ -1,9 +1,13 @@
 package com.kh.teaspoon.member.controller;
 
-import javax.inject.Inject;
+import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
+import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -13,11 +17,14 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonIOException;
+import com.kh.teaspoon.common.model.vo.Attachment;
 import com.kh.teaspoon.common.model.vo.PageInfo;
 import com.kh.teaspoon.common.template.Pagination;
 import com.kh.teaspoon.member.model.service.MemberService;
@@ -25,6 +32,7 @@ import com.kh.teaspoon.member.model.vo.MemCoupon;
 import com.kh.teaspoon.member.model.vo.Member;
 import com.kh.teaspoon.member.model.vo.MemberDTO;
 import com.kh.teaspoon.member.model.vo.MenToMen;
+import com.kh.teaspoon.member.model.vo.MenToMenDTO;
 
 @Controller
 public class MemberController {
@@ -221,8 +229,8 @@ public class MemberController {
 	
 	
 		//마이페이지용 조회 바
-		@RequestMapping("mymain.me")
-		public String selectMyPage(HttpSession session, Model model) {
+		@RequestMapping("main.me")
+		public String selectInfoPage(HttpSession session, Model model) {
 		
 		    Member loginUser = (Member) session.getAttribute("loginUser");
 		    //System.out.println(loginUser);
@@ -276,7 +284,7 @@ public class MemberController {
 			Member loginUser = (Member)session.getAttribute("loginUser");
 			MemberDTO m  = mService.selectMyPage(loginUser.getUserNo());
 		    //System.out.println(loginUser);
-			MenToMen mtm  = mService.selectMenToMen(mno);
+			ArrayList<MenToMenDTO> mtm  = mService.selectMenToMen(mno);
 			
 			System.out.println(mtm);
 			model.addAttribute("mtm", mtm);
@@ -290,4 +298,98 @@ public class MemberController {
 		public String goQnaEnroll() {
 			return "mypage/mypage_qnaEnrollForm";
 		}
+		
+		public String uploadFile(MultipartFile file, HttpServletRequest request) {
+			// 파일을 업로드 시킬 폴더 경로(String savePath)
+			String resources = request.getSession().getServletContext().getRealPath("resources");
+			//웹컨테이너의 resources의 물리적인 경로 알아내는 것		
+
+			String savePath = resources + "\\mtmUploadFiles\\";
+			
+			// 원본명(aaa.jpg)
+			String originName = file.getOriginalFilename(); 
+				//	File.getO;
+			
+			// 수정명(20200522202011.jpg 년월일시분초.기존의원본의확장자)
+			// 년월일시분초 (String currentTime)
+			String currentTime = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+			
+			// 확장자(String ext)
+			String ext = originName.substring(originName.lastIndexOf(".")); // ".jpg"
+					//lastIndexOf : 원본명이름중에 . 이후 ~ 마지막 까지 선택
+			String changeName = currentTime + (int)(Math.random()*1000)+1 + ext ;
+			
+			try {
+				file.transferTo(new File(savePath + changeName));
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			// transferTo : 어떤 폴더에 어떤 이름으로 저장할지 지정하는 메소드
+			
+			return changeName;
+		}
+		public void deleteFile(String fileName, HttpServletRequest request) {
+			String resources = request.getSession().getServletContext().getRealPath("resources"); 
+			String savePath = resources + "\\mtmUploadFiles\\";
+			
+			File deleteFile = new File(savePath + fileName);
+			deleteFile.delete();
+		}
+		
+		@ResponseBody
+		@RequestMapping(value="insertQNA.me")
+		public String insertMtm(MenToMen mtm, HttpServletRequest request,@RequestParam(name="uploadFile", required=false) MultipartFile[] file) {
+			
+			System.out.println(mtm);
+			System.out.println(file.length);
+			ArrayList<Attachment> attachList = new ArrayList<>();
+			
+			if(file.length>0) { // 첨부파일이 있을 때
+				String resources = request.getSession().getServletContext().getRealPath("resources"); 
+				String savePath = resources + "\\mtmUploadFiles\\";
+				
+				for(int i=0; i<file.length; i++) {
+					Attachment at = new Attachment();
+					 System.out.println(file[i].getOriginalFilename());
+					at.setOriginName(file[i].getOriginalFilename());
+					String changeName  = uploadFile(file[i],request);
+					at.setChangeName(changeName);
+					at.setFilePath(savePath + changeName);
+					attachList.add(at);
+				}
+				
+				 System.out.println(attachList);
+				
+				int result = mService.insertMtm(mtm);
+				if(result>0) { // 게시글 등록 성공 --> 첨부파일 DB에 넣기
+					int result2 =0;
+					for(Attachment at: attachList) {
+						result2 = mService.insertAttachment(at);
+					}
+					if(result2>0) { // 첨부파일 등록 성공
+						return "success";
+					}else { // 첨부파일 등록 실패
+						return "attachFail";
+					}
+				}else { // 게시글 등록 실패 --> 첨부파일들 다시 지우기
+					for(Attachment at: attachList) {
+						deleteFile(at.getChangeName(), request);
+					}
+					return "insertFail";	
+				}
+				
+			}else { // 첨부파일이 없을 때
+				int result = mService.insertMtm(mtm);
+				if(result>0) { // 게시글 등록 성공
+					return "success";
+				}else { // 게시글 등록 실패
+					return "insertFail";
+				}	
+			}
+			
+		}
+
+		
 }

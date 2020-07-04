@@ -89,7 +89,7 @@
 			                            <a id="logout" style="curcor:pointer">로그아웃</a>
 			                            <a href="logout.me" style="padding-bottom:10px;"></a>
 		                            </li>
-		                            <li><a href="mymain.me">마이티스푼</a></li>
+		                            <li><a href="main.me">마이티스푼</a></li>
 		                            <li><a>나의 배송 조회</a></li>
 		                            <li><a href="mypoint.me?currentPage=1">적립포인트</a></li>
 		                            <li><a>할인쿠폰</a></li>

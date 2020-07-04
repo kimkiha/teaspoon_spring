@@ -54,6 +54,29 @@
   	  		<result column="STATUS" property="status"/>
   	  	
   	  </resultMap>
+  	   <resultMap id="selectMenToMenDTO" type="com.kh.teaspoon.member.model.vo.MenToMenDTO">
+  	  		<id column="MTM_NO" property="mtmNo"/>
+  	  		<result column="USER_NO" property="userNo"/>
+  	  		<result column="MTM_TYPE" property="mtmType"/>
+  	  		<result column="MTM_TITLE" property="mtmTitle"/>
+  	  		<result column="MTM_CONTENT" property="content"/>
+  	  		<result column="CREATE_DATE" property="createDate"/>
+  	  		<result column="RE_COMMENT" property="reComment"/>
+  	  		<result column="COMMENT_DATE" property="commentDate"/>
+  	  		<result column="SEND_EMAIL" property="sendEmail"/>
+  	  		<result column="ANSWER" property="answer"/>
+  	  		<result column="STATUS" property="status"/>
+  	  		<result column="FILE_NO" property="fileNo"/>
+			<result column="REF_BNO" property="refBno"/>
+			<result column="ORIGIN_NAME" property="originName"/>
+			<result column="CHANGE_NAME" property="changeName"/>
+			<result column="FILE_PATH" property="filePath"/>
+			<result column="UPLOAD_DATE" property="uploadDate"/>
+			<result column="FILE_LEVEL" property="fileLevel"/>
+			<result column="FILE_STATUS" property="fileStatus"/>
+			<result column="BOARD_LEVEL" property="boardLevel"/>
+	  	  	
+  	  </resultMap>
   	  
   	  
   	  
@@ -153,10 +176,22 @@
 		 order by mtm_no desc
 	  </select>
   	  
-  	  <select id="selectMenToMen"  parameterType="com.kh.teaspoon.member.model.vo.MenToMen" resultMap="selectMtm">
+  	  <select id="selectMenToMen"  parameterType="com.kh.teaspoon.member.model.vo.MenToMenDTO" resultMap="selectMenToMenDTO">
   	 	select *
 		  from Men_To_Men
+		  join attachment on(mtm_no = ref_bno)
 		 where mtm_no=#{mno}
+		   and STATUS='N'
   	  </select>
+  	  
+  	  <insert id="insertMtm" parameterType="com.kh.teaspoon.member.model.vo.MenToMen">
+  	  	INSERT INTO 
+  	  	MEN_TO_MEN VALUES(MTM_NO.nextval,#{userNo},#{mtmType},#{mtmTitle},#{content},SYSDATE,DEFAULT,DEFAULT,DEFAULT,DEFAULT,DEFAULT)
+  	  </insert>
+  	  
+  	  <insert id="insertAttachment" parameterType="Attachment">
+		insert into attachment values(file_no.nextval, MTM_NO.CURRVAL, #{originName},#{changeName},
+									  #{filePath}, sysdate, 1, default, 2)
+	  </insert>
   	  
 </mapper>

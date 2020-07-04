@@ -6,12 +6,14 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.teaspoon.common.model.vo.Attachment;
 import com.kh.teaspoon.common.model.vo.PageInfo;
 import com.kh.teaspoon.member.model.dao.MemberDao;
 import com.kh.teaspoon.member.model.vo.MemCoupon;
 import com.kh.teaspoon.member.model.vo.Member;
 import com.kh.teaspoon.member.model.vo.MemberDTO;
 import com.kh.teaspoon.member.model.vo.MenToMen;
+import com.kh.teaspoon.member.model.vo.MenToMenDTO;
 
 @Service("mService")
 public class MemberServiceImpl implements MemberService {
@@ -86,9 +88,21 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public MenToMen selectMenToMen(int mno) {
+	public ArrayList<MenToMenDTO> selectMenToMen(int mno) {
 		
 		return mDao.selectMenToMen(sqlSession,mno);
+	}
+
+	@Override
+	public int insertMtm(MenToMen mtm) {
+		
+		return mDao.insertMtm(sqlSession,mtm);
+	}
+
+	@Override
+	public int insertAttachment(Attachment at) {
+		
+		return mDao.insertAttachment(sqlSession, at);
 	}
 
 
